@@ -18,6 +18,7 @@
 + Users: Unique nickname, avatar, roll, tournaments playing/ed, tournaments organized by the user, e-mail, external accounts and gold.
 + Tournaments: The game they are playing, players signed in, format (like double elimination for example), prices.
 + Teams: Multiple users can get together in a team, specially in order to compete in non-individual games.
++ Games: Data base with various videogames' names and icons.
 + Leagues: Multiple tournaments and a league score sheet. All the users have to pay a fee with gold to compete in leagues, and they can win unique prices. 
 
 ## Development team:
