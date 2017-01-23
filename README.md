@@ -19,3 +19,9 @@
 + Juegos: Se trata de una lista de juegos principal que los creadores implementan con portada y título, y estos se vinculan a torneos y a jugadores estrella. Por otro lado cada usuario puede añadir sus propios juegos.
 + Premios: Con oro o ganando torneos especiales organizados por los GMs, se podra optar a premios únicos de caracter no ventajoso.
 + Ligas: Son formadas por torneos, y una tabla de puntuación de liga. Para participar en una liga el usuario debe pagar un fee, y opta a premios grandes.
+
+## Integrantes del equipo de desarrollo:
++ Constin Dragos	Dogaru	cd.dogaru@alumnos.urjc.es cddogaru 
++ Alejandro	Romero Fonteboa	a.romerofo@alumnos.urjc.es Romero11
++ Raúl	Soto Sánchez	r.sotosan@alumnos.urjc.es rsotosan
++ Rafal Daniel	Szpecht	rd.szpecht@alumnos.urjc.es dimi3sinculotes
