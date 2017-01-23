@@ -28,7 +28,7 @@
 
 # Dispute *ENG*
 
-## Our web’s theme description:
+## Our web theme description:
 + It is a web page, which’s main focus is to organize competitive videogames (e-sports) events, giving support to the brackets, the administrative aspect linked with them (permissions given to the user who has created the tournament/event, such as setting the rules, approving sign-ins...), the social one (each user, as long as he has the permissions, he can sign in any tournament or event, he can claim victories or defeats, which also needs to be approve by the admin, every user can link his Dispute account with Twitter, Steam, Battle .NET... , in all the events, the users which are in the competition, can chat with each other. All the users can private message each other...).
 
 ### Private: 
