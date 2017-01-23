@@ -14,4 +14,8 @@
 + Visualización de torneos, perfiles y resultados.
 
 ## Entidades:
-+ 
++ Usuarios: Nombre único, avatar, rol, torneos donde participa, torneos que administra, correo, cuentas externas y oro.
++ Torneos: Juego en el que se compite, participantes, formato del torneo (p.e. eliminación doble), premios.
++ Juegos: Se trata de una lista de juegos principal que los creadores implementan con portada y título, y estos se vinculan a torneos y a jugadores estrella. Por otro lado cada usuario puede añadir sus propios juegos.
++ Premios: Con oro o ganando torneos especiales organizados por los GMs, se podra optar a premios únicos de caracter no ventajoso.
++ Ligas: Son formadas por torneos, y una tabla de puntuación de liga. Para participar en una liga el usuario debe pagar un fee, y opta a premios grandes.
