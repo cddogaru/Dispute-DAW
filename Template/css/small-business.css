@@ -44,3 +44,7 @@ footer {
    cursor:hand;
    cursor:pointer;
 }
+
+.well {
+    background: #2B2E2D;
+}
