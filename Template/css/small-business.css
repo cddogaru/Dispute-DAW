@@ -38,5 +38,9 @@ footer {
 
 .Title1{
     color: #141716;   
-    
+}
+
+#profile{
+   cursor:hand;
+   cursor:pointer;
 }
