@@ -5,7 +5,8 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    padding-top: 70px;
+    /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
     background: #31938F;
     color: #8DEFEC;
 }
@@ -23,28 +24,48 @@ footer {
     background-color: #141716;
     color: #8DEFEC;
     text-align: center;
-    margin-top:  5em;
+    margin-top: 5em;
 }
 
 @media(min-width:768px) {
     body {
-        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+        padding-top: 100px;
+        /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
     }
-
     .navbar-fixed-top .navbar-brand {
         padding: 15px 0;
     }
 }
 
-.Title1{
-    color: #141716;   
+.Title1 {
+    color: #141716;
 }
 
-#profile{
-   cursor:hand;
-   cursor:pointer;
+#profile {
+    cursor: hand;
+    cursor: pointer;
 }
 
 .well {
     background: #2B2E2D;
+}
+
+.btn-primary {
+    background-color: #141716;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #226764;
+    color: white;
+}
+
+.btn-primary:active:hover {
+    background-color: #226764;
+    color: white;
+}
+
+.btn-primary:focus {
+    background-color: #8DEFEB;
+    color: black;
 }
