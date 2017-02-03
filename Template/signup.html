@@ -2,87 +2,100 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <!-- Website CSS style -->
+    <link rel="stylesheet" type="text/css" href="css/signup.css">
 
-    <title>Settings</title>
-
-    <!-- Bootstrap Core CSS -->
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <title>Sign in Dispute</title>
 </head>
 
 <body>
-
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="index.html">
-                        Dispute
-                    </a>
-                </li>
-                <li>
-                    <a href="profile.html">Main page</a>
-                </li>
-                <li>
-                    <a href="tournaments.html">Tournaments</a>
-                </li>
-                <li>
-                    <a href="contactus.html">Contact us</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-                    </div>
+    <div class="container">
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title"> <span class="icon"><img src="images/logo.ico"></span> Dispute</h1>
+                    <hr />
                 </div>
             </div>
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="#">
+
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Email</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username" class="cols-sm-2 control-label">Username</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group ">
+                        <button type="button" class="btn btn-success">Sign in</button>
+                    </div>
+                    <div class="login-register">
+                        <a href="index.html">
+                            <p id="alreadyLink">Already have an account?</p>
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <!-- /#page-content-wrapper -->
-
     </div>
-    <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
-
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 </body>
 
 </html>
