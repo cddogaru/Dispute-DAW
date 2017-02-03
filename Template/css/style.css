@@ -21,7 +21,7 @@ body {
 
 footer {
     padding: 30px 0;
-    background-color: #141716;
+    /* background-color: #141716; */
     color: #8DEFEC;
     text-align: center;
     margin-top: 5em;
@@ -68,4 +68,7 @@ footer {
 .btn-primary:focus {
     background-color: #8DEFEB;
     color: black;
+}
+
+
 }
