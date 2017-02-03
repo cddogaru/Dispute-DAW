@@ -27,6 +27,36 @@
 
 </head>
 
+<!-- Navigation -->
+<header>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand" href="index.html"> <img src="images/logo.png" width="75"> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li> <a href="index.html">Home</a> </li>
+                    <li> <a href="tournaments.html">Tournaments</a> </li>
+                    <li></li>
+                </ul>
+                <!-- Profile photo menu -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" />
+                        <ul class="dropdown-menu">
+                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="tournaments.html">Tournaments</a></li>
+                            <li><a href="settings.html">Settings</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
 <body>
 
     <div id="wrapper">
@@ -34,12 +64,7 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="index.html" class="menulinks">
-                        <p class="menulinks"> <span class="icon"><img src="images/logo.ico"></span>Dispute</p>
-                    </a>
-                </li>
-                <li>
+                <li id="sideMenuFirstLink">
                     <a href="profile.html">
                         <p class="menulinks">Profile</p>
                     </a>
@@ -64,18 +89,20 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Contact us:</h1>
-                        <h2>Dispute's development team:</h2>
-                        <p>Raúl Soto: r.sotosan@alumnos.urjc.es</p>
-                        <p>Constin Dragos Dogaru: cd.dogaru@alumnos.urjc.es</p>
-                        <p>Rafał Daniel Szpecht: rd.szpecht@alumnos.urjc.es</p>
-                        <p>Alejandro Romero Fonteboa: ar.fonteboa@alumnos.urjc.es</p>
-                        <h2>Dispute's facebook page:</h2>
-                        <p><a href="https://www.facebook.com/Dispute-627402047448785/?ref=ts&fref=ts"> Facebook page</a></p>
-                        <h2>Dispute's twitter account:</h2>
-                        <p>@dispute.web</p>
-                        <h2>Dispute's email:</h2>
-                        <p>dispute.web@gmail.com</p>
+                        <h1 id="title">Contact us:</h1>
+                        <div class="col-lg-6">
+                            <h2>Dispute's development team:</h2>
+                            <p>Raúl Soto: r.sotosan@alumnos.urjc.es</p>
+                            <p>Constin Dragos Dogaru: cd.dogaru@alumnos.urjc.es</p>
+                            <p>Rafał Daniel Szpecht: rd.szpecht@alumnos.urjc.es</p>
+                            <p>Alejandro Romero Fonteboa: ar.fonteboa@alumnos.urjc.es</p>
+                            <h2>Dispute's facebook page:</h2>
+                            <p><a href="https://www.facebook.com/Dispute-627402047448785/?ref=ts&fref=ts"> Facebook page</a></p>
+                            <h2>Dispute's twitter account:</h2>
+                            <p>@dispute.web</p>
+                            <h2>Dispute's email:</h2>
+                            <p>dispute.web@gmail.com</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,87 @@
 #sidebar-wrapper {
     background: #323937;
 }
+
+.navbar-fixed-top .nav {
+    padding: 15px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 15px;
+}
+
+@media(min-width:768px) {
+    .navbar-fixed-top .navbar-brand {
+        padding: 15px 0;
+    }
+}
+
+#profile {
+    cursor: hand;
+    cursor: pointer;
+}
+
+body {
+    padding-top: 70px;
+}
+
+#sideMenuFirstLink {
+    margin-top: 7%;
+}
+
+.options {
+    font-weight: 200;
+    font-weight: bold;
+}
+
+.settingsCont {
+    margin-left: 12%;
+    margin-top: 5%;
+    margin-right: 8%;
+    padding-bottom: 0.5%;
+}
+
+.optionScroll {
+    align-content: center;
+}
+
+.dropdown-toggle {
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-menu {
+    width: 100%;
+}
+
+#applyChanges {
+    padding-top: 13%;
+    text-align-last: center;
+}
+
+.btn-primary {
+    background-color: #141716;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #226764;
+    color: white;
+}
+
+.btn-primary:active:hover {
+    background-color: #226764;
+    color: white;
+}
+
+.btn-primary:focus {
+    background-color: #8DEFEB;
+    color: black;
+}
+
+#title {
+    text-align: center;
+    margin-top: 3%;
+    font-size: 70;
+    font-weight: bolder;
+}
