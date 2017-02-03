@@ -1,13 +1,3 @@
-/*
-/* Created by Filipe Pina
- * Specific styles of signin, register, component
- */
-
-
-/*
- * General styles
- */
-
 body {
     background: #31938F;
 }
@@ -50,7 +40,7 @@ input::-webkit-input-placeholder {
 }
 
 .main-login {
-    background-color: #8DEFEB;
+    background-color: #7cc5c3;
     /* shadows and rounded borders */
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;

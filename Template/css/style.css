@@ -8,7 +8,7 @@ body {
     padding-top: 70px;
     /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
     background: #31938F;
-    color: #8DEFEC;
+    color: white;
 }
 
 .navbar-fixed-top .nav {
@@ -68,4 +68,17 @@ footer {
 .btn-primary:focus {
     background-color: #8DEFEB;
     color: black;
+}
+
+.tournamentLinks {
+    color: black;
+}
+
+#TournamentsDesc {
+    align-content: center;
+    text-align: center;
+}
+
+.row {
+    text-align: center;
 }
