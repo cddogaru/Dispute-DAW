@@ -81,7 +81,13 @@ body {
 
 #title {
     text-align: center;
+    margin-right: 14%;
     margin-top: 3%;
     font-size: 70;
     font-weight: bolder;
+}
+
+#contactUsBody {
+    text-align: center;
+    text-align-last: center;
 }
