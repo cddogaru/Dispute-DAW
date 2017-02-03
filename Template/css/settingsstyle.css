@@ -22,6 +22,7 @@
 }
 
 body {
+    background: #28C8C0;
     padding-top: 70px;
 }
 
@@ -90,4 +91,5 @@ body {
 #contactUsBody {
     text-align: center;
     text-align-last: center;
+    color: white;
 }
