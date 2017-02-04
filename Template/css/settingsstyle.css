@@ -1,3 +1,14 @@
+/* colores
+ De mas claro a mas oscuro
+
+             #f2f2f2;
+    color 1: #B6B6D4;
+    color 2: #6969A2;
+    color 3: #11114C;
+    color 4: #020221;
+    color 5: #343477;
+*/
+
 #sidebar-wrapper {
     background: #323937;
 }
@@ -22,7 +33,7 @@
 }
 
 body {
-    background: #28C8C0;
+    background: #f2f2f2;
     padding-top: 70px;
 }
 
@@ -82,14 +93,15 @@ body {
 
 #title {
     text-align: center;
-    margin-right: 14%;
+    margin-right: 18%;
     margin-top: 3%;
     font-size: 70;
     font-weight: bolder;
+    color: #11114C;
 }
 
 #contactUsBody {
     text-align: center;
     text-align-last: center;
-    color: white;
+    color: black;
 }

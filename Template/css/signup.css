@@ -1,17 +1,27 @@
+/* colores
+ De mas claro a mas oscuro
+
+             #f2f2f2;
+    color 1: #B6B6D4;
+    color 2: #6969A2;
+    color 3: #11114C;
+    color 4: #020221;
+    color 5: #343477;
+*/
 body {
-    background: #31938F;
+    background: #f2f2f2;
 }
 
 html {
     height: 100%;
-    background-color: #31938F;
-    background: #31938F;
+    background-color: #f2f2f2;
+    background: #f2f2f2;
     font-family: 'Oxygen', sans-serif;
 }
 
 .main {
     margin-top: 10px;
-    background: #31938F;
+    background: #f2f2f2;
 }
 
 h1.title {
@@ -40,7 +50,7 @@ input::-webkit-input-placeholder {
 }
 
 .main-login {
-    background-color: #7cc5c3;
+    background-color: #B6B6D4;
     /* shadows and rounded borders */
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -71,9 +81,9 @@ input::-webkit-input-placeholder {
 }
 
 .container {
-    background: #31938F;
+    background: #f2f2f2;
 }
 
 .main {
-    background: #31938F;
+    background: #f2f2f2;
 }

@@ -4,11 +4,23 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
+
+/* colores
+ De mas claro a mas oscuro
+
+             #f2f2f2;
+    color 1: #B6B6D4;
+    color 2: #6969A2;
+    color 3: #11114C;
+    color 4: #020221;
+    color 5: #343477;
+*/
+
 body {
     padding-top: 70px;
     /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
-    background: #28C8C0;
-    color: white;
+    background: #f2f2f2;
+    color: #020221;
 }
 
 .navbar-fixed-top .nav {
@@ -38,7 +50,7 @@ footer {
 }
 
 .Title1 {
-    color: #141716;
+    color: #343477;
 }
 
 #profile {
@@ -56,22 +68,22 @@ footer {
 }
 
 .btn-primary:hover {
-    background-color: #226764;
+    background-color: #6969A2;
     color: white;
 }
 
 .btn-primary:active:hover {
-    background-color: #226764;
+    background-color: #6969A2;
     color: white;
 }
 
 .btn-primary:focus {
-    background-color: #8DEFEB;
+    background-color: #B6B6D4;
     color: black;
 }
 
 .tournamentLinks {
-    color: black;
+    color: #343477;
 }
 
 #TournamentsDesc {
@@ -81,4 +93,12 @@ footer {
 
 .row {
     text-align: center;
+}
+
+#whiteText {
+    color: white;
+}
+
+.blackText {
+    color: black;
 }
