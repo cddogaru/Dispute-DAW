@@ -9,22 +9,16 @@
     color 5: #343477;
 */
 
-#sidebar-wrapper {
-    background: #323937;
+footer {
+    padding: 30px 0;
+    /* background-color: #141716; */
+    color: #8DEFEC;
+    text-align: center;
+    margin-top: 5em;
 }
 
-.navbar-fixed-top .nav {
-    padding: 15px 0;
-}
-
-.navbar-fixed-top .navbar-brand {
-    padding: 0 15px;
-}
-
-@media(min-width:768px) {
-    .navbar-fixed-top .navbar-brand {
-        padding: 15px 0;
-    }
+.Title1 {
+    color: #343477;
 }
 
 #profile {
@@ -32,13 +26,48 @@
     cursor: pointer;
 }
 
-body {
-    background: #f2f2f2;
-    padding-top: 70px;
+.well {
+    background: #2B2E2D;
 }
 
-#sideMenuFirstLink {
-    margin-top: 7%;
+.btn-primary {
+    background-color: #141716;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #6969A2;
+    color: white;
+}
+
+.btn-primary:active:hover {
+    background-color: #6969A2;
+    color: white;
+}
+
+.btn-primary:focus {
+    background-color: #B6B6D4;
+    color: black;
+}
+
+#navbar-icon {
+    padding-top: 10px;
+}
+
+#topRightMenu {
+    margin-left: 0.5em;
+}
+
+#sidebar-wrapper {
+    background: #323937;
+}
+
+body {
+    background: #f2f2f2;
+}
+
+#firstLink {
+    padding-top: 4em;
 }
 
 .options {
@@ -104,4 +133,12 @@ body {
     text-align: center;
     text-align-last: center;
     color: black;
+}
+
+.settingsSecTitle {
+    margin-left: 1.5em;
+}
+
+#page-content-wrapper {
+    padding-top: 4em;
 }

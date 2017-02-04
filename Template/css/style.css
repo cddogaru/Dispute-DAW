@@ -84,19 +84,22 @@ footer {
     text-align: center;
 }
 
-<<<<<<< HEAD
-.tournament {
+HEAD .tournament {
     font-size: 1.5em;
 }
 
 #navbar-icon {
     padding-top: 10px;
-=======
+}
+
 #whiteText {
     color: white;
 }
 
 .blackText {
     color: black;
->>>>>>> origin/master
+}
+
+#topRightMenu {
+    margin-left: 0.5em;
 }
