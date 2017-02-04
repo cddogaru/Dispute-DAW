@@ -88,9 +88,6 @@ footer {
     text-align: center;
 }
 
-.row {
-    text-align: center;
-}
 
 HEAD .tournament {
     font-size: 1.5em;
@@ -147,5 +144,7 @@ HEAD .tournament {
     padding-bottom: 2em;
 }
 
-
+.info{
+    margin-bottom:0em;
+}
 /* EOF */
