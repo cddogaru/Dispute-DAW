@@ -88,7 +88,6 @@ footer {
     text-align: center;
 }
 
-
 HEAD .tournament {
     font-size: 1.5em;
 }
@@ -110,13 +109,12 @@ HEAD .tournament {
 }
 
 .createATournamentBody {
-    background: #B8B8C2;
+    background: #e0dedc;
     width: 90%;
     margin-left: 5%;
 }
 
 #newTournamentBdy {
-    background: #CFCFDA;
     margin-top: -6em;
 }
 
@@ -144,7 +142,9 @@ HEAD .tournament {
     padding-bottom: 2em;
 }
 
-.info{
-    margin-bottom:0em;
+.info {
+    margin-bottom: 0em;
 }
+
+
 /* EOF */
