@@ -1,0 +1,72 @@
+<!-- Heading Row -->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div id="TournamentsDesc">
+                    <h1 class="Title1"><strong>TOURNAMENTS</strong></h1>
+                    <p>All tournaments being played at the moment are listed down here:</p>
+                    <p>Still have not an account? We suggest you to sign up for free and try out your gaming skills against your friends!</p><a class="btn btn-primary btn-lg" href="signup.html">Sign up</a> </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <hr>
+
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Tekken X Street Fighter EVO 2017</a></h2>
+                <p>The koreans are making this sample text to test our web since the koreans always win in fighting games and tekken x street fighter is complete bullshit and it would make no sence it to be the number one in popularity cheers.</p> <a class="btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Hearthstone: Heroes of Warcraft | BLIZZCON 2017</a></h2>
+                <p>Pavel's book OP comboed with the Kappa Kappa OpieOP OpieOP PogChamp PogChamp Yogg saaron, rip Thjis where are our packs bro? where are our packs? pavel learn to play bro bro huh? so lucky, kripp is so bad at arena tho, Kappa cheers.</p> <a class="btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Counter Strike Global Offensive | Final | World's Cup</a></h2>
+                <p>Hey guys look at us, we have no scopes but we have the best aim in the entire first person shoter comunity, the graphics looks like wolfesteins in 1943 but hey everyone plays this instead of Battlefield 1 so where is the problem? Drink some mountain dew and eat some doritos becoz this is about to start, cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-12">
+                <h2 class="Title1"><a class="tournamentLinks" href="tournaments.html">Another Sample Tournament</a></h2>
+                <p>This sample tournament's description, heeeeey brother, there is a endless road to be discovered, stand byy meeeeeee, if the sky what we are looking upon, should crumble and faaaaaaall, and all the roads which lead us there are winding. cheers.</p> <a class=" btn btn-primary btn-lg" href="tournaments.html">View bracket</a> </div>
+            <!-- /.col-md-4 -->
+        </div>
