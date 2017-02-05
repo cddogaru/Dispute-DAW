@@ -145,4 +145,7 @@ HEAD .tournament {
 }
 
 
-/* EOF */
+#captain {
+    border-left-width: 0.8em;
+    background: #F1F1F1;
+}
