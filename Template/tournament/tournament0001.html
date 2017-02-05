@@ -11,7 +11,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/bracketStlye.css" rel="stylesheet">
-</head>
+    <link href="../css/font-awesome.css" rel="stylesheet"> </head>
 
 <body>
     <!-- Navigation -->
@@ -26,6 +26,7 @@
                     <ul class="nav navbar-nav navbar-left">
                         <li><a href='../index.html'>Home</a></li>
                         <li><a href='../tournaments.html'>Tournaments</a></li>
+                        <li> <a href='teams.html'>Teams</a> </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" />
@@ -47,35 +48,128 @@
     <!-- Page Content -->
     <div class="container">
         <!-- Heading Row -->
-        <div class="row">
-            <h1 class="Title1">Hearthstone: Heroes of Warcraft | Blizzcon 2017</h1>
-            <p>Hearthstone, originally known as Hearthstone: Heroes of Warcraft, is a free-to-play online collectible card video game developed and published by Blizzard Entertainment. Having been released worldwide on March 11, 2014, Hearthstone builds upon the already existing lore of the Warcraft series by using the same elements, characters, and relics.</p>
-            <div class="separator"></div>
-            <div class="col-md-12">
-                <div class="bracket">
-                    <div class="separator"></div>
-                    HERE GOES THE BRACKET
-                    <div class="separator"></div>
-                    <img src="../images/pantalla%20principal%20proto.jpg">
-
-                    <div class="separator"></div>
-                    <div class="separator"></div>
-                    well done with scrolls and everything, the main js big issue we are gonna have to handle is gonna be in here
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#info">Info</a></li>
+                            <li><a data-toggle="tab" href="#bracket">Bracket</a></li>
+                            <li><a data-toggle="tab" href="#matchs">Matchs</a></li>
+                            <li><a data-toggle="tab" href="#support">Support</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="info" class="tab-pane fade in active">
+                                <br>
+                                <div class="jumbotron">
+                                    <h1>Blizzcon World Championship</h1>
+                                    <p>Hearthstone, originally known as Hearthstone: Heroes of Warcraft, is a free-to-play online collectible card video game developed and published by Blizzard Entertainment. Having been released worldwide on March 11, 2014, Hearthstone builds upon the already existing lore of the Warcraft series by using the same elements, characters, and relics.</p>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Info</div>
+                                    <div class="panel-body">
+                                        <p><strong>Game: </strong>Hearthstone</p>
+                                        <p><strong>Mode: </strong>1v1</p>
+                                        <p><strong>participants: </strong>12/32</p>
+                                        <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> 12-13-19 at 13:00</p>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Podium</div>
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"> 1. <img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a> </li>
+                                            <li class="list-group-item"> 2. <img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a> </li>
+                                            <li class="list-group-item"> 3. <img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Chat</div>
+                                    <div class="panel-body"> </div>
+                                </div>
+                            </div>
+                            <div id="bracket" class="tab-pane"></div>
+                            <div id="matchs" class="tab-pane">
+                                <br>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr class="success">
+                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr class="success">
+                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr class="success">
+                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></td>
+                                                </tr>
+                                                <tr class="danger">
+                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="support" class="tab-pane">
+                                <br>
+                                <div class="well">Contact with an admin:</div>
+                                <textarea type="text" class="form-control" rows="5" style="max-width: 100%;"></textarea>
+                                <br>
+                                <div class="text-right"> <a href="#" class="btn btn-info btn-lg">Contact</a> </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="">
+                            <div class="text-right"> <a href="#" class="btn btn-success btn-block">Join in</a> </div>
+                        </div>
+                        <br>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Info</div>
+                            <div class="panel-body">
+                                <p><strong>Game: </strong>Hearthstone</p>
+                                <p><strong>Mode: </strong>1v1</p>
+                                <p><strong>participants: </strong>12/32</p>
+                                <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> 12-13-19 at 13:00</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Admins:</div>
+                            <ul class="panel-body list-group">
+                                <li class="list-group-item"> <a href="../profile.html">Dimi3sinculotes</a> </li>
+                                <li class="list-group-item"> <a href="../profile.html">Dimi3sinculotes</a> </li>
+                                <li class="list-group-item"> <a href="../profile.html">Dimi3sinculotes</a> </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="separator"></div>
             </div>
-            <div class="col-md-12">
-                <div class="chat">
-                    CHAT GOES HERE
-                </div>
-            </div>
-
         </div>
-        <!-- /.row -->
     </div>
     <!-- /.container -->
-
     <!-- Footer -->
     <footer class="col-lg-12 navbar-inverse">
         <div class="row">
