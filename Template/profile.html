@@ -10,7 +10,8 @@
     <title>Dispute Project</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/profileStyle.css" rel="stylesheet"> </head>
+    <link href="css/profileStyle.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet"> </head>
 
 <body>
     <!-- Navigation -->
@@ -46,75 +47,56 @@
     </header>
     <!-- Page Content -->
     <div class="container">
-        <!-- Heading Row -->
-        <div class="row">
-            <div class="col-md-8" id="profileInfo">
-                <div>
-                    <h1 class="Title1">Profile Info: </h1>
-                    <h2 class="profileText1">Name:</h2>
-                    <p class="profileText2">Rafal Daniel Szpecht</p>
-                    <div class="separator"></div>
-                    <h2 class="profileText1">Platforms:</h2>
-                    <p class="profileText2">PSN: D3S_96_</p>
-                    <p class="profileText2">xBox live: D3S_</p>
-                    <p class="profileText2">Steam: dimiii</p>
-                    <p class="profileText2">Battle.NET: D3S #2663</p>
-                    <div class="separator"></div>
-                    <h2 class="profileText1">Tournaments won:   8</h2>
-                    <div class="separator"></div>
-                    <h2 class="profileText1">Role: web admin</h2> </div>
-            </div>
-            <!-- /.col-md-8 -->
-            <div class="col-md-4">
-                <div id="profileImg">
-                    <h1 class="Title1"><strong>Dimi3sinculotes</strong></h1>
-                    <div class="separator"></div>
-                    <div id="profileMainPic"> <img id="profile" class="img-square" src="http://lorempixel.com/300/250/" /></div>
-                    <a class="btn btn-primary btn-lg" href="newTournament.html">Create a tournament</a>
-                    <div class="separator"></div>
-                    <a class="btn btn-primary btn-lg" href="settings2.html">Manage Profile</a>
-                </div>
-            </div>
-            <!-- /.col-md-4 -->
-        </div>
-        <!-- /.row -->
-        <hr>
-        <!-- /.row -->
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="well well-sm">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4">
-                            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
-                        </div>
-                        <div class="col-sm-6 col-md-8">
-                            <h4>
-                            Bhaumik Patel</h4>
-                            <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
-                        </i></cite></small>
-                            <p>
-                                <i class="glyphicon glyphicon-envelope"></i>email@example.com
-                                <br />
-                                <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
-                                <br />
-                                <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
-                            <!-- Split button -->
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary">
-                                    Social</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    <span class="caret"></span><span class="sr-only">Social</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Twitter</a></li>
-                                    <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
-                                    <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Github</a></li>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3"> <img src="http://lorempixel.com/100/100" class="img-thumbnail" />
+                        <h3><strong>Dimi3</strong></h3>
+                        <hr>
+                        <p> <span class="fa fa-twitter"></span> Dimi3Sinculotes</p>
+                        <p> <span class="fa fa-twitch"></span> Dimi3Sinculotes</p>
+                        <p> <span class="fa fa-youtube"></span> Dimi3Sinculotes</p>
+                        <p> <span class="fa fa-envelope-o"></span> Dimi3@gmail.com</p>
+                        <p><a href="#" class="btn btn-lg btn-success text-left"><span class="fa fa-user-circle"></span> Add as friend</a></p>
+                        <p><a href="#" class="btn btn-lg btn-success text-left"><span class="fa fa-gift"></span> Invite team</a></p>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#tournaments">Tournaments</a></li>
+                            <li><a data-toggle="tab" href="#friends">Friends</a></li>
+                            <li><a data-toggle="tab" href="#accounts">Accounts</a></li>
+                            <li><a data-toggle="tab" href="#teams">Teams</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tournaments" class="tab-pane fade in active">
+                                <br>
+                                <div class="well"><strong>Joined tournaments</strong></div>
+                                <div class="list-group"> <a href="tournament/tournament0001.html" class="list-group-item">Blizzcon World Championship</a> <a href="tournament/tournament0001.html" class="list-group-item">Counter Final CS | World's Cup</a> <a href="tournament/tournament0001.html" class="list-group-item">Tekken 2017 International Championship</a> <a href="tournament/tournament0001.html" class="list-group-item">Blizzcon World Championship</a> <a href="tournament/tournament0001.html" class="list-group-item">Counter Final CS | World's Cup</a> <a href="tournament/tournament0001.html" class="list-group-item">Tekken 2017 International Championship</a> </div>
+                                <div class="well"><strong>Created tournaments</strong></div>
+                                <div class="list-group"> <a href="tournament/tournament0001.html" class="list-group-item">Blizzcon World Championship</a> <a href="tournament/tournament0001.html" class="list-group-item">Counter Final CS | World's Cup</a> <a href="tournament/tournament0001.html" class="list-group-item">Tekken 2017 International Championship</a> <a href="tournament/tournament0001.html" class="list-group-item">Blizzcon World Championship</a> <a href="tournament/tournament0001.html" class="list-group-item">Counter Final CS | World's Cup</a> <a href="tournament/tournament0001.html" class="list-group-item">Tekken 2017 International Championship</a> </div>
+                            </div>
+                            <div id="friends" class="tab-pane fade">
+                                <br>
+                                <div class="well">Friends</div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></li>
+                                    <li class="list-group-item"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></li>
+                                    <li class="list-group-item"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></li>
+                                    <li class="list-group-item"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></li>
+                                    <li class="list-group-item"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="profile.html">Dimi3</a></li>
                                 </ul>
+                            </div>
+                            <div id="accounts" class="tab-pane fade">
+                                <br>
+                                <div class="well">Games id</div>
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="images/icons/steam.png"></span> Steam: </p>
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="images/icons/battlenet.png"></span> Battlenet: </p>
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="images/icons/psn.png"></span> Psn: </p>
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="images/icons/xbox.png"></span> Xbox: </p>
+                            </div>
+                            <div id="teams" class="tab-pane fade">
+                                <br>
+                                <div class="well">Teams</div>
                             </div>
                         </div>
                     </div>

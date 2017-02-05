@@ -43,143 +43,132 @@
             </div>
         </nav>
     </header>
-
     <!-- Page Content -->
-    <h1 class="Title2">Create a tournament:</h1>
-    <div class="col-lg-12">
-        <div class="createATournamentBody">
-            <div class="tournamentField">
-                <div class="col-md-2">
-                    <p class="options"> Tournament name: </p>
-                </div>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" id="name">
-                </div>
-            </div>
-            <div class="tournamentField">
-                <div class="col-md-2">
-                    <p class="options"> URL: </p>
-                </div>
-                <div class="col-lg-8">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon3">http://dispute-project.com/tournament/</span>
-                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="Title2">Create a tournament:</h1> </div>
+            <div class="panel-body">
+                <div class="col-lg-12">
+                    <div class="tournamentField">
+                        <div class="col-md-2">
+                            <p class="options"> Tournament name: </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="name"> </div>
+                    </div>
+                    <div class="tournamentField">
+                        <div class="col-md-2">
+                            <p class="options"> URL: </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input-group"> <span class="input-group-addon" id="basic-addon3">http://dispute-project.com/tournament/</span>
+                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"> </div>
+                        </div>
+                    </div>
+                    <div class="tournamentField">
+                        <div class="col-md-2">
+                            <p class="options"> Tournament type: </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optradio">Single stage tournament</label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optradio">Two stage tournament</label>
+                            </div>
+                            <div class="radio disabled">
+                                <label>
+                                    <input type="radio" name="optradio" disabled>
+                                    <p id="semitransparentTxt">Custom (only for GMs)</p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tournamentField"></div>
+                    <div class="tournamentField">
+                        <div class="col-md-2">
+                            <p class="options"> Format: </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="format">Single Elimination</label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="format">Double Elimination</label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="format">Round Robin</label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="format">Swiss</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tournamentField"></div>
+                    <div class="tournamentField"></div>
+                    <div class="tournamentField">
+                        <div class="col-md-2">
+                            <p class="options"> Registration: </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="registration">Provide a list of participants</label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="registration">Host a sign-up page</label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">Team sign-in?</label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">Maximum number of participants?</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tournamentField"></div>
+                    <div class="tournamentField"></div>
+                    <div class="tournamentField">
+                        <div class="col-md-2">
+                            <p class="options"> Start time: </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="name"> </div>
+                    </div>
+                    <div class="tournamentField">
+                        <div class="col-md-2">
+                            <p class="options"> Game: </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="name"> </div>
+                    </div>
+                    <div class="tournamentField">
+                        <div class="col-md-2">
+                            <p class="options"> Description: </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" id="comment" style="max-width:100%"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tournamentField"></div>
+                    <div class="tournamentField"></div>
+                    <div class="tournamentField"></div>
+                    <div id="confirmButton">
+                        <div id="applyChanges"> <a class="btn btn-primary btn-lg" href="settings.html">Create</a> </div>
                     </div>
                 </div>
-            </div>
-            <div class="tournamentField">
-                <div class="col-md-2">
-                    <p class="options"> Tournament type: </p>
-                </div>
-                <div class="col-lg-8">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optradio">Single stage tournament</label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optradio">Two stage tournament</label>
-                    </div>
-                    <div class="radio disabled">
-                        <label>
-                            <input type="radio" name="optradio" disabled>
-                            <p id="semitransparentTxt">Custom (only for GMs)</p>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tournamentField"></div>
-
-            <div class="tournamentField">
-                <div class="col-md-2">
-                    <p class="options"> Format: </p>
-                </div>
-                <div class="col-lg-8">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="format">Single Elimination</label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="format">Double Elimination</label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="format">Round Robin</label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="format">Swiss</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tournamentField"></div>
-            <div class="tournamentField"></div>
-
-            <div class="tournamentField">
-                <div class="col-md-2">
-                    <p class="options"> Registration: </p>
-                </div>
-                <div class="col-lg-8">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="registration">Provide a list of participants</label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="registration">Host a sign-up page</label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">Team sign-in?</label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">Maximum number of participants?</label>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="tournamentField"></div>
-            <div class="tournamentField"></div>
-
-            <div class="tournamentField">
-                <div class="col-md-2">
-                    <p class="options"> Start time: </p>
-                </div>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" id="name">
-                </div>
-            </div>
-
-            <div class="tournamentField">
-                <div class="col-md-2">
-                    <p class="options"> Game: </p>
-                </div>
-                <div class="col-lg-8">
-                    <input type="text" class="form-control" id="name">
-                </div>
-            </div>
-
-            <div class="tournamentField">
-                <div class="col-md-2">
-                    <p class="options"> Description: </p>
-                </div>
-                <div class="col-lg-8">
-                    <div class="form-group">
-                        <textarea class="form-control" rows="5" id="comment"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tournamentField"></div>
-            <div class="tournamentField"></div>
-            <div class="tournamentField"></div>
-            <div id="confirmButton">
-                <div id="applyChanges"> <a class="btn btn-primary btn-lg" href="settings.html">Create</a> </div>
             </div>
         </div>
     </div>

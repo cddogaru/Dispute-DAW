@@ -55,9 +55,7 @@ footer {
     cursor: pointer;
 }
 
-.well {
-    background: #2B2E2D;
-}
+.well {}
 
 .btn-primary {
     background-color: #141716;
