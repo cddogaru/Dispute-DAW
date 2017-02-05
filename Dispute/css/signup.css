@@ -8,8 +8,9 @@
     color 4: #020221;
     color 5: #343477;
 */
+
 body {
-    background: #f2f2f2;
+    background: white;
 }
 
 html {
@@ -50,7 +51,7 @@ input::-webkit-input-placeholder {
 }
 
 .main-login {
-    background-color: #B6B6D4;
+    background-color: #f2f2f2;
     /* shadows and rounded borders */
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -81,9 +82,9 @@ input::-webkit-input-placeholder {
 }
 
 .container {
-    background: #f2f2f2;
+    background: white;
 }
 
 .main {
-    background: #f2f2f2;
+    background: white;
 }

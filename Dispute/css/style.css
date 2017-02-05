@@ -144,8 +144,18 @@ HEAD .tournament {
     margin-bottom: 0em;
 }
 
-
 #captain {
     border-left-width: 0.8em;
     background: #F1F1F1;
+}
+
+#footerLinks {
+    font-size: 2.2em;
+    opacity: 0.5;
+    margin-left: 0.15em;
+}
+
+#footerLogo {
+    opacity: 0.3;
+    font-size: 1.3em;
 }
