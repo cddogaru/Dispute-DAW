@@ -12,6 +12,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -19,134 +20,125 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
- <!-- Navigation -->
-    <header>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                    <a href="index.html"><img id="navbar-icon" src="images/logoHeader.png" /></a>
-                </div>
-                <div class="navbar-collapse collapse" id="navbar">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a href='index.html'>Home</a></li>
-                        <li><a href='tournaments.html'>Tournaments</a></li>
-                        <li> <a href='teams.html'>Teams</a> </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" />
-                            <ul class="dropdown-menu">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="mytournaments.html">My Tournaments</a></li>
-                                <li><a href="#">Logout</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="settings.html" id="topRightMenu">Settings</a></li>
-                        <li><a href="contactus.html">Contact</a></li>
-                    </ul>
-                    <form class="navbar-form navbar-left">
-                        <input type="text" class="form-control" placeholder="Search tournament..."> </form>
-                </div>
+<!-- Navigation -->
+<header>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a href="index.html"><img id="navbar-icon" src="images/logoHeader.png" /></a>
             </div>
-        </nav>
-    </header>
+            <div class="navbar-collapse collapse" id="navbar">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href='index.html'>Home</a></li>
+                    <li><a href='tournaments.html'>Tournaments</a></li>
+                    <li> <a href='teams.html'>Teams</a> </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" />
+                        <ul class="dropdown-menu">
+                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="mytournaments.html">My Tournaments</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="settings.html" id="topRightMenu">Settings</a></li>
+                    <li><a href="contactus.html">Contact</a></li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <input type="text" class="form-control" placeholder="Search tournament..."> </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
 <body>
     <div id="wrapper">
-
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                <div class="col-lg-3">
-                    <div class="sidebar-nav">
-                        <div class="navbar navbar-default" role="navigation">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse"> <span class="sr-only">Settings</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <span class="visible-xs navbar-brand">Settings</span> </div>
-                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="settings.html">Privacy</a></li>
-                                    <li><a href="settings2.html">Profile Settings</a></li>
-                                    <li class="active"><a href="settings3.html">Linked Accounts</a></li>
-                                </ul>
+                    <div class="col-lg-3">
+                        <div class="sidebar-nav">
+                            <div class="navbar navbar-default" role="navigation">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse"> <span class="sr-only">Settings</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <span class="visible-xs navbar-brand">Settings</span> </div>
+                                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="settings.html">Privacy</a></li>
+                                        <li><a href="settings2.html">Profile Settings</a></li>
+                                        <li class="active"><a href="settings3.html">Linked Accounts</a></li>
+                                    </ul>
+                                </div>
+                                <!--/.nav-collapse -->
                             </div>
-                            <!--/.nav-collapse -->
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                        <h2>Linked Accounts:</h2>
-                        <hr>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p class="options"><span><img class="icons" src="images/icons/psn.png"></span> PSN: </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control" id="psn">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p class="options"> <span><img class="icons" src="images/icons/xbox.png"></span> xBox Live: </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control" id="xbox">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p class="options"><span><img class="icons" src="images/icons/steam.png"></span> Steam: </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control" id="steam">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p class="options"><span><img class="icons" src="images/icons/battlenet.png"></span> Battle.NET: </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control" id="blizzard">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p class="options"><span><img class="icons" src="images/icons/origin.png"></span> Origin: </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control" id="origin">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p class="options"><span><img class="icons" src="images/icons/twitter.png"></span> Twitter: </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control" id="twitter">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p class="options"><span><img class="icons" src="images/icons/twitch.png"></span> Twitch: </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control" id="twitch">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p class="options"><span><img class="icons" src="images/icons/youtube.png"></span> Youtube: </p>
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" class="form-control" id="youtube">
+                    <div class="col-lg-9">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h2>Linked Accounts:</h2>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="options"><span><img class="icons" src="images/icons/psn.png"></span> PSN: </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="psn"> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="options"> <span><img class="icons" src="images/icons/xbox.png"></span> xBox Live: </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="xbox"> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="options"><span><img class="icons" src="images/icons/steam.png"></span> Steam: </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="steam"> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="options"><span><img class="icons" src="images/icons/battlenet.png"></span> Battle.NET: </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="blizzard"> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="options"><span><img class="icons" src="images/icons/origin.png"></span> Origin: </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="origin"> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="options"><span><img class="icons" src="images/icons/twitter.png"></span> Twitter: </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="twitter"> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="options"><span><img class="icons" src="images/icons/twitch.png"></span> Twitch: </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="twitch"> </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="options"><span><img class="icons" src="images/icons/youtube.png"></span> Youtube: </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="youtube"> </div>
+                                </div>
+                                <br>
+                                <div class="text-right"> <a class="btn btn-primary btn-lg" href="settings.html">Apply changes</a> </div>
                             </div>
                         </div>
-
-                        <br>
-                        <div class="text-right"> <a class="btn btn-primary btn-lg" href="settings.html">Apply changes</a> </div>
-                    </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -157,7 +149,15 @@
     <footer class="col-lg-12 navbar-inverse">
         <div class="row">
             <div class="col-lg-12 ">
-                <p>Copyright &copy; Dispute Project 2017, all rights reserved.</p>
+                <div class="col-xs-4">
+                    <div class="text-left">
+                        <p id="footerLogo"><span><img src="images/logoG.png"></span> Dispute Project</p>
+                    </div>
+                </div>
+                <div class="col-xs-4"> </div>
+                <div class="text-right">
+                    <div class="col-xs-4"> <a href="https://twitter.com/DisputeWeb?lang=es"><span class="fa fa-twitter-square" id="footerLinks"></span></a> <a href="https://www.facebook.com/Dispute-627402047448785/?ref=ts&fref=ts"><span class="fa  fa-facebook-square " id="footerLinks"></span></a> <a href="https://github.com/cddogaru/Dispute-DAW"><span class="fa  fa-github " id="footerLinks"></span></a> </div>
+                </div>
             </div>
         </div>
     </footer>
