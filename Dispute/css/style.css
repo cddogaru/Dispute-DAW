@@ -160,14 +160,6 @@ HEAD .tournament {
     font-size: 1.3em;
 }
 
-
-
-#btnCreateTeam {
-    margin-left: 70em;
-    margin-bottom: -3.4em;
-    padding-top: 1em;
-}
-
 @media (min-width: 768px) {
     .sidebar-nav .navbar .navbar-collapse {
         padding: 0;
