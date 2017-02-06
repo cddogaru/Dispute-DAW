@@ -66,5 +66,6 @@ Similar to register a user, log in, create a team... It is a form, which asks th
 
 This is the settings tab, for all registered users, it is separated in privacy, profile settings(avatar, email, nick and password) and a linked accounts tab, so people can play their match-ups faster
 
+
 # Navigation diagram:
-![ScreenShot](https://www.dropbox.com/s/vgzv4vr5f02maen/grafo_dispute.jpg?dl=0)
+![ScreenShot](https://drive.google.com/file/d/0B6aJ2I6fcnWpQTMyVFRLdlcxTVU/view?usp=sharing)
