@@ -32,6 +32,9 @@
 
 ![ScreenShot](https://i.gyazo.com/ce4a02719d83a6b41ae8294a52b17aa6.png)
 
+# Template: 
+![ScreenShot](https://startbootstrap.com/img/templates/small-business.jpg)
+https://startbootstrap.com/template-overviews/small-business/
 
 # Model:
 
