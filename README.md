@@ -62,7 +62,7 @@ This is a sample tournament's page, there will be one of this for each tournamen
 Similar to register a user, log in, create a team... It is a form, which asks the user for necesarry information so an instance of in this case a tournament can be made
 
 ## Settings
-![ScreenShot](SCREEN SHOT NEEDA BE TAKEN)
+![ScreenShot](http://i.imgur.com/BhureVY.png)
 
 This is the settings tab, for all registered users, it is separated in privacy, profile settings(avatar, email, nick and password) and a linked accounts tab, so people can play their match-ups faster
 
