@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Report a bug</title>
+    <title>Contact us</title>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="css/settingsstyle.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,9 +31,8 @@
             </div>
             <div class="navbar-collapse collapse" id="navbar">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href='index.html'>Home</a></li>
-                    <li><a href='tournaments.html'>Tournaments</a></li>
-                    <li> <a href='teams.html'>Teams</a> </li>
+                    <li><a href='index.html'>Contact us</a></li>
+                    <li><a href='tournaments.html'>Report bug</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" />
@@ -54,37 +53,38 @@
 </header>
 
 <body>
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li>
-                    <a href="contactus.html" id="firstLink">
-                        <p class="menulinks">Contact</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <p class="menulinks">Report a bug</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 id="title">Report a bug:</h1>
-                        <p>UNDER DEVELOPMENT</p>
-                        <div class="col-lg-10">
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="sidebar-nav">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse"> <span class="sr-only">Settings</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <span class="visible-xs navbar-brand">Settings</span> </div>
+                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="contactus.html">Contact us</a></li>
+                                    <li class="active"><a href="reportbug.html">Report bug</a></li>
+                                </ul>
+                            </div>
+                            <!--/.nav-collapse -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h1>Report bug:</h1>
+                            <hr>
+                            <textarea type="text" class="form-control" rows="6" style="max-width: 100%;"></textarea>
+                            <br>
+                            <div class="text-right"><a href="#" class="btn btn-success">Send</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
     </div>
     <!-- Footer -->
     <footer class="col-lg-12 navbar-inverse">

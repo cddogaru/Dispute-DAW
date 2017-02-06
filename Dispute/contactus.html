@@ -12,7 +12,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="css/settingsstyle.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,9 +31,8 @@
             </div>
             <div class="navbar-collapse collapse" id="navbar">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href='index.html'>Home</a></li>
-                    <li><a href='tournaments.html'>Tournaments</a></li>
-                    <li> <a href='teams.html'>Teams</a> </li>
+                    <li><a href='index.html'>Contact us</a></li>
+                    <li><a href='tournaments.html'>Report bug</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" />
@@ -54,52 +53,51 @@
 </header>
 
 <body>
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li>
-                    <a href="contactus.html" id="firstLink">
-                        <p class="menulinks">Contact</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="reportbug.html">
-                        <p class="menulinks">Report a bug</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 id="title">Contact us:</h1>
-                        <div class="col-lg-10">
-                            <div id="contactUsBody">
-                                <h2>Dispute's development team:</h2>
-                                <p><span class="glyphicon glyphicon-envelope"></span> Raúl Soto Sánchez: r.sotosan@alumnos.urjc.es</p>
-                                <p><span class="glyphicon glyphicon-envelope"></span> Constin Dragos Dogaru: cd.dogaru@alumnos.urjc.es</p>
-                                <p><span class="glyphicon glyphicon-envelope"></span> Rafał Daniel Szpecht: rd.szpecht@alumnos.urjc.es</p>
-                                <p><span class="glyphicon glyphicon-envelope"></span> Alejandro Romero Fonteboa: ar.fonteboa@alumnos.urjc.es</p>
-                                <div class="separator2"></div>
-                                <a href="mailto:dispute.web@gmail.com" class="btn btn-info btn-lg"><span class="fa fa-envelope"></span> Send an e-mail</a>
-                                <div class="separator2"></div>
-                                <p><span class="glyphicon glyphicon-envelope"></span> If you dont have any e-mail client installed:<a> dispute.web@gmail.com</a></p>
-                                <h2>Our social networks:</h2>
-                                <div class="row">
-                                    <div class="col-lg-3 col-lg-offset-3"><a href="https://twitter.com/DisputeWeb?lang=es" class="btn btn-lg btn-default text-left"><span class="fa fa-twitter"></span> Twitter</a></div>
-                                    <div class="col-lg-3"><a href="https://www.facebook.com/Dispute-627402047448785/?ref=ts&fref=ts" class="btn btn-lg btn-default"><span class="fa fa-facebook"></span> Facebook</a></div>
-                                </div>
-                                <h2>Contributing to Dispute-WEB</h2> <a href="https://github.com/cddogaru/Dispute-DAW" class="btn btn-lg btn-default"><span class="fa fa-github"></span> Dispute's Github</a> </div>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="sidebar-nav">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse"> <span class="sr-only">Settings</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <span class="visible-xs navbar-brand">Settings</span> </div>
+                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="contactus.html">Contact us</a></li>
+                                    <li><a href="reportbug.html">Report bug</a></li>
+                                </ul>
+                            </div>
+                            <!--/.nav-collapse -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h1 id="title">Contact us:</h1>
+                            <div class="col-lg-10">
+                                <div id="contactUsBody">
+                                    <h2>Dispute's development team:</h2>
+                                    <p><span class="glyphicon glyphicon-envelope"></span> Raúl Soto Sánchez: r.sotosan@alumnos.urjc.es</p>
+                                    <p><span class="glyphicon glyphicon-envelope"></span> Constin Dragos Dogaru: cd.dogaru@alumnos.urjc.es</p>
+                                    <p><span class="glyphicon glyphicon-envelope"></span> Rafał Daniel Szpecht: rd.szpecht@alumnos.urjc.es</p>
+                                    <p><span class="glyphicon glyphicon-envelope"></span> Alejandro Romero Fonteboa: ar.fonteboa@alumnos.urjc.es</p>
+                                    <div class="separator2"></div> <a href="mailto:dispute.web@gmail.com" class="btn btn-info btn-lg"><span class="fa fa-envelope"></span> Send an e-mail</a>
+                                    <div class="separator2"></div>
+                                    <p><span class="glyphicon glyphicon-envelope"></span> If you dont have any e-mail client installed:<a> dispute.web@gmail.com</a></p>
+                                    <h2>Our social networks:</h2>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-lg-offset-3"><a href="https://twitter.com/DisputeWeb?lang=es" class="btn btn-lg btn-default text-left"><span class="fa fa-twitter"></span> Twitter</a></div>
+                                        <div class="col-lg-3"><a href="https://www.facebook.com/Dispute-627402047448785/?ref=ts&fref=ts" class="btn btn-lg btn-default"><span class="fa fa-facebook"></span> Facebook</a></div>
+                                    </div>
+                                    <h2>Contributing to Dispute-WEB</h2> <a href="https://github.com/cddogaru/Dispute-DAW" class="btn btn-lg btn-default"><span class="fa fa-github"></span> Dispute's Github</a> </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
     </div>
     <!-- Footer -->
     <footer class="col-lg-12 navbar-inverse">
