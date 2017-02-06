@@ -159,3 +159,11 @@ HEAD .tournament {
     opacity: 0.3;
     font-size: 1.3em;
 }
+
+
+
+#btnCreateTeam {
+    margin-left: 70em;
+    margin-bottom: -3.4em;
+    padding-top: 1em;
+}
