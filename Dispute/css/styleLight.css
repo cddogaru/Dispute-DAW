@@ -19,7 +19,7 @@
 body {
     padding-top: 70px;
     /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
-    background-image: url("images/bckgrnd.gif");
+    background: #f2f2f2;
     color: #020221;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
 }
@@ -42,7 +42,7 @@ footer {
 
 .Title1 {
     text-align: center;
-    color: #FFB53D;
+    color: #FF6C00;
 }
 
 .Title2 {
@@ -61,7 +61,7 @@ footer {
 .well {}
 
 .btn-primary {
-    background-color: #E86200;
+    background-color: #FF6C00;
     color: white;
 }
 
@@ -76,7 +76,7 @@ footer {
 }
 
 .btn-primary:focus {
-    background-color: #E86200;
+    background-color: #B6B6D4;
     color: black;
 }
 
@@ -189,20 +189,16 @@ HEAD .tournament {
     }
 }
 
-#darkMode {
-    cursor: pointer;
-}
-
 
 /* SKIN */
 
 #skinFooter {
-    background: #E86200;
+    background: #FF6C00;
     color: #2F2721;
 }
 
 #skinNavbar {
-    background: #E86200;
+    background: #FF6C00;
 }
 
 .skinFooterLinks {
@@ -214,11 +210,17 @@ HEAD .tournament {
 }
 
 #skinBody {
-    background-image: url("../images/bckgrnd.gif");
-    color: white;
+    background-image: url(../images/bckgrndW.gif);
+    color: black;
 }
 
 #skinBtn {
     margin-top: 0.1em;
     margin-left: 3em;
+}
+
+#indexBodyLogo {
+    background-image: url(../images/logoHeaderB.png);
+    background: #FF6C00;
+    border-radius: 0.3em;
 }
