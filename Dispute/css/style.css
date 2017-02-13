@@ -19,9 +19,6 @@
 body {
     padding-top: 70px;
     /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
-    background-image: url("images/bckgrnd.gif");
-    color: #020221;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
 }
 
 footer {
@@ -60,100 +57,22 @@ footer {
 
 .well {}
 
-.btn-primary {
-    background-color: #E86200;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: black;
-    color: white;
-}
-
-.btn-primary:active:hover {
-    background-color: black;
-    color: white;
-}
-
-.btn-primary:focus {
-    background-color: #E86200;
-    color: black;
-}
-
-.tournamentLinks {
-    text-decoration: none;
-}
-
-.tournamentLinks:hover {
-    color: #FFB53D;
-}
-
-#TournamentsDesc {
-    align-content: center;
-    text-align: center;
-}
-
 HEAD .tournament {
     font-size: 1.5em;
 }
 
-#navbar-icon {
-    padding-top: 10px;
-}
 
-#whiteText {
-    color: white;
-}
-
-.blackText {
-    color: black;
-}
 
 #topRightMenu {
     margin-left: 0.5em;
-}
-
-.createATournamentBody {
-    background: #e0dedc;
-    width: 90%;
-    margin-left: 5%;
-}
-
-#newTournamentBdy {
-    margin-top: -6em;
-}
-
-.tournamentField {
-    margin-left: 10%;
-    padding-top: 3em;
-    margin-bottom: 1em;
-}
-
-.fieldLabel {
-    font-size: 1.3em;
-}
-
-.options {
-    font-family: "verdana", Geneva, sans-serif;
-    padding-top: 0.4em;
 }
 
 #semitransparentTxt {
     opacity: 0.3;
 }
 
-#confirmButton {
-    padding-left: 45%;
-    padding-bottom: 2em;
-}
-
 .info {
     margin-bottom: 0em;
-}
-
-#captain {
-    border-left-width: 0.8em;
-    background: #F1F1F1;
 }
 
 #footerLinks {
@@ -191,4 +110,7 @@ HEAD .tournament {
 
 #darkMode {
     cursor: pointer;
+}
+#navbar-icon {
+    padding-top: 10px;
 }
