@@ -188,39 +188,3 @@ HEAD .tournament {
         padding-bottom: 12px;
     }
 }
-
-
-/* SKIN */
-
-#skinFooter {
-    background: #FF6C00;
-    color: #2F2721;
-}
-
-#skinNavbar {
-    background: #FF6C00;
-}
-
-.skinFooterLinks {
-    color: white;
-}
-
-.skinNavbarLinks {
-    color: white;
-}
-
-#skinBody {
-    background-image: url(../images/bckgrndW.gif);
-    color: black;
-}
-
-#skinBtn {
-    margin-top: 0.1em;
-    margin-left: 3em;
-}
-
-#indexBodyLogo {
-    background-image: url(../images/logoHeaderB.png);
-    background: #FF6C00;
-    border-radius: 0.3em;
-}

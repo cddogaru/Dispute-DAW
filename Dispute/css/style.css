@@ -192,33 +192,3 @@ HEAD .tournament {
 #darkMode {
     cursor: pointer;
 }
-
-
-/* SKIN */
-
-#skinFooter {
-    background: #E86200;
-    color: #2F2721;
-}
-
-#skinNavbar {
-    background: #E86200;
-}
-
-.skinFooterLinks {
-    color: white;
-}
-
-.skinNavbarLinks {
-    color: white;
-}
-
-#skinBody {
-    background-image: url("../images/bckgrnd.gif");
-    color: white;
-}
-
-#skinBtn {
-    margin-top: 0.1em;
-    margin-left: 3em;
-}
