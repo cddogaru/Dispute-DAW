@@ -61,8 +61,6 @@ HEAD .tournament {
     font-size: 1.5em;
 }
 
-
-
 #topRightMenu {
     margin-left: 0.5em;
 }
@@ -111,6 +109,7 @@ HEAD .tournament {
 #darkMode {
     cursor: pointer;
 }
+
 #navbar-icon {
     padding-top: 10px;
 }
