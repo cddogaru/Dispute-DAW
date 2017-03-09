@@ -49,58 +49,29 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="Title2">Create a team:</h1> </div>
+                <h1 class="Title2">Login:</h1> </div>
             <div class="panel-body">
-                <div class="col-lg-12">
-                    <br>
-                    <form action="newTeam.html" method="post">
+                <div class="col-md-offset-4 col-md-4">
+                    <form class="form-horizontal" method="post" action="/login">
                         <input type="hidden" name="_csrf" value="{{token}}" />
-                        <div class="row top-buffer">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-2">
-                                <p class="options">Team name:</p>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="name" placeholder="Dispute Gaming"> </div>
-                        </div>
-                        <br>
-                        <br>
-                        <div class="row top-buffer">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-2">
-                                <p class="options">Acronym:</p>
-                            </div>
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control" name="acronym" placeholder="DSPT"> </div>
-                        </div>
-                        <br>
-                        <div class="row top-buffer">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-2">
-                                <p class="options">Games:</p>
-                            </div>
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control" name="games" placeholder="Hearthstone, CounterStrike:Global Offensive  ">Separated with coma </div>
-                        </div>
-                        <br>
-                        <div class="row top-buffer">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-2">
-                                <p class="options">Description:</p>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="form-group">
-                                    <textarea class="form-control" rows="5" name="description" style="max-width: 100%" placeholder="Your team's description"></textarea>
-                                </div>
+                        <div class="form-group">
+                            <label for="username" class="cols-sm-2 control-label username2">Username</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-users fa username2" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="username" placeholder="Enter your Username" id="username1" /> </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="text-center">
-                            <div>
-                                <input type="submit" class="btn btn-primary btn-md" value="create"> </div>
+                        <div class="form-group">
+                            <label for="password" class="cols-sm-2 control-label pass12">Password</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock fa-lg pass12" aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" name="password" placeholder="Enter your Password" id="pass1" /> </div>
+                            </div>
                         </div>
+                        <div class="form-group text-center">
+                            <input class="btn btn-default" type="submit" value="Login"> <a href="/signup" type="button" class="btn btn-info">Sign up!</a> </div>
                     </form>
-                    <br> </div>
+                </div>
             </div>
         </div>
     </div>

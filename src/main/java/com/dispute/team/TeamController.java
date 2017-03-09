@@ -34,18 +34,9 @@ public class TeamController {
 	
 	@RequestMapping(value = "/newTeam", method = RequestMethod.POST)
 	public RedirectView addTeam(Model model, @RequestParam String name, @RequestParam String acronym, @RequestParam String games, @RequestParam String description){
-		Team team = new Team();
-		/*ArrayList<Game> gamesList = new ArrayList<>();
-		String gnames[] = games.split(",");
-		for (String gname : gnames) {
-			gamesList.add(/* TO DO*//*);
-		}
-	*/
-		
-		team.setAcronym(acronym);
-		team.setName(name);
-		//team.setGames(gamesList);
+		Team team = new Team(name, acronym, description);
 		team.setDescription(description);
+		teamRepository.save(team);
 		
 		return new RedirectView("teams.html");
 	}

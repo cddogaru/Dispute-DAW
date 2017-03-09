@@ -23,12 +23,18 @@ public class WebController {
 	@Autowired
 	private TournamentRepository tournamentRepository;
 	
-	@RequestMapping(value = {"", "index"} )
+	@Autowired 
+	private UserComponent userComponent;
+	
+	@RequestMapping(value = {"/", "index"} )
 	public String index(Model model){
 		return "index";
 	}
 	
-	
+	@RequestMapping("/login")
+    public String login() {
+    	return "login";
+    }
 	
 	
 }

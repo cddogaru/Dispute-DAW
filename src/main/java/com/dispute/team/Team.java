@@ -42,9 +42,10 @@ public class Team {
 	
 	protected Team() {}
 
-	public Team(String name, String acronym) {
+	public Team(String name, String acronym, String description) {
 		this.name = name;
 		this.acronym = acronym;
+		this.description = description;
 	}
 
 	public String getName() {
