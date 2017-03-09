@@ -31,6 +31,9 @@ public class Team {
 	@Column(length = 3, nullable = false)
 	private String acronym;
 	
+	@Column(length = 60, nullable = true)
+	private String description;
+	
 	@OneToMany(mappedBy="team")
 	private List<User> users;
 	
@@ -59,6 +62,14 @@ public class Team {
 	public void setAcronym(String acronym) {
 		this.acronym = acronym;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 	
 	public List<User> getUsers() {
@@ -78,7 +89,6 @@ public class Team {
 	}
 	
 	private int participants(){
-		
 		return users.size();
 	}
 	
