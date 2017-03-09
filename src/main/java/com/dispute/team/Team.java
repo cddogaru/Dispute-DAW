@@ -1,4 +1,4 @@
-package com.dispute.model;
+package com.dispute.team;
 
 
 import java.util.List;
@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import com.dispute.game.Game;
+import com.dispute.user.User;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
@@ -73,7 +76,12 @@ public class Team {
 	public void setGames(List<Game> games) {
 		this.games = games;
 	}
-
+	
+	private int participants(){
+		
+		return users.size();
+	}
+	
 	@Override
 	public String toString() {
 		return "Team [name=" + name + ", acronym=" + acronym + "]";

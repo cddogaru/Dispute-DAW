@@ -1,4 +1,4 @@
-package com.dispute.model;
+package com.dispute.game;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

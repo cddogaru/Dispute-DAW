@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dispute.model.*;
+import com.dispute.team.TeamRepository;
+import com.dispute.tournament.TournamentRepository;
+import com.dispute.user.*;
 
 @Controller
 public class WebController {
@@ -26,9 +28,7 @@ public class WebController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/tournaments")
-	public String tournaments(Model model){
-		model.addAttribute("tournaments", tournamentRepository.findAll());
-		return "tournaments";
-	}
+	
+	
+	
 }

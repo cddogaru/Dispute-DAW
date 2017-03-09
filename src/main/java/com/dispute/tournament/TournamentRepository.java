@@ -1,4 +1,4 @@
-package com.dispute.model;
+package com.dispute.tournament;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

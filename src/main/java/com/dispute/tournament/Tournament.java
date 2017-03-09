@@ -1,4 +1,4 @@
-package com.dispute.model;
+package com.dispute.tournament;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.dispute.game.Game;
+import com.dispute.user.User;
 
 @Entity
 public class Tournament {
@@ -21,7 +24,6 @@ public class Tournament {
 	private int maxPlayers;
 	private String mode;
 	private String date;
-	
 	@OneToOne
 	private Game game;
 	
@@ -103,5 +105,6 @@ public class Tournament {
 	public void setPlayers(List<User> players) {
 		this.players = players;
 	}
+	
 	
 }

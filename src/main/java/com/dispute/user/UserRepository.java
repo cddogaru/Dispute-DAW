@@ -1,4 +1,4 @@
-package com.dispute.model;
+package com.dispute.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

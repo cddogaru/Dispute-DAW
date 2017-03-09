@@ -1,4 +1,4 @@
-package com.dispute.model;
+package com.dispute.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,7 @@ import javax.persistence.UniqueConstraint;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.dispute.team.Team;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
