@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.dispute.game.Game;
+import com.dispute.user.UserRepository;
 
 @Controller
 public class TeamController {
 	
 	@Autowired
 	private TeamRepository teamRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@RequestMapping(value = "/teams")
 	public String teams(Model model){
@@ -41,14 +45,4 @@ public class TeamController {
 		return new RedirectView("teams.html");
 	}
 	
-	/*
-	 @RequestMapping(value = "/changeTeam", method = RequestMethod.POST)
-	 public View addUser(@RequestParam String team, @RequestParam String nick, @RequestParam String lastTeam){
-	   User user = userRepository.findByNick(nick); 
-	   user.setTeam(teamRepository.findByName(team));
-	   userRepository.save(user);
-	   return new RedirectView("/");
-	 }
-	 
-	 */
 }
