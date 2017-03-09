@@ -25,15 +25,19 @@ public class InitDatabase {
 	
 	@PostConstruct
 	public void init() {
+
 		Team team1 = new Team("Real Madrid", "RMD", "");
 		Team team2 = new Team("FC Barcelona", "FCB", "");
+
 		
 		teamRepository.save(team1);
 		teamRepository.save(team2);
 		
+
 		User user1 = new User("Alex", "Alex", "alex@gmail.com", "1111", "ROLE_USER");
 		User user2 = new User("Raúl", "Raúl", "raul@gmail.com", "2222", "ROLE_ADMIN ROLE_USER");
 		User user3 = new User("Rafa", "Rafa", "rafa@gmail.com", "3333", "ROLE_USER");
+
 		
 		user1.setTeam(team1);
 		user2.setTeam(team2);
