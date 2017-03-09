@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Dispute Project</title>
-    <link rel="icon" href="images/logoB.png" type="image/x-icon" /><link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="images/logoB.png" type="image/x-icon" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/font-awesome.css" rel="stylesheet"> </head>
 
@@ -49,70 +50,19 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading"> TOURNAMENTS </div>
+                    <div class="panel-heading"> TOURNAMENTS </div> {{#tournaments}}
                     <div class="panel-group">
-                        <div class="panel panel-default text-left"><a href="tournament/tournament0001.html" class="tournament"><strong>Blizzcon World Championship</strong></a>
+                        <div class="panel panel-default text-left"><a href="tournament/tournament0001.html" class="tournament"><strong>{{name}}</strong></a>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <p class="info"><span><img src="images/games/hearthstoneIcon.png"/></span>Hearthstone || 1v1 || Participans: 12/32</p>
-                                    <p class="info">12-13-19 at 13:00</p>
+                                    <p class="info"><span><img src="images/games/hearthstoneIcon.png"/></span>Hearthstone || {{mode}} || Participans: 12/{{maxPlayers}}</p>
+                                    <p class="info">{{date}}</p>
                                 </div>
                                 <div class="col-lg-1 col-lg-offset-4"><a href="tournament/tournament0001.html" class="btn btn-large btn-success"><strong>Join in</strong></a></div>
                             </div>
-                            <p>Hearthstone, originally known as Hearthstone: Heroes of Warcraft, is a free-to-play online collectible card video game developed and published by Blizzard Entertainment. Having been released worldwide on March 11, 2014, Hearthstone builds upon the already existing lore of the Warcraft series by using the same elements, characters, and relics.</p>
+                            <p>{{description}}</p>
                         </div>
-                        <div class="panel panel-default text-left"><a href="tournament/tournament0002.html" class="tournament"><strong>Counter Final CS | World's Cup</strong></a>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <p class="info"><span><img src="images/games/counterIcon.png"/></span>Counter Strike || 5v5 || Participans: 12/32</p>
-                                    <p class="info">12-13-19 at 13:00</p>
-                                </div>
-                                <div class="col-lg-1 col-lg-offset-4"><a href="tournament/tournament0001.html" class="btn btn-large btn-success"><strong>Join in</strong></a></div>
-                            </div>
-                            <p>Counter-Strike (officially abbreviated as CS) is a series of multiplayer first-person shooter video games, in which teams of terrorists and counter-terrorists battle to, respectively, perpetrate an act of terror (bombing, hostage-taking) and prevent it (bomb defusal, hostage rescue). The series began on Windows in 1999 with the first version of Counter-Strike.</p>
-                        </div>
-                        <div class="panel panel-default text-left"><a href="tournament/tournament0003.html" class="tournament"><strong>Tekken 2017 International Championship</strong></a>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <p class="info"><span><img src="images/games/tekkenIcon.png"/></span>Tekken X Street Fighter || 1v1 || Participans: 12/32</p>
-                                    <p class="info">12-13-19 at 13:00</p>
-                                </div>
-                                <div class="col-lg-1 col-lg-offset-4"><a href="tournament/tournament0001.html" class="btn btn-large btn-success"><strong>Join in</strong></a></div>
-                            </div>
-                            <p>Tekken is a fighting video game franchise created, developed, and published by Namco (later Bandai Namco Entertainment). Beginning with the original Tekken in December 1994, the series has received several sequels as well as updates and spin-off titles. Tekken was one of the first fighting games at the time to use 3D animation. The series has also been adapted into three films and other media.</p>
-                        </div>
-                        <div class="panel panel-default text-left"><a href="tournament/tournament0001.html" class="tournament"><strong>Blizzcon World Championship</strong></a>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <p class="info"><span><img src="images/games/hearthstoneIcon.png"/></span>Hearthstone || 1v1 || Participans: 12/32</p>
-                                    <p class="info">12-13-19 at 13:00</p>
-                                </div>
-                                <div class="col-lg-1 col-lg-offset-4"><a href="tournament/tournament0001.html" class="btn btn-large btn-success"><strong>Join in</strong></a></div>
-                            </div>
-                            <p>Hearthstone, originally known as Hearthstone: Heroes of Warcraft, is a free-to-play online collectible card video game developed and published by Blizzard Entertainment. Having been released worldwide on March 11, 2014, Hearthstone builds upon the already existing lore of the Warcraft series by using the same elements, characters, and relics.</p>
-                        </div>
-                        <div class="panel panel-default text-left"><a href="tournament/tournament0001.html" class="tournament"><strong>Blizzcon World Championship</strong></a>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <p class="info"><span><img src="images/games/hearthstoneIcon.png"/></span>Hearthstone || 1v1 || Participans: 12/32</p>
-                                    <p class="info">12-13-19 at 13:00</p>
-                                </div>
-                                <div class="col-lg-1 col-lg-offset-4"><a href="tournament/tournament0001.html" class="btn btn-large btn-success"><strong>Join in</strong></a></div>
-                            </div>
-                            <p>Hearthstone, originally known as Hearthstone: Heroes of Warcraft, is a free-to-play online collectible card video game developed and published by Blizzard Entertainment. Having been released worldwide on March 11, 2014, Hearthstone builds upon the already existing lore of the Warcraft series by using the same elements, characters, and relics.</p>
-                        </div>
-                        <div class="panel panel-default text-left"><a href="tournament/tournament0003.html" class="tournament"><strong>Tekken 2017 International Championship</strong></a>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <p class="info"><span><img src="images/games/tekkenIcon.png"/></span>Tekken X Street Fighter || 1v1 || Participans: 12/32</p>
-                                    <p class="info">12-13-19 at 13:00</p>
-                                </div>
-                                <div class="col-lg-1 col-lg-offset-4"><a href="tournament/tournament0001.html" class="btn btn-large btn-success"><strong>Join in</strong></a></div>
-                            </div>
-                            <p>Tekken is a fighting video game franchise created, developed, and published by Namco (later Bandai Namco Entertainment). Beginning with the original Tekken in December 1994, the series has received several sequels as well as updates and spin-off titles. Tekken was one of the first fighting games at the time to use 3D animation. The series has also been adapted into three films and other media.</p>
-                        </div>
-                    </div>
-                </div>
+                    </div> {{/tournaments}} </div>
             </div>
             <div class="col-lg-3">
                 <div class="panel panel-default">
