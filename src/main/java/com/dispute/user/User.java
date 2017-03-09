@@ -1,7 +1,13 @@
 package com.dispute.user;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,14 +44,42 @@ public class User {
 
 	@ManyToOne
 	private Team team;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
 
 	protected User() {}
 
-	public User(String userName, String name, String email, String password) {
+	public User(String userName, String name, String email, String password, String... roles) {
 		this.nickName = userName;
 		this.password = new BCryptPasswordEncoder().encode(password);
 		this.name = name;
 		this.email = email;
+		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 
 	public String getUserName() {
