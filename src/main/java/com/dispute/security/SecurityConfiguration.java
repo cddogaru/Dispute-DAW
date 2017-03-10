@@ -22,7 +22,7 @@ protected void configure(HttpSecurity http) throws Exception {
         
         
 		// Private pages (all other pages)
-        http.authorizeRequests().antMatchers("/newTeam*").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/newTeam*").hasAnyRole("USER", "ADMIN");
         
         
         // Login form
