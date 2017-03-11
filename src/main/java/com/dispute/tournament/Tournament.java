@@ -24,6 +24,9 @@ public class Tournament {
 	private int maxPlayers;
 	private String mode;
 	private String date;
+	
+	@OneToMany
+	private List<User> admins;
 	@OneToOne
 	private Game game;
 	
@@ -106,5 +109,29 @@ public class Tournament {
 		this.players = players;
 	}
 	
+	public List<User> getAdmins() {
+		return admins;
+	}
+
+	public void setAdmins(List<User> admins) {
+		for (User user : this.players) {
+			if (user.getRoles().contains("ROLE_ADMIN")){
+				admins.add(user);
+			}
+		}
+	}
+
+	public void addPlayer(User user){
+		if((!players.contains(user)) && (getNumOfParticipants() <= maxPlayers)){
+			players.add(user);
+		}
+	}
 	
+	public int getNumOfParticipants(){
+		return (this.players.size());
+	}
+	
+	public String getGameName(){
+		return (this.game.getName());
+	}
 }

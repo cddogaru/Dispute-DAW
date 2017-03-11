@@ -24,9 +24,6 @@ public class TeamController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private UserComponent userComponent;
-	
 	@RequestMapping(value = "/teams")
 	public String teams(Model model){
 		
@@ -36,9 +33,6 @@ public class TeamController {
 	
 	@RequestMapping(value = "/newTeam")
 	public String newTeam(Model model){
-		System.out.println("\n \n \n \n \n \n \n");
-		System.out.println("My name is: " + userRepository.findAll().toString());
-		System.out.println("\n \n \n \n \n \n \n");
 		return("newTeam");
 	}
 	

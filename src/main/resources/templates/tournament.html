@@ -72,16 +72,16 @@
                             <div id="info" class="tab-pane fade in active">
                                 <br>
                                 <div class="jumbotron">
-                                    <h1>Blizzcon World Championship</h1>
-                                    <p>Hearthstone, originally known as Hearthstone: Heroes of Warcraft, is a free-to-play online collectible card video game developed and published by Blizzard Entertainment. Having been released worldwide on March 11, 2014, Hearthstone builds upon the already existing lore of the Warcraft series by using the same elements, characters, and relics.</p>
+                                    <h1>{{tournament.name}}</h1>
+                                    <p>{{tournament.description}}</p>
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Info</div>
                                     <div class="panel-body">
-                                        <p><strong>Game: </strong>Hearthstone</p>
-                                        <p><strong>Mode: </strong>1v1</p>
-                                        <p><strong>participants: </strong>12/32</p>
-                                        <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> 12-13-19 at 13:00</p>
+                                        <p><strong>Game: </strong><!-- {{tournament.getGameName} --></p>
+                                        <p><strong>Mode: </strong>{{tournament.mode}}</p>
+                                        <p><strong>participants: </strong>{{tournament.getNumOfParticipants}}/{{tournament.maxPlayers}}</p>
+                                        <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> {{tournament.date}}</p>
                                     </div>
                                 </div>
                                 <div class="panel panel-default">
@@ -153,25 +153,27 @@
                     </div>
                     <div class="col-md-3">
                         <div class="">
-                            <div class="text-right"> <a href="#" class="btn btn-success btn-block">Join in</a> </div>
+                        
+                            <div class="text-right"><form method="post" action="/{{tournament.name}}">
+                                        <input type="hidden" name="_csrf" value="{{token}}" /><input class="btn btn-success btn-block" type="submit" value="Join In"></form></div>
                         </div>
                         <br>
                         <div class="panel panel-default">
                             <div class="panel-heading">Info</div>
                             <div class="panel-body">
-                                <p><strong>Game: </strong>Hearthstone</p>
-                                <p><strong>Mode: </strong>1v1</p>
-                                <p><strong>participants: </strong>12/32</p>
-                                <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> 12-13-19 at 13:00</p>
+                                <p><strong>Game: </strong></p>
+                                <p><strong>Mode: </strong>{{tournament.mode}}</p>
+                                <p><strong>participants: </strong>{{tournament.getNumOfParticipants}}/{{tournament.maxPlayers}}</p>
+                                <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> {{tournament.date}}</p>
                             </div>
                         </div>
                         <hr>
                         <div class="panel panel-default">
                             <div class="panel-heading">Admins:</div>
                             <ul class="panel-body list-group">
-                                <li class="list-group-item"> <a href="../profile.html">Dimi3sinculotes</a> </li>
-                                <li class="list-group-item"> <a href="../profile.html">Dimi3sinculotes</a> </li>
-                                <li class="list-group-item"> <a href="../profile.html">Dimi3sinculotes</a> </li>
+                            {{#admins}}
+                                <li class="list-group-item"> <a href="user/{{name}}"> name </li> 
+                            {{/admins}}
                             </ul>
                         </div>
                     </div>
