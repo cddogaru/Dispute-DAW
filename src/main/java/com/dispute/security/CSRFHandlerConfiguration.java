@@ -25,6 +25,7 @@ public class CSRFHandlerConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(cSRFHandlerInterceptor());
+		
 	}
 }
 

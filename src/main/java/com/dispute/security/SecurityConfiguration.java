@@ -35,6 +35,12 @@ protected void configure(HttpSecurity http) throws Exception {
         // Logout
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
+        http.authorizeRequests().antMatchers("/").permitAll().and()
+        .authorizeRequests().antMatchers("/console/**").permitAll();
+
+        //H2-Console activate (It's necessary comment CSRFHandler)
+//        http.csrf().disable();
+//        http.headers().frameOptions().disable();
     }
 	
 	@Override

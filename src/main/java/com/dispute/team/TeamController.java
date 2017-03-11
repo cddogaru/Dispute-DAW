@@ -5,6 +5,7 @@ package com.dispute.team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.dispute.game.Game;
+import com.dispute.user.User;
 import com.dispute.user.UserComponent;
 import com.dispute.user.UserRepository;
 
@@ -36,9 +38,6 @@ public class TeamController {
 	
 	@RequestMapping(value = "/newTeam")
 	public String newTeam(Model model){
-		System.out.println("\n \n \n \n \n \n \n");
-		System.out.println("My name is: " + userRepository.findAll().toString());
-		System.out.println("\n \n \n \n \n \n \n");
 		return("newTeam");
 	}
 	
@@ -51,4 +50,10 @@ public class TeamController {
 		return new RedirectView("teams.html");
 	}
 	
+	@RequestMapping(value="/team/{teamName}")
+	public String teamRequest(Model model, @PathVariable String teamName){
+		Team team = teamRepository.findByName(teamName);
+		model.addAttribute("team", team);
+		return "team";
+	}
 }
