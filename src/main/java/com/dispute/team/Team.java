@@ -1,6 +1,7 @@
 package com.dispute.team;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,20 +14,22 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.dispute.game.Game;
+import com.dispute.participant.Participant;
+import com.dispute.tournament.Tournament;
 import com.dispute.user.User;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"acronym"}))
-public class Team {
+public class Team extends Participant{
 
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-
-	@Column(nullable = false)
-	private String name;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//	private Long id;
+//
+//	@Column(nullable = false)
+//	private String name;
 	
 	@Column(length = 3, nullable = false)
 	private String acronym;
@@ -40,21 +43,27 @@ public class Team {
 	@OneToMany
 	private List<Game> games;
 	
+	
+	
 	protected Team() {}
 
 	public Team(String name, String acronym, String description) {
-		this.name = name;
+		this.setName(name);
+		this.setTournaments(new ArrayList<Tournament>());
+//		this.name = name;
 		this.acronym = acronym;
 		this.description = description;
+		users = new ArrayList<>();
+		games = new ArrayList<>();
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 
 	public String getAcronym() {
 		return acronym;
@@ -95,6 +104,6 @@ public class Team {
 	
 	@Override
 	public String toString() {
-		return "Team [name=" + name + ", acronym=" + acronym + "]";
+		return "Team [name=" + this.getName() + ", acronym=" + acronym + "]";
 	}
 }

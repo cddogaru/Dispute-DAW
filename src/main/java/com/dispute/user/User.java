@@ -18,23 +18,24 @@ import javax.persistence.UniqueConstraint;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.dispute.participant.Participant;
 import com.dispute.team.Team;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "email" }))
-public class User {
+public class User extends Participant{
 
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//	private Long id;
+//	
 	@Column(nullable = false)
 	private String nickName;
 	
-	@Column(nullable = false)
-	private String name;
+//	@Column(nullable = false)
+//	private String name;
 
 	@Column(nullable = false)
 	private String email;
@@ -47,14 +48,26 @@ public class User {
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
+	
+	//RRSS
+	private String twitter;
+	private String twitch;
+	private String youtube;
+	
+	//Game Accounts
+	private String steam;
+	private String battlenet;
+	private String psn;
+	private String xbox;
+	
 
-	public Long getId() {
-		return id;
-	}
+//	public Long getId() {
+//		return id;
+//	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
 
 	public String getNickName() {
 		return nickName;
@@ -77,7 +90,8 @@ public class User {
 	public User(String userName, String name, String email, String password, String... roles) {
 		this.nickName = userName;
 		this.password = new BCryptPasswordEncoder().encode(password);
-		this.name = name;
+//		this.name = name;
+		this.setName(name);
 		this.email = email;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
@@ -90,13 +104,13 @@ public class User {
 		this.nickName = userName;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 
 	public String getEmail() {
 		return email;
@@ -122,9 +136,65 @@ public class User {
 		this.team = team;
 	}
 
+	public String getTwitter() {
+		return twitter;
+	}
+
+	public void setTwitter(String twitter) {
+		this.twitter = twitter;
+	}
+
+	public String getTwitch() {
+		return twitch;
+	}
+
+	public void setTwitch(String twitch) {
+		this.twitch = twitch;
+	}
+
+	public String getYoutube() {
+		return youtube;
+	}
+
+	public void setYoutube(String youtube) {
+		this.youtube = youtube;
+	}
+
+	public String getSteam() {
+		return steam;
+	}
+
+	public void setSteam(String steam) {
+		this.steam = steam;
+	}
+
+	public String getBattlenet() {
+		return battlenet;
+	}
+
+	public void setBattlenet(String battlenet) {
+		this.battlenet = battlenet;
+	}
+
+	public String getPsn() {
+		return psn;
+	}
+
+	public void setPsn(String psn) {
+		this.psn = psn;
+	}
+
+	public String getXbox() {
+		return xbox;
+	}
+
+	public void setXbox(String xbox) {
+		this.xbox = xbox;
+	}
+
 	@Override
 	public String toString() {
-		return "User [userName=" + nickName + ", name=" + name + ", email=" + email + ", password=" + password
+		return "User [userName=" + nickName + ", name=" + this.getName() + ", email=" + email + ", password=" + password
 				+ ", team=" + team + "]";
 	}
 }

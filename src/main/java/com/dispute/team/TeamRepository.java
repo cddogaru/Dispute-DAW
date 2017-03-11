@@ -1,7 +1,12 @@
 package com.dispute.team;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TeamRepository extends JpaRepository<Team, Long> {
+import com.dispute.participant.ParticipantRepository;
+
+@Transactional
+public interface TeamRepository extends ParticipantRepository<Team> {
 	Team findByName(String name);
 }

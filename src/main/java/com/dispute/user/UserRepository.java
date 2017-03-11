@@ -1,7 +1,12 @@
 package com.dispute.user;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import com.dispute.participant.ParticipantRepository;
+
+@Transactional
+public interface UserRepository extends ParticipantRepository<User> {
 	User findBynickName(String nickName);
 }

@@ -3,14 +3,19 @@ package com.dispute.tournament;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+
+
 import com.dispute.game.Game;
+import com.dispute.participant.Participant;
 import com.dispute.user.User;
 
 @Entity
@@ -27,8 +32,8 @@ public class Tournament {
 	@OneToOne
 	private Game game;
 	
-	@OneToMany
-	private List<User> players;
+	@ManyToMany(mappedBy = "tournaments")
+	private List<Participant> participants;
 
 	public Tournament(){}
 	
@@ -39,7 +44,7 @@ public class Tournament {
 		this.maxPlayers = maxPlayers;
 		this.mode = mode;
 		this.date = date;
-		players = new ArrayList<User>();
+		participants = new ArrayList<Participant>();
 	}
 
 	public Long getId() {
@@ -98,12 +103,12 @@ public class Tournament {
 		this.game = game;
 	}
 
-	public List<User> getPlayers() {
-		return players;
+	public List<Participant> getParticipants() {
+		return participants;
 	}
 
-	public void setPlayers(List<User> players) {
-		this.players = players;
+	public void setParticipants(List<Participant> players) {
+		this.participants = players;
 	}
 	
 	
