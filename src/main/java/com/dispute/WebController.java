@@ -32,7 +32,8 @@ public class WebController {
 	}
 	
 	@RequestMapping("/login")
-    public String login() {
+    public String login(Model model, @RequestParam(required = false) boolean loginError) {	
+		model.addAttribute("loginError" , loginError);
     	return "login";
     }
 	

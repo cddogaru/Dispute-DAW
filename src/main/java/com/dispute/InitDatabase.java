@@ -35,8 +35,8 @@ public class InitDatabase {
 		
 
 		User user1 = new User("Alex", "Alex", "alex@gmail.com", "1111", "ROLE_USER");
-		User user2 = new User("Raúl", "Raúl", "raul@gmail.com", "2222", "ROLE_ADMIN ROLE_USER");
-		User user3 = new User("Rafa", "Rafa", "rafa@gmail.com", "3333", "ROLE_USER");
+		User user2 = new User("Raul", "Raul", "raul@gmail.com", "2222", "ROLE_USER", "ROLE_ADMIN");
+		User user3 = new User("Rafa", "Raul", "rafa@gmail.com", "3333", "ROLE_USER");
 
 		
 		user1.setTeam(team1);

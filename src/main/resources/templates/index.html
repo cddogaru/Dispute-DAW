@@ -29,15 +29,25 @@
                         <li><a href='tournaments.html'><span class="skinNavbarLinks">Tournaments</span></a></li>
                         <li> <a href='teams.html'><span class="skinNavbarLinks">Teams</span></a> </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right"> {{#isLogged}}
                         <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" />
                             <ul class="dropdown-menu">
-                                <li><a href="profile.html">Profile</a></li>
+                                <li>
+                                    <a href="profile.html"> <strong>{{userLogged.name}}</strong>
+                                        <p class="small">Profile</p>
+                                    </a>
+                                </li>
                                 <li><a href="tournaments.html">My Tournaments</a></li>
-                                <li><a href="#">Logout</a></li>
+                                <li>
+                                    <form action="/logout" method="post">
+                                        <input type="hidden" name="_csrf" value="{{token}}" />
+                                        <button type="submit" class="btn btn-link">Logout</button>
+                                    </form>
+                                </li>
                             </ul>
                         </li>
-                        <li><a href="settings.html" id="topRightMenu"><span class="skinNavbarLinks">Settings</span></a></li>
+                        <li><a href="settings.html" id="topRightMenu"><span class="skinNavbarLinks">Settings</span></a></li> {{/isLogged}} {{^isLogged}}
+                        <li><a href="login.html"><span class="skinNavbarLinks">Sign in</span></a></li> {{/isLogged}}
                         <li><a href="contactus.html"><span class="skinNavbarLinks">Contact</span></a></li>
                     </ul>
                     <form class="navbar-form navbar-left">

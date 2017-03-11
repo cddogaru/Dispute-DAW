@@ -22,7 +22,7 @@ protected void configure(HttpSecurity http) throws Exception {
         
         
 		// Private pages (all other pages)
-        http.authorizeRequests().antMatchers("/newTeam*").hasAnyRole("USER", "ADMIN");
+        http.authorizeRequests().antMatchers("/newTeam*").hasAnyRole("USER");
         
         
         // Login form
@@ -30,7 +30,7 @@ protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/");
-        http.formLogin().failureUrl("/loginerror");
+        http.formLogin().failureUrl("/login?loginError=true");
         
         // Logout
         http.logout().logoutUrl("/logout");
