@@ -93,10 +93,10 @@
                                 <div class="col-lg-4">
                                     <div id="profileSetLeftSide">
                                         <p class="options"> Avatar: </p>
-                                        <form action="/profileSettings" method="POST">
+                                        <form action="/profileSettings" method="POST" enctype="multipart/form-data">
                                         <div id="profileMainPic"> <img id="profile" class="img-square" src="../image/{{userLogged.avatar}}" height="150" width="150"/></div>
                                         <br>
-    										<input type="file" name="pic" style="color: white;">
+    										<input type="file" name="pic" style="color: white;" />
                                     </div>
                                 </div>
                                 <div class="col-lg-8">

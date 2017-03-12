@@ -62,7 +62,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/profileSettings", method = RequestMethod.POST)
-	public String profileSettingsChanges(Model model, @RequestParam String nickName, @RequestParam String email, @RequestParam String password, @RequestParam("pic") MultipartFile file){
+	public String profileSettingsChanges(Model model, @RequestParam String nickName,
+			@RequestParam String email, @RequestParam String password, @RequestParam("pic") MultipartFile file){
 		User user = userComponent.getLoggedUser();
 		
 		
@@ -85,13 +86,14 @@ public class UserController {
 			}
 		}
 		
-		if(nickName!=""){
+		if(!nickName.isEmpty()){
+			System.out.println("Nombre " +  nickName);
 			user.setNickName(nickName);
 		}
-		if(email!=""){
+		if(!email.isEmpty()){
 			user.setEmail(email);
 		}
-		if(password!=""){
+		if(!password.isEmpty()){
 			user.setPassword(password);
 		}
 		userRepository.save(user);
