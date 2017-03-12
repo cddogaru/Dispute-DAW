@@ -113,3 +113,7 @@ HEAD .tournament {
 #navbar-icon {
     padding-top: 10px;
 }
+
+textarea#report_bug {
+	resize: none;
+}

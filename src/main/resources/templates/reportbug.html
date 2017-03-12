@@ -89,9 +89,11 @@
                         <div class="panel-body">
                             <h1>Report bug:</h1>
                             <hr>
-                            <textarea type="text" class="form-control" rows="6" style="max-width: 100%;"></textarea>
-                            <br>
-                            <div class="text-right"><a href="#" class="btn btn-success">Send</a></div>
+                            <form method="post">
+	                            <textarea id="report_bug" name="description" class="form-control" rows="6" style="max-width: 100%;" placeholder="Please, write the bug you found to report it. (max 1000 characters)"></textarea>
+	                            <br>
+	                            <input type="submit" class="btn btn-success" value="Send">
+                            </form>
                         </div>
                     </div>
                 </div>
