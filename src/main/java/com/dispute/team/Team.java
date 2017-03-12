@@ -34,7 +34,7 @@ public class Team extends Participant{
 	@Column(length = 3, nullable = false)
 	private String acronym;
 	
-	@Column(length = 60, nullable = true)
+	@Column(length = 1000, nullable = true)
 	private String description;
 	
 	@OneToMany(mappedBy="team")
