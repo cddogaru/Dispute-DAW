@@ -1,9 +1,18 @@
 package com.dispute;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,5 +46,21 @@ public class WebController {
     	return "login";
     }
 	
+	@RequestMapping("/image/{fileName}")
+	public void handleFileDownload(Model model, @PathVariable String fileName,
+			HttpServletResponse res) throws FileNotFoundException, IOException {
+
+		File file = new File("files", fileName+".jpg");
+
+		if (file.exists()) {
+			res.setContentType("image/jpeg");
+			res.setContentLength(new Long(file.length()).intValue());
+			FileCopyUtils
+					.copy(new FileInputStream(file), res.getOutputStream());
+		} else {
+			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath()
+					+ ") does not exist");
+		}
+	}
 	
 }

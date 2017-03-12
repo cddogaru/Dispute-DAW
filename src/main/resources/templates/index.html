@@ -30,10 +30,10 @@
                         <li> <a href='teams.html'><span class="skinNavbarLinks">Teams</span></a> </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right"> {{#isLogged}}
-                        <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" />
+                        <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="../image/{{userLogged.avatar}}" height="50" width="50" />
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="profile.html"> <strong>{{userLogged.name}}</strong>
+                                    <a href="/user/{{userLogged.name}}"> <strong>{{userLogged.name}}</strong>
                                         <p class="small">Profile</p>
                                     </a>
                                 </li>

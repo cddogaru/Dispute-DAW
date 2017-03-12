@@ -29,10 +29,10 @@
                         <li> <a href='../teams.html'>Teams</a> </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right"> {{#isLogged}}
-                        <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" />
+                        <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="../image/{{userLogged.avatar}}" height="50" width="50" />
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="../profile.html"> <strong>{{userLogged.name}}</strong>
+                                    <a href="{{userLogged.name}}"> <strong>{{userLogged.name}}</strong>
                                         <p class="small">Profile</p>
                                     </a>
                                 </li>
@@ -61,7 +61,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3"> <img src="http://lorempixel.com/100/100" class="img-thumbnail" />
-                        <h3><strong>{{user.name}}</strong></h3>
+                        <h3><strong>{{user.nickName}}</strong></h3>
                         <hr> {{#user.twitter}}
                         <p> <span class="fa fa-twitter"></span> {{user.twitter}}</p>{{/user.twitter}} {{#user.twitch}}
                         <p> <span class="fa fa-twitch"></span> {{user.twitch}}</p>{{/user.twitch}} {{#user.youtube}}

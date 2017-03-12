@@ -3,6 +3,7 @@ package com.dispute.security;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,19 +39,25 @@ class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {
             final HttpServletResponse response, final Object handler,
             final ModelAndView modelAndView) throws Exception {
 		
-		//CrsfToken
-		
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf"); 
-    	modelAndView.addObject("token", token.getToken());    	
-    	
-    	//User Login Info
-    	if(userComponent !=null){
-	    	if(userComponent.isLoggedUser()){
-	    		modelAndView.addObject("isLogged", true);
-	    		modelAndView.addObject("userLogged", userComponent.getLoggedUser());
-	    	} else {
-	    		modelAndView.addObject("isLogged", false);
+		try{
+			//CrsfToken
+			
+			CsrfToken token = (CsrfToken) request.getAttribute("_csrf"); 
+			
+	    	modelAndView.addObject("token", token.getToken());    	
+	    	
+	    	//User Login Info
+	    	if(userComponent !=null){
+		    	if(userComponent.isLoggedUser()){
+		    		modelAndView.addObject("isLogged", true);
+		    		modelAndView.addObject("userLogged", userComponent.getLoggedUser());
+		    	} else {
+		    		modelAndView.addObject("isLogged", false);
+		    	}
 	    	}
-    	}
+		} catch(Exception e){
+			System.out.println("Error csrf");
+		}
     }
+	
 }

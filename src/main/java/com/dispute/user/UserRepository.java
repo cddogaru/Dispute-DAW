@@ -9,4 +9,5 @@ import com.dispute.participant.ParticipantRepository;
 @Transactional
 public interface UserRepository extends ParticipantRepository<User> {
 	User findBynickName(String nickName);
+	User findByName(String name);
 }

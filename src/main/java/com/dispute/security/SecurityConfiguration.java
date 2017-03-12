@@ -23,7 +23,7 @@ protected void configure(HttpSecurity http) throws Exception {
         
 		// Private pages (all other pages)
         http.authorizeRequests().antMatchers("/newTeam*").hasAnyRole("USER");
-        
+        http.authorizeRequests().antMatchers("/newTournament*").hasAnyRole("USER");
         
         // Login form
         http.formLogin().loginPage("/login");
@@ -35,10 +35,12 @@ protected void configure(HttpSecurity http) throws Exception {
         // Logout
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
-        http.authorizeRequests().antMatchers("/").permitAll().and()
-        .authorizeRequests().antMatchers("/console/**").permitAll();
+        
 
         //H2-Console activate (It's necessary comment CSRFHandler)
+        
+//        http.authorizeRequests().antMatchers("/").permitAll().and()
+//        .authorizeRequests().antMatchers("/console/**").permitAll();
 //        http.csrf().disable();
 //        http.headers().frameOptions().disable();
     }
