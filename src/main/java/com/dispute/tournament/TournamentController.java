@@ -1,29 +1,19 @@
 package com.dispute.tournament;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
-
-import com.dispute.user.User;
-import com.dispute.user.UserComponent;
-import com.dispute.user.UserRepository;
 
 @Controller
 public class TournamentController {
 
 	@Autowired
 	private TournamentRepository tournamentRepository;
-	
-	@Autowired
-	private UserComponent userComponent;
 	
 	@RequestMapping(value = "/tournaments")
 	public String tournaments(Model model){
@@ -47,19 +37,4 @@ public class TournamentController {
 		tournamentRepository.save(tournament);
 		return new RedirectView("tournaments.html");
 	}
-	
-	@RequestMapping(value = "/tournament/{tournamentName}")
-	public String tournament(Model model, @PathVariable String tournamentName){
-		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
-		model.addAttribute("tournament" ,thisTournament);
-		return("tournament");
-	}
-	
-	@RequestMapping(value = "/tournament/{tournamentName}", method = RequestMethod.POST)
-	public View joinTournament(Model model, @PathVariable String tournamentName){
-		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
-		thisTournament.addPlayer(userComponent.getLoggedUser());
-		return new RedirectView("tournament/" + tournamentName);
-	}
-	
 }
