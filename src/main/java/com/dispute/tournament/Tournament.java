@@ -2,14 +2,16 @@ package com.dispute.tournament;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
 import com.dispute.game.Game;
-import com.dispute.participant.Participant;
+import com.dispute.user.User;
 
 @Entity
 public class Tournament {
@@ -22,11 +24,14 @@ public class Tournament {
 	private int maxPlayers;
 	private String mode;
 	private String date;
+	
+	@OneToMany
+	private List<User> admins;
 	@OneToOne
 	private Game game;
 	
-	@ManyToMany(mappedBy = "tournaments")
-	private List<Participant> participants;
+	@OneToMany
+	private List<User> players;
 
 	public Tournament(){}
 	
@@ -37,7 +42,7 @@ public class Tournament {
 		this.maxPlayers = maxPlayers;
 		this.mode = mode;
 		this.date = date;
-		participants = new ArrayList<Participant>();
+		players = new ArrayList<User>();
 	}
 
 	public Long getId() {
@@ -96,13 +101,37 @@ public class Tournament {
 		this.game = game;
 	}
 
-	public List<Participant> getParticipants() {
-		return participants;
+	public List<User> getPlayers() {
+		return players;
 	}
 
-	public void setParticipants(List<Participant> players) {
-		this.participants = players;
+	public void setPlayers(List<User> players) {
+		this.players = players;
 	}
 	
+	public List<User> getAdmins() {
+		return admins;
+	}
+
+	public void setAdmins(List<User> admins) {
+		for (User user : this.players) {
+			if (user.getRoles().contains("ROLE_ADMIN")){
+				admins.add(user);
+			}
+		}
+	}
+
+	public void addPlayer(User user){
+		if((!players.contains(user)) && (getNumOfParticipants() <= maxPlayers)){
+			players.add(user);
+		}
+	}
 	
+	public int getNumOfParticipants(){
+		return (this.players.size());
+	}
+	
+	public String getGameName(){
+		return (this.game.getName());
+	}
 }

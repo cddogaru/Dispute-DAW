@@ -29,10 +29,10 @@
                         <li> <a href='teams.html'>Teams</a> </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right"> {{#isLogged}}
-                        <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="../image/{{userLogged.avatar}}" height="50" width="50" />
+                        <li> <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" />
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/user/{{userLogged.name}}"> <strong>{{userLogged.name}}</strong>
+                                    <a href="profile.html"> <strong>{{userLogged.name}}</strong>
                                         <p class="small">Profile</p>
                                     </a>
                                 </li>
@@ -62,13 +62,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"> TOURNAMENTS </div> {{#tournaments}}
                     <div class="panel-group">
-                        <div class="panel panel-default text-left"><a href="tournament/tournament0001.html" class="tournament"><strong>{{name}}</strong></a>
+                        <div class="panel panel-default text-left"><a href="tournament/{{name}}" class="tournament"><strong>{{name}}</strong></a>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <p class="info"><span><img src="images/games/hearthstoneIcon.png"/></span>Hearthstone || {{mode}} || Participans: 12/{{maxPlayers}}</p>
                                     <p class="info">{{date}}</p>
                                 </div>
-                                <div class="col-lg-1 col-lg-offset-4"><a href="tournament/tournament0001.html" class="btn btn-large btn-success"><strong>Join in</strong></a></div>
+                                <div class="col-lg-1 col-lg-offset-4"><a href="tournament/{{name}}" class="btn btn-large btn-success"><strong>Join in</strong></a></div>
                             </div>
                             <p>{{description}}</p>
                         </div>
