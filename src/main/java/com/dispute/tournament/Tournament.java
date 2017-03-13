@@ -7,9 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import com.dispute.game.Game;
 import com.dispute.participant.Participant;
+import com.dispute.user.User;
 
 @Entity
 public class Tournament {
@@ -27,7 +29,10 @@ public class Tournament {
 	
 	@ManyToMany(mappedBy = "tournaments")
 	private List<Participant> participants;
-
+	
+	@OneToMany
+	private List<User> admins;
+	
 	public Tournament(){}
 	
 	public Tournament(String name, String description, int maxPlayers, String mode, String date) {
@@ -104,5 +109,20 @@ public class Tournament {
 		this.participants = players;
 	}
 	
-	
+	public void addParticipant(Participant participant){
+		 		if((!participants.contains(participant)) && ((participants.size()) <= maxPlayers)){
+		 			participants.add(participant);
+		 		}
+		 	}
+	public List<User> getAdmins() {
+		return admins;
+	}
+
+	public void setAdmins(List<User> admins) {
+		this.admins = admins;
+	}
+
+	public int getNumOfParticipants(){
+		 		return (this.participants.size());
+		 	}
 }
