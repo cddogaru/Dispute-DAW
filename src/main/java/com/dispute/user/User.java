@@ -3,24 +3,16 @@ package com.dispute.user;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import com.dispute.participant.Participant;
 import com.dispute.team.Team;
-import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "email" }))
