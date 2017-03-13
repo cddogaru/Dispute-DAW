@@ -90,6 +90,7 @@
                             <h1>Report bug:</h1>
                             <hr>
                             <form method="post">
+                            	<input type="hidden" name="_csrf" value="{{token}}">
 	                            <textarea id="report_bug" name="description" class="form-control" rows="6" style="max-width: 100%;" placeholder="Please, write the bug you found to report it. (max 1000 characters)"></textarea>
 	                            <br>
 	                            <input type="submit" class="btn btn-success" value="Send">

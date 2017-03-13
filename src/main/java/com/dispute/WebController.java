@@ -58,4 +58,8 @@ public class WebController {
 		}
 	}
 	
+	@RequestMapping(value = "/contactus")
+	public String contactus() {
+		return "contactus";
+	}
 }
