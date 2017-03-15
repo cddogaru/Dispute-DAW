@@ -1,5 +1,6 @@
 package com.dispute.tournament;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,7 @@ public class TournamentController {
 		return "tournaments";
 	}
 	
-	@RequestMapping(value = "/newTournament")
+	@RequestMapping(value = "/newTournament") 
 	public String newTrournament(Model model){
 		return("newTournament");
 	}
