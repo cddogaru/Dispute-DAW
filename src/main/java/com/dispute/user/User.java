@@ -49,6 +49,7 @@ public class User extends Participant{
 	
 	//Game Accounts
 	private String steam;
+	private String origin;
 	private String battlenet;
 	private String psn;
 	private String xbox;
@@ -141,6 +142,14 @@ public class User extends Participant{
 
 	public String getYoutube() {
 		return youtube;
+	}
+
+	public String getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(String origin) {
+		this.origin = origin;
 	}
 
 	public void setYoutube(String youtube) {

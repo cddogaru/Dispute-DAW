@@ -64,9 +64,9 @@
                     <div class="col-md-3"> <img src="../image/{{user.avatar}}" height="150" width="150" class="img-thumbnail" />
                         <h3><strong>{{user.nickName}}</strong></h3>
                         <hr> {{#user.twitter}}
-                        <p> <span class="fa fa-twitter"></span> {{user.twitter}}</p>{{/user.twitter}} {{#user.twitch}}
-                        <p> <span class="fa fa-twitch"></span> {{user.twitch}}</p>{{/user.twitch}} {{#user.youtube}}
-                        <p> <span class="fa fa-youtube"></span> Dimi3Sinculotes</p>{{/user.youtube}}
+                        <p> <span class="fa fa-twitter"></span> {{.}}</p>{{/user.twitter}} {{#user.twitch}}
+                        <p> <span class="fa fa-twitch"></span> {{.}}</p>{{/user.twitch}} {{#user.youtube}}
+                        <p> <span class="fa fa-youtube"></span> {{.}}</p>{{/user.youtube}}
                         <p> <span class="fa fa-envelope-o"></span> {{user.email}}</p>
                         <p><a href="/#" class="btn btn-lg btn-success text-left"><span class="fa fa-user-circle"></span> Add as friend</a></p>
                         <p><a href="/#" class="btn btn-lg btn-success text-left"><span class="fa fa-gift"></span> Invite team</a></p>
@@ -98,10 +98,10 @@
                             <div id="accounts" class="tab-pane fade">
                                 <br>
                                 <div class="well">Games id</div> {{#user.steam}}
-                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/steam.png"></span> Steam: {{user.steam}}</p>{{/user.steam}} {{#user.battlenet}}
-                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/battlenet.png"></span> Battlenet: {{user.battlenet}}</p>{{/user.battlenet}} {{#user.psn}}
-                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/psn.png"></span> Psn: </p>{{/user.psn}} {{#user.xbox}}
-                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/xbox.png"></span> Xbox: </p>{{/user.xbox}} </div>
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/steam.png"></span> {{.}}</p>{{/user.steam}} {{#user.battlenet}}
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/battlenet.png"></span>  {{.}}</p>{{/user.battlenet}} {{#user.psn}}
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/psn.png"></span> {{.}}</p>{{/user.psn}} {{#user.xbox}}
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/xbox.png"></span> {{.}} </p>{{/user.xbox}} </div>
                             <div id="team" class="tab-pane fade">
                                 <br>
                                 <div class="well">Team</div>

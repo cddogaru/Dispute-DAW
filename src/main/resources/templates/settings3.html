@@ -91,63 +91,66 @@
                                 <h2>Linked Accounts:</h2>
                                 <hr>
                                 <div class="row">
+                                <form action="/profileAccounts" method="post">
+                                <input type="hidden" name="_csrf" value="{{token}}" />
                                     <div class="col-lg-4">
                                         <p class="options"><span><img class="icons" src="images/icons/psn.png"></span> PSN: </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="psn"> </div>
+                                        <input type="text" class="form-control" name="psn"  value="{{#userLogged.psn}}{{.}}{{/userLogged.psn}}"> </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <p class="options"> <span><img class="icons" src="images/icons/xbox.png"></span> xBox Live: </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="xbox"> </div>
+                                        <input type="text" class="form-control" name="xbox" value="{{#userLogged.xbox}}{{.}}{{/userLogged.xbox}}"> </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <p class="options"><span><img class="icons" src="images/icons/steam.png"></span> Steam: </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="steam"> </div>
+                                        <input type="text" class="form-control" name="steam" value="{{#userLogged.steam}}{{.}}{{/userLogged.steam}}"> </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <p class="options"><span><img class="icons" src="images/icons/battlenet.png"></span> Battle.NET: </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="blizzard"> </div>
+                                        <input type="text" class="form-control" name="battlenet" value="{{#userLogged.battlenet}}{{.}}{{/userLogged.battlenet}}"> </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <p class="options"><span><img class="icons" src="images/icons/origin.png"></span> Origin: </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="origin"> </div>
+                                        <input type="text" class="form-control" name="origin" value="{{#userLogged.origin}}{{.}}{{/userLogged.origin}}"> </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <p class="options"><span><img class="icons" src="images/icons/twitter.png"></span> Twitter: </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="twitter"> </div>
+                                        <input type="text" class="form-control" name="twitter" value="{{#userLogged.twitter}}{{.}}{{/userLogged.twitter}}"> </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <p class="options"><span><img class="icons" src="images/icons/twitch.png"></span> Twitch: </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="twitch"> </div>
+                                        <input type="text" class="form-control" name="twitch" value="{{#userLogged.twitch}}{{.}}{{/userLogged.twitch}}"> </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <p class="options"><span><img class="icons" src="images/icons/youtube.png"></span> Youtube: </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" id="youtube"> </div>
+                                        <input type="text" class="form-control" name="youtube" value="{{#userLogged.youtube}}{{.}}{{/userLogged.youtube}}"> </div>
                                 </div>
                                 <br>
-                                <div class="text-right"> <a class="btn btn-primary btn-lg" href="settings.html">Apply changes</a> </div>
+                                <div class="text-right"> <input class="btn btn-primary btn-lg" type="submit" value="Apply changes"></div>
+                           	</form>
                             </div>
                         </div>
                     </div>

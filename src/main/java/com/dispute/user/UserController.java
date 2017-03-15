@@ -95,4 +95,39 @@ public class UserController {
 		userRepository.save(user);
 		return "settings2";
 	}
+	
+	@RequestMapping(value = "/profileAccounts", method = RequestMethod.POST)
+	public String profileAccountsChanges(Model model, @RequestParam String psn,
+			@RequestParam String xbox, @RequestParam String steam, @RequestParam String battlenet,
+			@RequestParam String origin, @RequestParam String twitter, @RequestParam String twitch,
+			@RequestParam String youtube){
+		User user = userComponent.getLoggedUser();
+		if(!psn.isEmpty()){
+			user.setPsn(psn);
+		}
+		if(!xbox.isEmpty()){
+			user.setXbox(xbox);
+		}
+		if(!steam.isEmpty()){
+			user.setSteam(steam);;
+		}
+		if(!battlenet.isEmpty()){
+			user.setBattlenet(battlenet);;
+		}
+		if(!origin.isEmpty()){
+			user.setOrigin(origin);
+		}
+		if(!twitter.isEmpty()){
+			user.setTwitter(twitter);
+		}
+		if(!twitch.isEmpty()){
+			user.setTwitch(twitch);
+		}
+		if(!youtube.isEmpty()){
+			user.setYoutube(youtube);
+		}
+		
+		userRepository.save(user);
+		return "settings3";
+	}
 }

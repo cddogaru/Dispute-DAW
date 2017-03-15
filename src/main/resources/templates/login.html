@@ -65,7 +65,11 @@
                     <form class="form-horizontal" method="post" action="/login">
                         <input type="hidden" name="_csrf" value="{{token}}" />
                         <div class="form-group"> {{#loginError}}
-                            <p class="bg-danger">Login error, please try again</p> {{/loginError}}
+                        <div class="alert alert-danger alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    <strong>Error: </strong> Invalid username or password
+  </div>
+                             {{/loginError}}
                             <label for="username" class="cols-sm-2 control-label username2">Username</label>
                             <div class="cols-sm-10">
                                 <div class="input-group"> <span class="input-group-addon"><i class="fa fa-users fa username2" aria-hidden="true"></i></span>
