@@ -1,7 +1,9 @@
 package com.dispute.tournament;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,9 +22,9 @@ public class Tournament {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String name;
-	
+
 	@Column(length = 10000)
 	private String description;
 	private int maxPlayers;
@@ -30,15 +32,16 @@ public class Tournament {
 	private String date;
 	@OneToOne
 	private Game game;
-	
+
 	@ManyToMany(mappedBy = "tournaments")
 	private List<Participant> participants;
-	
+
 	@OneToMany
 	private List<User> admins;
-	
-	public Tournament(){}
-	
+
+	public Tournament() {
+	}
+
 	public Tournament(String name, String description, int maxPlayers, String mode, String date) {
 		super();
 		this.name = name;
@@ -112,12 +115,13 @@ public class Tournament {
 	public void setParticipants(List<Participant> players) {
 		this.participants = players;
 	}
-	
-	public void addParticipant(Participant participant){
-		 		if((!participants.contains(participant)) && ((participants.size()) <= maxPlayers)){
-		 			participants.add(participant);
-		 		}
-		 	}
+
+	public void addParticipant(Participant participant) {
+		if ((!participants.contains(participant)) && ((participants.size()) <= maxPlayers)) {
+			participants.add(participant);
+		}
+	}
+
 	public List<User> getAdmins() {
 		return admins;
 	}
@@ -126,7 +130,26 @@ public class Tournament {
 		this.admins = admins;
 	}
 
-	public int getNumOfParticipants(){
-		 		return (this.participants.size());
-		 	}
+	public int getNumOfParticipants() {
+		return (this.participants.size());
+	}
+
+	public void randomizeParticipants(){
+		long seed = System.nanoTime();
+		Collections.shuffle(participants, new Random(seed));
+	}
+	
+	public ArrayList<MatchUp> generateMatchUps() {
+		ArrayList<MatchUp> matchups = new ArrayList<MatchUp>();
+		int i = 0;
+		while (i < participants.size()) {
+			if ((i + 1) < participants.size()) {
+				MatchUp m1 = new MatchUp(participants.get(i), participants.get(i + 1));
+				matchups.add(m1);
+				i++;
+				i++;
+			}
+		}
+		return matchups;
+	}
 }
