@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.dispute.user.User;
 import com.dispute.user.UserComponent;
+import com.dispute.user.UserRepository;
 
 @Controller
 public class TournamentController {
@@ -20,6 +22,8 @@ public class TournamentController {
 	private TournamentRepository tournamentRepository;
 	@Autowired
 	private UserComponent userComponent;
+	@Autowired
+	private UserRepository userRepository;
 	
 	@RequestMapping(value = "/tournaments")
 	public String tournaments(Model model){
@@ -54,7 +58,12 @@ public class TournamentController {
 	 	@RequestMapping(value = "/tournament/{tournamentName}", method = RequestMethod.POST)
 	 	public View joinTournament(Model model, @PathVariable String tournamentName){
 	 		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
-	 		thisTournament.addParticipant(userComponent.getLoggedUser());
-	 		return new RedirectView("tournament/" + tournamentName);
+	 		User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+	 		
+	 		user.getTournaments().add(thisTournament);
+	 		userRepository.save(user);
+	 		RedirectView rv = new RedirectView("../tournament/" + tournamentName + "?error=true");
+	 		rv.setExposeModelAttributes(false);
+	 		return rv;
 	 	}
 }

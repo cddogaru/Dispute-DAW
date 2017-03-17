@@ -41,8 +41,10 @@ public class TeamController {
 		Team team = new Team(name, acronym, description);
 		
 		teamRepository.save(team);
-
-		return new RedirectView("teams.html");
+		
+		RedirectView rv = new RedirectView("teams.html");
+ 		rv.setExposeModelAttributes(false);
+		return rv;
 	}
 	
 	@RequestMapping(value="/team/{teamName}")

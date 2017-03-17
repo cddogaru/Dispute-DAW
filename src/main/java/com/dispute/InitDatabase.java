@@ -47,7 +47,7 @@ public class InitDatabase {
 		Tournament tournament1 = new Tournament("Torneo Hearthstone", "Hearthstone", 32, "1v1", "12-13-19 at 13:00");
 		Tournament tournament2 = new Tournament("Counter Final CS | World's Cup", "Counter-Strike ", 32, "5v5", "12-13-19 at 13:00");
 		Tournament tournament3 = new Tournament("Tekken X Street Fighter", "Tekken is a fighting video game ", 32, "5v5", "12-13-19 at 13:00");
-     	tournament1.getParticipants().add(user1);
+     	
     // 	tournament1.getParticipants().add(team1);
 
 		tournamentRepository.save(tournament1);
@@ -55,6 +55,8 @@ public class InitDatabase {
 		tournamentRepository.save(tournament3);
 		team1.getTournaments().add(tournament1);
 	 	teamRepository.save(team1);
+	 	user1.getTournaments().add(tournament1);
+	 	userRepository.save(user1);
 	}
 	
 }

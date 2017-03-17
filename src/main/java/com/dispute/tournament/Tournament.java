@@ -2,6 +2,8 @@ package com.dispute.tournament;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,8 @@ public class Tournament {
 	private Long id;
 	
 	private String name;
+	
+	@Column(length = 10000)
 	private String description;
 	private int maxPlayers;
 	private String mode;

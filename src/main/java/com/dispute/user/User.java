@@ -13,6 +13,7 @@ import javax.persistence.UniqueConstraint;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.dispute.participant.Participant;
 import com.dispute.team.Team;
+import com.dispute.tournament.Tournament;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "email" }))
@@ -84,7 +85,7 @@ public class User extends Participant{
 	public User(String userName, String name, String email, String password, String... roles) {
 		this.nickName = userName;
 		this.password = new BCryptPasswordEncoder().encode(password);
-//		this.name = name;
+		this.setTournaments(new ArrayList<Tournament>());
 		this.setName(name);
 		this.email = email;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
