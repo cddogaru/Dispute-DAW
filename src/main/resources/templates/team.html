@@ -60,37 +60,90 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3"> <img src="http://lorempixel.com/100/100" class="img-thumbnail" />
-                        <h3><strong>{{team.name}}</strong></h3>
+                        <h3><strong>{{actualTeam.name}}</strong></h3>
                         <hr>
-                        <p> <span class="fa fa-futbol-o"></span> {{team.acronym}}</p>
-                        <br>
-                        <p><a href="#" class="btn btn-lg btn-success text-left"><span class="fa fa-plus-square"></span> &nbsp;Request to Join</a></p>
-                    </div>
-                    <div class="col-md-9">
+                        <p> <span class="fa fa-futbol-o"></span> {{actualTeam.acronym}}</p>
+                        <br> {{#isLogged}} {{#doRequest}}
+                        <form action="../team/{{actualTeam.name}}/newRequest" method="post">
+                            <input type="hidden" name="_csrf" value="{{token}}" />
+                            <input type="hidden" name="userId" value="{{userLogged.Id}}" />
+                            <input type="submit" class="btn btn-lg btn-success text-left" value="Request to Join"> </form>{{/doRequest}} {{#leaveTeam}}
+                        <form action="kickUser" method="post" onsubmit="return confirm('Do you really want to leave the team?');">
+                            <input type="hidden" name="_csrf" value="{{token}}" />
+                            <input type="hidden" name="teamId" value="{{actualTeam.id}}" />
+                            <input type="hidden" name="userId" value="{{userLogged.id}}" />
+                            <input type="submit" class="btn btn-danger btn-lg" value="Leave Team"> </form> {{/leaveTeam}} {{/isLogged}} </div>
+                    <div class="col-md-9"> {{#error}}
+                        <div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <strong>An error occurred </strong> </div>{{/error}} {{#request}}
+                        <div class="alert alert-success alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <strong>Success! Wait for an admin </strong> </div>{{/request}}
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#tournaments">Tournaments</a></li>
                             <li><a data-toggle="tab" href="#friends">Members</a></li>
-                            <li><a data-toggle="tab" href="#teams">Games</a></li>
-                        </ul>
+                            <li><a data-toggle="tab" href="#teams">Games</a></li> {{#admin}}
+                            <li><a data-toggle="tab" href="#admin">Admin</a></li>{{/admin}} </ul>
                         <div class="tab-content">
                             <div id="tournaments" class="tab-pane fade in active">
                                 <br>
                                 <div class="well"><strong>Joined tournaments</strong></div>
-                                <div class="list-group">{{#team.tournaments}}<a href="../tournament/{{name}}" class="list-group-item">{{name}}</a>{{/team.tournaments}}</div>
+                                <div class="list-group">{{#actualTeam.tournaments}}<a href="../tournament/{{name}}" class="list-group-item">{{name}}</a>{{/actualTeam.tournaments}}</div>
                             </div>
                             <div id="friends" class="tab-pane fade">
                                 <br>
                                 <div class="well"><strong>Members</strong></div>
-                                <ul class="list-group"> {{#team.users}}
-                                    <li class="list-group-item" id="captain"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="../user/{{name}}">{{name}}</a></li> {{/team.users}} </ul>
+                                <ul class="list-group"> {{#actualTeam.users}}
+                                    <li class="list-group-item" id="captain"><img src="../image/{{avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{name}}">{{name}}</a></li> {{/actualTeam.users}} </ul>
                             </div>
                             <div id="teams" class="tab-pane fade">
                                 <br>
                                 <div class="well"><strong>Games</strong></div>
-                                <ul class="list-group"> {{#team.games}}
-                                    <li class="list-group-item"><img src="../images/games/ttt2icon30x30.png" class="img-thumbnail" /> {{name}}</li> {{/team.games}} </ul>
-                            </div>
-                        </div>
+                                <ul class="list-group"> {{#actualTeam.games}}
+                                    <li class="list-group-item"><img src="../images/games/ttt2icon30x30.png" class="img-thumbnail" /> {{name}}</li> {{/actualTeam.games}} </ul>
+                            </div> {{#admin}}
+                            <div id="admin" class="tab-pane fade">
+                                <br>
+                                <div class="well"><strong>Requests</strong></div>
+                                <ul class="list-group"> {{#requests}}
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-6"> <a href="../user/{{name}}">{{nickName}}</a> </div>
+                                            <div class="col-md-4 text-right">
+                                                <form action="../team/{{actualTeam.name}}/acceptRequest" method="post">
+                                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                                    <input type="hidden" name="userId" value="{{id}}" />
+                                                    <input type="hidden" name="accept" value="true" />
+                                                    <input type="submit" class="btn btn-success btn-sm" value="Accept"> </form>
+                                            </div>
+                                            <div class="col-md-2 text-right">
+                                                <form action="../team/{{actualTeam.name}}/acceptRequest" method="post">
+                                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                                    <input type="hidden" name="userId" value="{{id}}" />
+                                                    <input type="hidden" name="accept" value="false" />
+                                                    <input type="submit" class="btn btn-danger btn-sm" value="Refuse"> </form>
+                                            </div>
+                                        </div>
+                                    </li> {{/requests}} </ul>
+                                <div class="well"><strong>Members</strong></div>
+                                <ul class="list-group"> {{#actualTeam.users}}
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-6"> <a href="../user/{{name}}">{{nickName}}</a> </div>
+                                            <div class="col-md-5 text-right">
+                                                <form action="addAdmin" method="post">
+                                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                                    <input type="hidden" name="teamId" value="{{actualTeam.id}}" />
+                                                    <input type="hidden" name="userId" value="{{id}}" />
+                                                    <input type="submit" class="btn btn-info btn-sm" value="Add as admin"> </form>
+                                            </div>
+                                            <div class="col-md-1 text-right">
+                                                <form action="kickUser" method="post" onsubmit="return confirm('Do you really want to kick {{nickName}}');">
+                                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                                    <input type="hidden" name="teamId" value="{{actualTeam.id}}" />
+                                                    <input type="hidden" name="userId" value="{{id}}" />
+                                                    <input type="submit" class="btn btn-danger btn-sm" value="Kick"> </form>
+                                            </div>
+                                        </div>
+                                    </li> {{/actualTeam.users}} </ul>
+                            </div> {{/admin}} </div>
                     </div>
                 </div>
             </div>

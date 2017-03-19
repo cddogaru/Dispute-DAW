@@ -2,9 +2,13 @@ package com.dispute.team;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import com.dispute.game.Game;
@@ -36,7 +40,12 @@ public class Team extends Participant{
 	@OneToMany
 	private List<Game> games;
 	
+	@OneToMany
+	private List<User> admins;
 	
+	@ElementCollection
+	@CollectionTable(name ="requests")
+	private List<Long> requests;
 	
 	protected Team() {}
 
@@ -48,6 +57,8 @@ public class Team extends Participant{
 		this.description = description;
 		users = new ArrayList<>();
 		games = new ArrayList<>();
+		admins = new ArrayList<>();
+		requests = new ArrayList();
 	}
 
 //	public String getName() {
@@ -95,6 +106,29 @@ public class Team extends Participant{
 		return users.size();
 	}
 	
+	public List<User> getAdmins() {
+		return admins;
+	}
+
+	public void setAdmins(List<User> admins) {
+		this.admins = admins;
+	}
+	
+	public void addAdmin(User user){
+		this.admins.add(user);
+	}
+	
+	public boolean isAdmin(User user){
+		return admins.contains(user);
+	}
+	public List<Long> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<Long> requests) {
+		this.requests = requests;
+	}
+
 	@Override
 	public String toString() {
 		return "Team [name=" + this.getName() + ", acronym=" + acronym + "]";
