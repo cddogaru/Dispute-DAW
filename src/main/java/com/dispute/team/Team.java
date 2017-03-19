@@ -2,7 +2,10 @@ package com.dispute.team;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -40,6 +43,9 @@ public class Team extends Participant{
 	@OneToMany
 	private List<User> admins;
 	
+	@ElementCollection
+	@CollectionTable(name ="requests")
+	private List<Long> requests;
 	
 	protected Team() {}
 
@@ -52,6 +58,7 @@ public class Team extends Participant{
 		users = new ArrayList<>();
 		games = new ArrayList<>();
 		admins = new ArrayList<>();
+		requests = new ArrayList();
 	}
 
 //	public String getName() {
@@ -114,6 +121,14 @@ public class Team extends Participant{
 	public boolean isAdmin(User user){
 		return admins.contains(user);
 	}
+	public List<Long> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<Long> requests) {
+		this.requests = requests;
+	}
+
 	@Override
 	public String toString() {
 		return "Team [name=" + this.getName() + ", acronym=" + acronym + "]";

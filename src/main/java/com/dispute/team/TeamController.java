@@ -1,5 +1,10 @@
 package com.dispute.team;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,13 +55,28 @@ public class TeamController {
 	}
 	
 	@RequestMapping(value="/team/{teamName}")
-	public String teamRequest(Model model, @PathVariable String teamName, @RequestParam(required = false) boolean error){
+	public String teamRequest(Model model, @PathVariable String teamName, @RequestParam(required = false) boolean error, @RequestParam(required = false) boolean request){
 		Team team = teamRepository.findByName(teamName);
-		model.addAttribute("team", team);
+		model.addAttribute("actualTeam", team);
 		model.addAttribute("error", error);
+		model.addAttribute("request", request);
 		if(userComponent.isLoggedUser()){
 			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
 			model.addAttribute("admin", team.isAdmin(user));
+			List<User> requests = new ArrayList<>();
+			for(Long id: team.getRequests()){
+				requests.add(userRepository.findById(id));
+			}
+			
+			
+			if(user.getTeam() == null && !team.getRequests().contains(user.getId())){
+				model.addAttribute("doRequest", true);
+			} else {
+				if(team.getUsers().contains(user)){
+					model.addAttribute("leaveTeam", true);
+				}
+			}
+			model.addAttribute("requests", requests);
 		}
 		return "team";
 	}
@@ -97,6 +117,54 @@ public class TeamController {
 		}
 		teamRepository.save(team);
  		rv.setExposeModelAttributes(false);
+		return rv;
+	}
+	
+	@RequestMapping(value="/team/{teamName}/newRequest", method = RequestMethod.POST)
+	public View addAdmin(Model model, @PathVariable String teamName, @RequestParam Long userId){
+
+		Team team = teamRepository.findByName(teamName);
+		
+		RedirectView rv;
+		if(!team.getRequests().contains(userId)){
+			team.getRequests().add(userId);
+			rv = new RedirectView("../../team/" + teamName + "?request=true");
+		} else {
+			rv = new RedirectView("../../team/" + teamName + "?error=true");
+		}
+		teamRepository.save(team);
+ 		rv.setExposeModelAttributes(false);
+		return rv;
+	}
+	
+	@RequestMapping(value="/team/{teamName}/acceptRequest", method = RequestMethod.POST)
+	public View addUser(Model model, @PathVariable String teamName, @RequestParam Long userId, @RequestParam boolean accept){
+
+		Team team = teamRepository.findByName(teamName);
+		User user = userRepository.findById(userId);
+		RedirectView rv;
+		if (accept) {
+			if (team.getRequests().contains(userId) && user.getTeam() == null) {
+				team.getRequests().remove(userId);
+				user.setTeam(team);
+				userRepository.save(user);
+				teamRepository.save(team);
+				rv = new RedirectView("../../team/" + teamName);
+			} else {
+				team.getRequests().remove(userId);
+				rv = new RedirectView("../../team/" + teamName + "?error=true");
+			}
+		} else {
+			if (team.getRequests().contains(userId)) {
+				team.getRequests().remove(userId);
+				teamRepository.save(team);
+				rv = new RedirectView("../../team/" + teamName);
+			} else {
+				team.getRequests().remove(userId);
+				rv = new RedirectView("../../team/" + teamName + "?error=true");
+			}
+		}
+		rv.setExposeModelAttributes(false);
 		return rv;
 	}
 }
