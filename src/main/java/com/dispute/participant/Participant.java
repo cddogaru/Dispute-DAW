@@ -26,6 +26,10 @@ public abstract class Participant{
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Tournament> tournaments; 
 	
+	private String avatar;
+	
+	
+
 	public List<Tournament> getTournaments() {
 		return tournaments;
 	}
@@ -50,5 +54,11 @@ public abstract class Participant{
 		this.name = name;
 	}
 	
-	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 }

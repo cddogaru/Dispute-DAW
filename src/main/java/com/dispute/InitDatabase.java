@@ -48,18 +48,17 @@ public class InitDatabase {
 		Tournament tournament2 = new Tournament("Counter Final CS | World's Cup", "Counter-Strike ", 32, "5v5", "12-13-19 at 13:00");
 		Tournament tournament3 = new Tournament("Tekken X Street Fighter", "Tekken is a fighting video game ", 32, "5v5", "12-13-19 at 13:00");
      	
-    // 	tournament1.getParticipants().add(team1);
-
 		tournamentRepository.save(tournament1);
 		tournamentRepository.save(tournament2);
 		tournamentRepository.save(tournament3);
-		team1.getTournaments().add(tournament1);
+		
+	 	team1.getTournaments().add(tournament1);
+	 	team1.addAdmin(user2);
 	 	teamRepository.save(team1);
 	 	user1.getTournaments().add(tournament1);
 	 	userRepository.save(user1);
 	 	
-	 	team1.addAdmin(user2);
-		teamRepository.save(team1);
+ 	 	
 	}
 	
 }

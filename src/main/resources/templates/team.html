@@ -59,7 +59,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-3"> <img src="http://lorempixel.com/100/100" class="img-thumbnail" />
+                    <div class="col-md-3"> <img src="../image/{{actualTeam.avatar}}" class="img-thumbnail" height="100" width="100" />
                         <h3><strong>{{actualTeam.name}}</strong></h3>
                         <hr>
                         <p> <span class="fa fa-futbol-o"></span> {{actualTeam.acronym}}</p>
@@ -121,7 +121,10 @@
                                                     <input type="submit" class="btn btn-danger btn-sm" value="Refuse"> </form>
                                             </div>
                                         </div>
-                                    </li> {{/requests}} </ul>
+                                    </li>
+                                    <hr> {{/requests}} </ul> {{^requests}}
+                                <div class="list-group-item"> No requests </div>
+                                <hr>{{/requests}}
                                 <div class="well"><strong>Members</strong></div>
                                 <ul class="list-group"> {{#actualTeam.users}}
                                     <li class="list-group-item">
@@ -142,7 +145,17 @@
                                                     <input type="submit" class="btn btn-danger btn-sm" value="Kick"> </form>
                                             </div>
                                         </div>
-                                    </li> {{/actualTeam.users}} </ul>
+                                    </li>
+                                    <hr>{{/actualTeam.users}} </ul> {{^actualTeam.users}}
+                                <div class="list-group-item"> No members</div>
+                                <hr>{{/actualTeam.users}}
+                                <div class="well"><strong>Change team's avatar</strong></div>
+                                <form action="{{actualTeam.name}}/changeAvatar" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                    <input type="file" name="pic" style="color: white;" />
+                                    <div class="text-right">
+                                        <input class="btn btn-primary btn-md btn-info" type="submit" value="Change"> </div>
+                                </form>
                             </div> {{/admin}} </div>
                     </div>
                 </div>

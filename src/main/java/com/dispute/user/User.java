@@ -42,7 +42,6 @@ public class User extends Participant{
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
-	private String avatar;
 	//RRSS
 	private String twitter;
 	private String twitch;
@@ -89,7 +88,7 @@ public class User extends Participant{
 		this.setName(name);
 		this.email = email;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
-		this.avatar = "Default";
+		this.setAvatar("Default");
 	}
 
 	public String getUserName() {
@@ -187,14 +186,6 @@ public class User extends Participant{
 
 	public void setXbox(String xbox) {
 		this.xbox = xbox;
-	}
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
 	}
 
 	@Override
