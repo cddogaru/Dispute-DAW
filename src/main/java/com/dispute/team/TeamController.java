@@ -2,6 +2,7 @@ package com.dispute.team;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -46,9 +48,10 @@ public class TeamController {
 	@RequestMapping(value = "/newTeam", method = RequestMethod.POST)
 	public View addTeam(Model model, @RequestParam String name, @RequestParam String acronym, @RequestParam String games, @RequestParam String description){
 		Team team = new Team(name, acronym, description);
-		team.addAdmin(userComponent.getLoggedUser());
+		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		team.getAdmins().add(user);
 		teamRepository.save(team);
-		
+
 		RedirectView rv = new RedirectView("teams.html");
  		rv.setExposeModelAttributes(false);
 		return rv;
@@ -166,5 +169,31 @@ public class TeamController {
 		}
 		rv.setExposeModelAttributes(false);
 		return rv;
+	}
+	
+	@RequestMapping(value = "/team/{teamName}/changeAvatar", method = RequestMethod.POST)
+	public View changeAvatar(Model model, @PathVariable String teamName, @RequestParam("pic") MultipartFile file){
+		
+		Team team = teamRepository.findByName(teamName);
+		System.out.println(team.getName());
+		RedirectView rv = new RedirectView("../../team/" + teamName);;
+		if (!file.isEmpty()) {
+			String fileName = team.getName() + team.getId() + ".jpg";
+			try {
+				File filesFolder = new File("files");
+				if (!filesFolder.exists()) {
+					filesFolder.mkdirs();
+				}
+				
+				File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
+				file.transferTo(uploadedFile);
+				team.setAvatar(team.getName() + team.getId());
+			} catch (Exception e) {
+				rv = new RedirectView("../../team/" + teamName + "?error=true");
+			}
+		}
+		teamRepository.save(team);
+		rv.setExposeModelAttributes(false);
+		return(rv);
 	}
 }

@@ -7,6 +7,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -40,7 +41,7 @@ public class Team extends Participant{
 	@OneToMany
 	private List<Game> games;
 	
-	@OneToMany
+	@ManyToMany
 	private List<User> admins;
 	
 	@ElementCollection
@@ -59,6 +60,7 @@ public class Team extends Participant{
 		games = new ArrayList<>();
 		admins = new ArrayList<>();
 		requests = new ArrayList();
+		this.setAvatar("DefaultTeam");
 	}
 
 //	public String getName() {
