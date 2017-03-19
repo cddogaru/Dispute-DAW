@@ -60,7 +60,6 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
-                
                     <div class="col-md-3"> <img src="../image/{{user.avatar}}" height="150" width="150" class="img-thumbnail" />
                         <h3><strong>{{user.nickName}}</strong></h3>
                         <hr> {{#user.twitter}}
@@ -99,13 +98,17 @@
                                 <br>
                                 <div class="well">Games id</div> {{#user.steam}}
                                 <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/steam.png"></span> {{.}}</p>{{/user.steam}} {{#user.battlenet}}
-                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/battlenet.png"></span>  {{.}}</p>{{/user.battlenet}} {{#user.psn}}
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/battlenet.png"></span> {{.}}</p>{{/user.battlenet}} {{#user.psn}}
                                 <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/psn.png"></span> {{.}}</p>{{/user.psn}} {{#user.xbox}}
                                 <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/xbox.png"></span> {{.}} </p>{{/user.xbox}} </div>
                             <div id="team" class="tab-pane fade">
                                 <br>
                                 <div class="well">Team</div>
-                            </div>
+                                <br> {{#user.team}}
+                                <div class="row">
+                                    <div class="col-md-4"> <img src="../image/{{user.team.avatar}}" class="img-thumbnail" height="100" width="100" /></div>
+                                    <div class="col-md-8"><a href="../team/{{user.team.name}}"><h3><strong>{{user.team.name}}</strong></h3></a></div>
+                                </div> {{/user.team}} {{^user.team}} NO TEAM {{/user.team}} </div>
                         </div>
                     </div>
                 </div>
