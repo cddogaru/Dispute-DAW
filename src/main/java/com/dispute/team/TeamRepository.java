@@ -6,4 +6,5 @@ import com.dispute.participant.ParticipantRepository;
 @Transactional
 public interface TeamRepository extends ParticipantRepository<Team> {
 	Team findByName(String name);
+	Team findById(Long id);
 }

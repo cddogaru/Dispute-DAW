@@ -7,4 +7,5 @@ import com.dispute.participant.ParticipantRepository;
 public interface UserRepository extends ParticipantRepository<User> {
 	User findBynickName(String nickName);
 	User findByName(String name);
+	User findById(Long id);
 }
