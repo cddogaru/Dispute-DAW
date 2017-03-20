@@ -35,7 +35,7 @@
                                         <p class="small">Profile</p>
                                     </a>
                                 </li>
-                                <li><a href="tournaments.html">My Tournaments</a></li>
+                                <li><a href="../myTournaments">My Tournaments</a></li>
                                 <li>
                                     <form action="/logout" method="post">
                                         <input type="hidden" name="_csrf" value="{{token}}" />
@@ -48,8 +48,9 @@
                         <li><a href="../login.html"><span class="skinNavbarLinks">Sign in</span></a></li> {{/isLogged}}
                         <li><a href="../contactus.html"><span class="skinNavbarLinks">Contact</span></a></li>
                     </ul>
-                    <form class="navbar-form navbar-left">
-                        <input type="text" class="form-control" placeholder="Search tournament..."> </form>
+                    <form class="navbar-form navbar-left" action="../findTournament" method="post">
+                        <input type="hidden" name="_csrf" value="{{token}}" />
+                        <input type="text" class="form-control" placeholder="Search tournament..." name="name"> </form>
                 </div>
             </div>
         </nav>

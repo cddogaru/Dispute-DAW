@@ -37,7 +37,7 @@
                                         <p class="small">Profile</p>
                                     </a>
                                 </li>
-                                <li><a href="tournaments.html">My Tournaments</a></li>
+                                <li><a href="../myTournaments">My Tournaments</a></li>
                                 <li>
                                     <form action="/logout" method="post">
                                         <input type="hidden" name="_csrf" value="{{token}}" />
@@ -50,8 +50,9 @@
                         <li><a href="login.html"><span class="skinNavbarLinks">Sign in</span></a></li> {{/isLogged}}
                         <li><a href="contactus.html"><span class="skinNavbarLinks">Contact</span></a></li>
                     </ul>
-                    <form class="navbar-form navbar-left">
-                        <input type="text" class="form-control" placeholder="Search tournament..."> </form>
+                    <form class="navbar-form navbar-left" action="../findTournament" method="post">
+                        <input type="hidden" name="_csrf" value="{{token}}" />
+                        <input type="text" class="form-control" placeholder="Search tournament..." name="name"> </form>
                 </div>
             </div>
         </nav>
@@ -83,21 +84,17 @@
             <div class="col-md-4">
                 <h1><img src="images/logoHeader.png" id="indexBodyLogo"></h1>
                 <p>Try out yourself in your favorite games and challenge your friends and enemies. Do you think you can beat everyone and become the winner? or will you perish like all the others who challenged our champions? WELLCOME TO DISPUTE, THE HOME OF THE EPIC BATTLES.</p>
-               <br> {{#isLogged}}<a class="btn btn-primary btn-lg" href="tournaments.html" id="skinBtn">Join in a tournament!</a>{{/isLogged}}{{^isLogged}} <a class="btn btn-primary btn-lg" href="signup.html" id="skinBtn">Sign up for free!</a>{{/isLogged}} </div>
+                <br> {{#isLogged}}<a class="btn btn-primary btn-lg" href="tournaments.html" id="skinBtn">Join in a tournament!</a>{{/isLogged}}{{^isLogged}} <a class="btn btn-primary btn-lg" href="signup.html" id="skinBtn">Sign up for free!</a>{{/isLogged}} </div>
             <!-- /.col-md-4 -->
         </div>
         <!-- /.row -->
         <hr>
         <!-- /.row -->
         <!-- Content Row -->
-        <div class="row">
-            
-            {{#tournaments}}
+        <div class="row"> {{#tournaments}}
             <div class="col-md-4">
                 <h2><a href="tournament/{{name}}"><span>{{name}}</span></a></h2>
-                <p>{{description}}</p> <a class="btn btn-primary btn-lg" href="tournament/{{name}}">View bracket</a> </div>
-            {{/tournaments}}	
-        </div>
+                <p>{{description}}</p> <a class="btn btn-primary btn-lg" href="tournament/{{name}}">View bracket</a> </div> {{/tournaments}} </div>
         <!-- /.row -->
     </div>
     <!-- /.container -->

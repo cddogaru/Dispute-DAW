@@ -36,7 +36,7 @@
                                         <p class="small">Profile</p>
                                     </a>
                                 </li>
-                                <li><a href="tournaments.html">My Tournaments</a></li>
+                                <li><a href="../myTournaments">My Tournaments</a></li>
                                 <li>
                                     <form action="/logout" method="post">
                                         <input type="hidden" name="_csrf" value="{{token}}" />
@@ -49,8 +49,9 @@
                         <li><a href="login.html"><span class="skinNavbarLinks">Sign in</span></a></li> {{/isLogged}}
                         <li><a href="contactus.html"><span class="skinNavbarLinks">Contact</span></a></li>
                     </ul>
-                    <form class="navbar-form navbar-left">
-                        <input type="text" class="form-control" placeholder="Search tournament..."> </form>
+                    <form class="navbar-form navbar-left" action="../findTournament" method="post">
+                        <input type="hidden" name="_csrf" value="{{token}}" />
+                        <input type="text" class="form-control" placeholder="Search tournament..." name="name"> </form>
                 </div>
             </div>
         </nav>
@@ -68,8 +69,10 @@
                                     <p class="info"><span><img src="images/games/hearthstoneIcon.png"/></span>Hearthstone || {{mode}} || Participans: 12/{{maxPlayers}}</p>
                                     <p class="info">{{date}}</p>
                                 </div>
-                                <div class="col-lg-1 col-lg-offset-4"><form action="/tournament/{{name}}" method="post">
-                                        <input type="hidden" name="_csrf" value="{{token}}" /><strong><input type="submit" class="btn btn-large btn-success" value="Join in"></strong></form></div>
+                                <div class="col-lg-1 col-lg-offset-4">
+                                    <form action="/tournament/{{name}}" method="post">
+                                        <input type="hidden" name="_csrf" value="{{token}}" /><strong><input type="submit" class="btn btn-large btn-success" value="Join in"></strong></form>
+                                </div>
                             </div>
                             <p>{{description}}</p>
                         </div>

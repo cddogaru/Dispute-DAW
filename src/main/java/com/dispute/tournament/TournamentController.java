@@ -1,6 +1,9 @@
 package com.dispute.tournament;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +31,21 @@ public class TournamentController {
 	@RequestMapping(value = "/tournaments")
 	public String tournaments(Model model){
 		model.addAttribute("tournaments", tournamentRepository.findAll());
+		return "tournaments";
+	}
+	
+	@RequestMapping(value = "/myTournaments")
+	public String myTournaments(Model model){
+		List<Tournament> tournaments = tournamentRepository.findByParticipants_Name(userComponent.getLoggedUser().getName());
+		
+		model.addAttribute("tournaments", tournamentRepository.findByParticipants_Name(userComponent.getLoggedUser().getName()));
+		return "tournaments";
+	}
+	
+	@RequestMapping(value = "/findTournament", method = RequestMethod.POST )
+	public String findTournament(Model model, @RequestParam String name){
+		List<Tournament> tournaments = tournamentRepository.findByNameIgnoreCaseContaining(name);
+		model.addAttribute("tournaments", tournaments);
 		return "tournaments";
 	}
 	
