@@ -71,3 +71,6 @@ This is the settings tab, for all registered users, it is separated in privacy, 
 
 # Navigation diagram:
 ![ScreenShot](https://i.gyazo.com/5d25d3665c21b0804acddf85a7f7659e.png)
+
+# Database entity diagram:
+![ScreenShot](https://i.gyazo.com/0f8b527293c27950e91d27c2959db8b3.png)
