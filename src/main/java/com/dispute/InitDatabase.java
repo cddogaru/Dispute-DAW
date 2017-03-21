@@ -32,6 +32,13 @@ public class InitDatabase {
 	@PostConstruct
 	public void init() {
 
+ 	 	Game hearthstone = new Game("Hearthstone", "Hearthstone");
+ 	 	Game counterStrike = new Game("Counter Strike - Global Offensive", "Counter");
+ 	 	Game Tekken = new Game("Tekken Tag Tournament 2", "Tekken");
+ 	 	gameRepository.save(hearthstone);
+ 	 	gameRepository.save(counterStrike);
+ 	 	gameRepository.save(Tekken);
+		
 		Team team1 = new Team("Real Madrid", "RMD", "");
 		Team team2 = new Team("FC Barcelona", "FCB", "");
 		teamRepository.save(team1);
@@ -41,7 +48,9 @@ public class InitDatabase {
 			teamRepository.save(team);
 		}
 		
-		
+		team1.addGame(Tekken);
+		team1.addGame(hearthstone);
+		team1.addGame(counterStrike);
 		
 
 		User user1 = new User("Alex", "Alex", "alex@gmail.com", "1111", "ROLE_USER");
@@ -66,14 +75,7 @@ public class InitDatabase {
 		userRepository.save(user1);
 		userRepository.save(user2);
 		userRepository.save(user3);
-		
-
- 	 	Game hearthstone = new Game("Hearthstone", "Hearthstone");
- 	 	Game counterStrike = new Game("Counter Strike - Global Offensive", "Counter");
- 	 	Game Tekken = new Game("Tekken Tag Tournament 2", "Tekken");
- 	 	gameRepository.save(hearthstone);
- 	 	gameRepository.save(counterStrike);
- 	 	gameRepository.save(Tekken);
+	
 		
 		Tournament tournament1 = new Tournament("Torneo Hearthstone", "Hearthstone", 32, "1v1", "12-13-19 at 13:00");
 		Tournament tournament2 = new Tournament("Counter Final CS | World's Cup", "Counter-Strike ", 32, "5v5", "12-13-19 at 13:00");
