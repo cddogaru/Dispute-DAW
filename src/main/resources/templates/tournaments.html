@@ -66,7 +66,7 @@
                         <div class="panel panel-default text-left"><a href="tournament/{{name}}" class="tournament"><strong>{{name}}</strong></a>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <p class="info"><span><img src="images/games/hearthstoneIcon.png"/></span>Hearthstone || {{mode}} || Participans: 12/{{maxPlayers}}</p>
+                                    <p class="info"><span><img src="images/games/hearthstoneIcon.png"/></span>Hearthstone || {{mode}} || Participans: {{getNumOfParticipants}}/{{maxPlayers}}</p>
                                     <p class="info">{{date}}</p>
                                 </div>
                                 <div class="col-lg-1 col-lg-offset-4"> {{^started}}

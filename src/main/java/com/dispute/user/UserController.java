@@ -27,7 +27,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST )
 	public View addTeam(Model model, @RequestParam String name, @RequestParam String email, @RequestParam String username, @RequestParam String password){
-		User user = new User(username, name, email, password, "USER");
+		User user = new User(username, name, email, password, "ROLE_USER");
 		userRepository.save(user);
 		return new RedirectView("teams.html");
 	}
