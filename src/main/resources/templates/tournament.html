@@ -66,9 +66,9 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#info">Info</a></li>
                             <li><a data-toggle="tab" href="#participants">Participants</a></li>
-                            <li><a data-toggle="tab" href="#bracket">Bracket</a></li>
-                            <li><a data-toggle="tab" href="#matchs">Match ups</a></li>
+                            <li><a data-toggle="tab" href="#rounds">Rounds</a></li>
                             <li><a data-toggle="tab" href="#support">Support</a></li>
+                            <li><a data-toggle="tab" href="#admin">Admin</a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="info" class="tab-pane fade in active">
@@ -80,7 +80,9 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Info</div>
                                     <div class="panel-body">
-                                        <p><strong>Game: </strong><!-- {{tournament.getGameName} --></p>
+                                        <p><strong>Game: </strong>
+                                            <!-- {{tournament.getGameName} -->
+                                        </p>
                                         <p><strong>Mode: </strong>{{tournament.mode}}</p>
                                         <p><strong>participants: </strong>{{tournament.getNumOfParticipants}}/{{tournament.maxPlayers}}</p>
                                         <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> {{tournament.date}}</p>
@@ -94,60 +96,68 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">Chat</div>
-                                    <div class="panel-body"> </div>
-                                </div>
                             </div>
                             <div id="participants" class="tab-pane">
-                            <br>
-                            	{{#tournament.participants}}
-                            	<ul class="list-group">
-                                    <li class="list-group-item">{{#avatar}}<img src="../image/{{.}}" class="img-thumbnail" height="50" width="50"/>{{/avatar}} {{#nickName}}<a href="../user/{{name}}">{{.}}</a>{{/nickName}}{{^nickName}}<a href="../team/{{name}}">{{name}}</a>{{/nickName}}</li>
-                                </ul>
-                            	{{/tournament.participants}}
-                            </div>
-                            <div id="bracket" class="tab-pane"></div>
-                            <div id="matchs" class="tab-pane">
-                                <br>
+                                <br> {{#tournament.participants}}
                                 <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <table class="table">
-                                            <tbody>
-                                                <tr class="success">
-                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="../profile.html">Dimi3</a></td>
-                                                </tr>
-                                                <tr class="danger">
-                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="../profile.html">Dimi3</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <table class="table">
-                                            <tbody>
-                                                <tr class="success">
-                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="../profile.html">Dimi3</a></td>
-                                                </tr>
-                                                <tr class="danger">
-                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="../profile.html">Dimi3</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <table class="table">
-                                            <tbody>
-                                                <tr class="success">
-                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="../profile.html">Dimi3</a></td>
-                                                </tr>
-                                                <tr class="danger">
-                                                    <td><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="../profile.html">Dimi3</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </li>
-                                </ul>
+                                    <li class="list-group-item">{{#avatar}}<img src="../image/{{.}}" class="img-thumbnail" height="50" width="50" />{{/avatar}} {{#nickName}}<a href="../user/{{name}}">{{.}}</a>{{/nickName}}{{^nickName}}<a href="../team/{{name}}">{{name}}</a>{{/nickName}}</li>
+                                </ul> {{/tournament.participants}} </div>
+                            <div id="rounds" class="tab-pane">
+                                <ul class="nav nav-tabs"> {{#tournament.rounds}}
+                                    <li {{#isFirstRound}} class="active" {{/isFirstRound}}><a data-toggle="tab" href="#{{id}}">{{name}}</a></li> {{/tournament.rounds}}</ul>
+                                <div class="tab-content"> {{#tournament.rounds}}
+                                    <div id="{{id}}" class="tab-pane {{#isFirstRound}}fade in active{{/isFirstRound}}">
+                                        <br>
+                                        <ul class="list-group"> {{#matchUps}}
+                                            <li class="list-group-item">
+                                                <table class="table"> {{^isFinishedRound}}
+                                                    <form action="../tournament/{{tournament.name}}/setMatchUp" method="post">{{/isFinishedRound}}
+                                                        <input type="hidden" name="_csrf" value="{{token}}" />
+                                                        <input type="hidden" name="idMatchUp" value="{{id}}" />
+                                                        <input type="hidden" name="idRound" value="{{getRoundId}}" />
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><img src="../image/{{player1.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{player1.name}}">{{player1.name}}</a></td>
+                                                                <td> </td> {{^isFinishedRound}}
+                                                                <td class="text-right">
+                                                                    <input type="number" name="result1" min="0" max="3" value="0"> </td>{{/isFinishedRound}}
+                                                                <td class="text-right">
+                                                                    <p>{{score1}}</p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><img src="../image/{{player2.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{player2.name}}">{{player2.name}}</a></td>
+                                                                <td> </td> {{^isFinishedRound}}
+                                                                <td class="text-right">
+                                                                    <input type="number" name="result2" min="0" max="3" value="0"> </td> {{/isFinishedRound}}
+                                                                <td class="text-right">
+                                                                    <p>{{score2}}</p>
+                                                                </td>
+                                                            </tr> {{^isFinishedRound}}
+                                                            <tr>
+                                                                <td> </td>
+                                                                <td> </td>
+                                                                <td class="text-right">
+                                                                    <input type="submit"> </td>
+                                                            </tr> {{/isFinishedRound}} </tbody>
+                                                    </form>
+                                                </table> {{#isOddRound}}
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><img src="../image/{{lastParticipant.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{lastParticipant.name}}">{{lastParticipant.name}}</a></td>
+                                                            <td> </td>
+                                                            <td class="text-right"> 3 </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h3>FREE WIN</h3></td>
+                                                            <td> </td>
+                                                            <td class="text-right"> 0 </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table> {{/isOddRound}} </li> {{/matchUps}} </ul>
+                                    </div> {{/tournament.rounds}}</div>
                             </div>
                             <div id="support" class="tab-pane">
                                 <br>
@@ -156,14 +166,24 @@
                                 <br>
                                 <div class="text-right"> <a href="#" class="btn btn-info btn-lg">Contact</a> </div>
                             </div>
+                            <div id="admin" class="tab-pane">
+                                <br> {{^tournament.started}}
+                                <div class="well"><strong>Start tournament</strong></div>
+                                <form action="../tournament/{{tournament.name}}/startTournament" method="post">
+                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                    <input type="submit" class="btn btn-large btn-block btn-success" value="START"> </form>
+                                <hr> {{/tournament.started}}
+                                <div class="well"><strong>User's Issues</strong></div>
+                            </div>
                         </div>
                         <!-- /.row -->
                     </div>
                     <div class="col-md-3">
                         <div class="">
-                        
-                            <div class="text-right"><form method="post" action="/{{tournament.name}}">
-                                        <input type="hidden" name="_csrf" value="{{token}}" /><input class="btn btn-success btn-block" type="submit" value="Join In"></form></div>
+                            <div class="text-right"> {{^tournament.started}}
+                                <form method="post" action="/tournament/{{tournament.name}}">
+                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                    <input class="btn btn-success btn-block" type="submit" value="Join In"> </form> {{/tournament.started}} </div>
                         </div>
                         <br>
                         <div class="panel panel-default">
@@ -178,8 +198,7 @@
                         <hr>
                         <div class="panel panel-default">
                             <div class="panel-heading">Admins:</div>
-                            <ul class="panel-body list-group">
-                            {{#admins}}
+                            <ul class="panel-body list-group"> {{#admins}}
                                 <li class="list-group-item"> <a href="user/{{name}}"> name </li> 
                             {{/admins}}
                             </ul>
@@ -202,14 +221,14 @@
                 <div class="col-xs-4"> </div>
                 <div class="text-right">
                     <div class="col-xs-4"> <a href="https://twitter.com/DisputeWeb?lang=es"><span class="fa fa-twitter-square" id="footerLinks"></span></a> <a href="https://www.facebook.com/Dispute-627402047448785/?ref=ts&fref=ts"><span class="fa  fa-facebook-square " id="footerLinks"></span></a> <a href="https://github.com/cddogaru/Dispute-DAW"><span class="fa  fa-github " id="footerLinks"></span></a> </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!-- jQuery -->
-    <script src="../js/jquery.js "></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js "></script>
+            </footer>
+            <!-- jQuery -->
+            <script src="../js/jquery.js "></script>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="../js/bootstrap.min.js "></script>
 </body>
 
 </html>

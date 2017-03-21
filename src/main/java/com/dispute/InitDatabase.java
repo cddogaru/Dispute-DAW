@@ -57,7 +57,8 @@ public class InitDatabase {
 	 	teamRepository.save(team1);
 	 	user1.getTournaments().add(tournament1);
 	 	userRepository.save(user1);
-	 	
+	 	user3.getTournaments().add(tournament1);
+	 	userRepository.save(user3);
  	 	
 	}
 	
