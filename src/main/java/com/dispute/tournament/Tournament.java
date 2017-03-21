@@ -60,13 +60,14 @@ public class Tournament {
 	public Tournament() {
 	}
 
-	public Tournament(String name, String description, int maxPlayers, String mode, String date) {
+	public Tournament(String name, String description, int maxPlayers, String mode, String date, Game game) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.maxPlayers = maxPlayers;
 		this.mode = mode;
 		this.date = date;
+		this.game = game;
 		participants = new ArrayList<Participant>();
 		actualParticipants = new ArrayList<Participant>();
 		admins = new ArrayList<User>();
