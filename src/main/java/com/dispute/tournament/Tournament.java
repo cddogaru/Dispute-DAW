@@ -224,4 +224,12 @@ public class Tournament {
 		rounds.add(round);
 		return round;
 	}
+	
+	public Round getActualRound(){
+		if(!rounds.isEmpty()){
+			return rounds.get(rounds.size()-1);
+		} else {
+			return null;
+		}
+	}
 }

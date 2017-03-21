@@ -31,6 +31,8 @@ public class Round {
 	
 	private boolean firstRound;
 	
+	private boolean closedRound = false;
+	
 	public Round(){}
 	
 	public Round(String name){
@@ -100,5 +102,13 @@ public class Round {
 
 	public void setFirstRound(boolean firstRound) {
 		this.firstRound = firstRound;
+	}
+
+	public boolean isClosedRound() {
+		return closedRound;
+	}
+
+	public void setClosedRound(boolean closedRound) {
+		this.closedRound = closedRound;
 	}
 }
