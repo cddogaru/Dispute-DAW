@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.dispute.game.Game;
+import com.dispute.game.GameRepository;
 import com.dispute.team.Team;
 import com.dispute.team.TeamRepository;
 import com.dispute.tournament.Tournament;
@@ -22,6 +25,9 @@ public class InitDatabase {
 	
 	@Autowired
 	private TournamentRepository tournamentRepository;
+	
+	@Autowired
+	private GameRepository gameRepository;
 	
 	@PostConstruct
 	public void init() {
@@ -61,12 +67,23 @@ public class InitDatabase {
 		userRepository.save(user2);
 		userRepository.save(user3);
 		
+
+ 	 	Game hearthstone = new Game("Hearthstone", "Hearthstone");
+ 	 	Game counterStrike = new Game("Counter Strike - Global Offensive", "Counter");
+ 	 	Game Tekken = new Game("Tekken Tag Tournament 2", "Tekken");
+ 	 	gameRepository.save(hearthstone);
+ 	 	gameRepository.save(counterStrike);
+ 	 	gameRepository.save(Tekken);
+		
 		Tournament tournament1 = new Tournament("Torneo Hearthstone", "Hearthstone", 32, "1v1", "12-13-19 at 13:00");
 		Tournament tournament2 = new Tournament("Counter Final CS | World's Cup", "Counter-Strike ", 32, "5v5", "12-13-19 at 13:00");
 		Tournament tournament3 = new Tournament("Tekken X Street Fighter", "Tekken is a fighting video game ", 32, "5v5", "12-13-19 at 13:00");
 		tournament1.getAdmins().add(user2);
 		tournament2.getAdmins().add(user2);
 		tournament3.getAdmins().add(user2);
+		tournament1.setGame(hearthstone);
+		tournament2.setGame(counterStrike);
+		tournament3.setGame(Tekken);
 		tournamentRepository.save(tournament1);
 		tournamentRepository.save(tournament2);
 		tournamentRepository.save(tournament3);
