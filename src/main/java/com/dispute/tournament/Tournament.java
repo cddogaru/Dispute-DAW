@@ -13,12 +13,18 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+
 import com.dispute.game.Game;
 import com.dispute.participant.Participant;
 import com.dispute.user.User;
 
 @Entity
 public class Tournament {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -38,7 +44,19 @@ public class Tournament {
 
 	@OneToMany
 	private List<User> admins;
-
+	
+	@ManyToMany
+	private List<Participant> actualParticipants;
+	
+	@OneToMany
+	private List<Round> rounds;
+	
+	private int roundNumber = 0;
+	
+	private boolean started;
+	
+	private boolean finished;
+	
 	public Tournament() {
 	}
 
@@ -50,6 +68,8 @@ public class Tournament {
 		this.mode = mode;
 		this.date = date;
 		participants = new ArrayList<Participant>();
+		actualParticipants = new ArrayList<Participant>();
+		admins = new ArrayList<User>();
 	}
 
 	public Long getId() {
@@ -130,26 +150,78 @@ public class Tournament {
 		this.admins = admins;
 	}
 
+	public List<Participant> getActualParticipants() {
+		return actualParticipants;
+	}
+
+	public void setActualParticipants(List<Participant> actualParticipants) {
+		this.actualParticipants = actualParticipants;
+	}
+
+	public List<Round> getRounds() {
+		return rounds;
+	}
+
+	public void setRounds(List<Round> rounds) {
+		this.rounds = rounds;
+	}
+
+	public int getRoundNumber() {
+		return roundNumber;
+	}
+
+	public void setRoundNumber(int roundNumber) {
+		this.roundNumber = roundNumber;
+	}
+
 	public int getNumOfParticipants() {
 		return (this.participants.size());
 	}
 
 	public void randomizeParticipants(){
 		long seed = System.nanoTime();
-		Collections.shuffle(participants, new Random(seed));
+		Collections.shuffle(actualParticipants, new Random(seed));
 	}
 	
+	public boolean isStarted() {
+		return started;
+	}
+
+	public boolean isFinished() {
+		return finished;
+	}
+
+	public void setFinished(boolean finishedTournament) {
+		this.finished = finishedTournament;
+	}
+
+	public void setStarted(boolean started) {
+		this.started = started;
+	}
+
 	public ArrayList<MatchUp> generateMatchUps() {
+		randomizeParticipants();
 		ArrayList<MatchUp> matchups = new ArrayList<MatchUp>();
 		int i = 0;
-		while (i < participants.size()) {
-			if ((i + 1) < participants.size()) {
-				MatchUp m1 = new MatchUp(participants.get(i), participants.get(i + 1));
+		while (i < actualParticipants.size()) {
+			if ((i + 1) < actualParticipants.size()) {
+				MatchUp m1 = new MatchUp(actualParticipants.get(i), actualParticipants.get(i + 1));
 				matchups.add(m1);
-				i++;
-				i++;
 			}
+			i=i+2;
 		}
 		return matchups;
+	}
+	
+	public Round newRound(ArrayList<MatchUp> matchups){
+		roundNumber++;
+		Round round = new Round("Round " + roundNumber);
+		round.setMatchUps(matchups);
+		if(actualParticipants.size() % 2 != 0){
+			round.setOddRound(true);
+			round.setLastParticipant(actualParticipants.get(actualParticipants.size()-1));
+		}
+		rounds.add(round);
+		return round;
 	}
 }

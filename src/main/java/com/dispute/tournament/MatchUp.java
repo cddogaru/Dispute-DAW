@@ -1,17 +1,32 @@
 package com.dispute.tournament;
 
 import com.dispute.user.User;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import com.dispute.participant.Participant;;
 
+@Entity
 public class MatchUp {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	@ManyToOne
 	private Participant player1, player2;
-	private int[] score = new int[2];
+	private int score1 = 0;
+	private int score2 = 0;
+	private boolean finished;
+	public MatchUp(){}
 	
 	public MatchUp(Participant player1, Participant player2){
 		this.player1 = player1;
 		this.player2 = player2;
-		score[0] = 0;
-		score[1] = 0;
 	}
 
 	public Participant getPlayer1() {
@@ -30,20 +45,51 @@ public class MatchUp {
 		this.player2 = player2;
 	}
 
-	public int[] getScore() {
-		return score;
+	public Long getId() {
+		return id;
 	}
 
-	public void setScore(int[] score) {
-		this.score = score;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getScore1() {
+		return score1;
+	}
+
+	public void setScore1(int score1) {
+		this.score1 = score1;
+	}
+
+	public int getScore2() {
+		return score2;
+	}
+
+	public void setScore2(int score2) {
+		this.score2 = score2;
+	}
+
+	public boolean isFinished() {
+		return finished;
+	}
+
+	public void setFinished(boolean finished) {
+		this.finished = finished;
+	}
+
+	public Participant getWinner(){
+		if(score1 > score2){
+			return player1;
+		} else{
+			return player2;
+		}
 	}
 	
-	public void setScoreOnePlayer(int score, Participant player){
-		if(player.equals(this.player1)){
-			this.score[0] = score;
+	public Participant getLosser(){
+		if(score1 > score2){
+			return player2;
+		} else{
+			return player1;
 		}
-		if(player.equals(this.player2)){
-			this.score[1] = score;
-		}	
 	}
 }

@@ -69,10 +69,9 @@
                                     <p class="info"><span><img src="images/games/hearthstoneIcon.png"/></span>Hearthstone || {{mode}} || Participans: 12/{{maxPlayers}}</p>
                                     <p class="info">{{date}}</p>
                                 </div>
-                                <div class="col-lg-1 col-lg-offset-4">
+                                <div class="col-lg-1 col-lg-offset-4"> {{^started}}
                                     <form action="/tournament/{{name}}" method="post">
-                                        <input type="hidden" name="_csrf" value="{{token}}" /><strong><input type="submit" class="btn btn-large btn-success" value="Join in"></strong></form>
-                                </div>
+                                        <input type="hidden" name="_csrf" value="{{token}}" /><strong><input type="submit" class="btn btn-large btn-success" value="Join in"></strong></form> {{/started}} </div>
                             </div>
                             <p>{{description}}</p>
                         </div>

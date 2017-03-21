@@ -47,13 +47,13 @@ class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {
 	    	if(userComponent !=null){
 		    	if(userComponent.isLoggedUser()){
 		    		modelAndView.addObject("isLogged", true);
+		    		modelAndView.addObject("adminPage", request.isUserInRole("ADMIN"));
 		    		modelAndView.addObject("userLogged", userComponent.getLoggedUser());
 		    	} else {
 		    		modelAndView.addObject("isLogged", false);
 		    	}
 	    	}
 		} catch(Exception e){
-			System.out.println("Error csrf");
 		}
     }
 	
