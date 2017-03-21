@@ -63,12 +63,14 @@ public class TournamentController {
 	@RequestMapping(value = "/newTournament", method = RequestMethod.POST)
 	public View addTournament(Model model, @RequestParam String name, @RequestParam String url,
 			@RequestParam boolean registration, @RequestParam String max, @RequestParam String game,
-			@RequestParam String time, @RequestParam String comment) {
+			@RequestParam String date, @RequestParam String time, @RequestParam String comment) {
 
 		int maxPlyrs = 60;
 
 		String dmode = "List";
-		Tournament tournament = new Tournament(name, comment, maxPlyrs, dmode, time);
+		Tournament tournament = new Tournament(name, comment, maxPlyrs, dmode, date + " " + time);
+		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		tournament.getAdmins().add(user);
 		tournamentRepository.save(tournament);
 		return new RedirectView("tournaments.html");
 	}
@@ -77,6 +79,28 @@ public class TournamentController {
 	public String tournament(Model model, @PathVariable String tournamentName) {
 		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
 		model.addAttribute("tournament", thisTournament);
+		
+		if(userComponent.isLoggedUser()){
+			User user = userRepository.findById(userComponent.getLoggedUser().getId());
+			if(thisTournament.getAdmins().contains(user)){
+				model.addAttribute("admin", true);
+			}
+		}
+		
+		if(userComponent.isLoggedUser() && thisTournament.isStarted()){
+			Round round = thisTournament.getRounds().get(thisTournament.getRounds().size()-1);
+			User user = userRepository.findById(userComponent.getLoggedUser().getId());
+			for(MatchUp m: round.getMatchUps()){
+				if(m.getPlayer1().equals(user) || m.getPlayer2().equals(user)){
+					if(!m.isFinished()){
+						model.addAttribute("userInMatch", true);
+						model.addAttribute("userMatch", m);
+						System.out.println(m);
+						model.addAttribute("userRound", round);
+					}
+				}
+			}
+		}
 		return ("tournament");
 	}
 
@@ -126,11 +150,16 @@ public class TournamentController {
 				for(MatchUp m: round.getMatchUps()){
 					tournament.getActualParticipants().remove(m.getLosser());
 				}
-				ArrayList<MatchUp> matchUps = tournament.generateMatchUps();
-				matchUpRepository.save(matchUps);
-				Round newRound = tournament.newRound(matchUps);
-				roundRepository.save(newRound);
-				tournamentRepository.save(tournament);
+				if(tournament.getActualParticipants().size()==1){
+					tournament.setFinished(true);
+					tournamentRepository.save(tournament);
+				} else {
+					ArrayList<MatchUp> matchUps = tournament.generateMatchUps();
+					matchUpRepository.save(matchUps);
+					Round newRound = tournament.newRound(matchUps);
+					roundRepository.save(newRound);
+					tournamentRepository.save(tournament);
+				}
 			}
 		}
 		RedirectView rv = new RedirectView("../../tournament/" + tournamentName);

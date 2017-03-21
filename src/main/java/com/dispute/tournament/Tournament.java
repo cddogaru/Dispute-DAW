@@ -55,6 +55,8 @@ public class Tournament {
 	
 	private boolean started;
 	
+	private boolean finished;
+	
 	public Tournament() {
 	}
 
@@ -67,6 +69,7 @@ public class Tournament {
 		this.date = date;
 		participants = new ArrayList<Participant>();
 		actualParticipants = new ArrayList<Participant>();
+		admins = new ArrayList<User>();
 	}
 
 	public Long getId() {
@@ -182,6 +185,14 @@ public class Tournament {
 	
 	public boolean isStarted() {
 		return started;
+	}
+
+	public boolean isFinished() {
+		return finished;
+	}
+
+	public void setFinished(boolean finishedTournament) {
+		this.finished = finishedTournament;
 	}
 
 	public void setStarted(boolean started) {
