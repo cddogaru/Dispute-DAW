@@ -39,23 +39,37 @@ public class InitDatabase {
  	 	gameRepository.save(counterStrike);
  	 	gameRepository.save(Tekken);
 		
-		Team team1 = new Team("Real Madrid", "RMD", "");
-		Team team2 = new Team("FC Barcelona", "FCB", "");
-		teamRepository.save(team1);
-		teamRepository.save(team2);
-		for(int i=0; i<8; i++){
-			Team team = new Team("Team " + i, "TM" + i, "");
-			teamRepository.save(team);
-		}
-		
-		team1.addGame(Tekken);
-		team1.addGame(hearthstone);
-		team1.addGame(counterStrike);
-		
 
 		User user1 = new User("Alex", "Alex", "alex@gmail.com", "1111", "ROLE_USER");
 		User user2 = new User("Raul", "Raul", "raul@gmail.com", "2222", "ROLE_USER", "ROLE_ADMIN");
 		User user3 = new User("Rafa", "Rafa", "rafa@gmail.com", "3333", "ROLE_USER");
+		
+		userRepository.save(user1);
+		userRepository.save(user2);
+		userRepository.save(user3);
+		Team team1 = new Team("Real Madrid", "RMD", "");
+		Team team2 = new Team("FC Barcelona", "FCB", "");
+		
+		team1.setCreator(user2);
+		team2.setCreator(user3);
+
+		team1.addGame(Tekken);
+		team1.addGame(hearthstone);
+		team1.addGame(counterStrike);
+		
+		teamRepository.save(team1);
+		teamRepository.save(team2);
+		
+		for(int i=0; i<8; i++){
+			Team team = new Team("Team " + i, "TM" + i, "");
+			team.setCreator(user1);
+			teamRepository.save(team);
+		}
+		
+		
+
+		user1.setTeam(team1);
+		user2.setTeam(team2);
 		
 		ArrayList<User> users = new ArrayList<User>();
 		for(int i=0; i<10; i++){
@@ -69,13 +83,6 @@ public class InitDatabase {
 			userRepository.save(user);
 		}
 		
-		user1.setTeam(team1);
-		user2.setTeam(team2);
-		
-		userRepository.save(user1);
-		userRepository.save(user2);
-		userRepository.save(user3);
-	
 		
 		Tournament tournament1 = new Tournament("Torneo Hearthstone", "Hearthstone", 32, "1v1", "12-13-19 at 13:00");
 		Tournament tournament2 = new Tournament("Counter Final CS | World's Cup", "Counter-Strike ", 32, "5v5", "12-13-19 at 13:00");

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -73,7 +72,7 @@
                     <tbody> {{#teams}}
                         <tr onclick="window.document.location='#';">
                             <td><a href="team/{{name}}">{{name}}</a></td>
-                            <td> <a href="">CREADOR</a> </td>
+                            <td> <a href="">{{creator.name}}</a> </td>
                             <td>{{participants}}</td>
                             <td>| {{#games}}{{name}} | {{/games}}</td>
                         </tr> {{/teams}} </tbody>

@@ -50,8 +50,9 @@ public class TeamController {
 		Team team = new Team(name, acronym, description);
 		User user = userRepository.findById(userComponent.getLoggedUser().getId());
 		team.getAdmins().add(user);
+		team.setCreator(userComponent.getLoggedUser());
 		teamRepository.save(team);
-
+		
 		RedirectView rv = new RedirectView("teams.html");
  		rv.setExposeModelAttributes(false);
 		return rv;
