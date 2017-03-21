@@ -29,6 +29,9 @@ public class Team extends Participant{
 //	@Column(nullable = false)
 //	private String name;
 	
+	@OneToOne
+	private User creator;
+	
 	@Column(length = 3, nullable = false)
 	private String acronym;
 	
@@ -137,6 +140,14 @@ public class Team extends Participant{
 
 	public void setRequests(List<Long> requests) {
 		this.requests = requests;
+	}
+	
+	public User getCreator() {
+		return creator;
+	}
+
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 
 	@Override
