@@ -13,6 +13,7 @@ import com.dispute.team.TeamRepository;
 import com.dispute.tournament.Tournament;
 import com.dispute.tournament.TournamentRepository;
 import com.dispute.user.*;
+import com.jayway.jsonpath.internal.function.numeric.Min;
 
 @Component
 public class InitDatabase {
@@ -35,10 +36,26 @@ public class InitDatabase {
  	 	Game hearthstone = new Game("Hearthstone", "Hearthstone");
  	 	Game counterStrike = new Game("Counter Strike - Global Offensive", "Counter");
  	 	Game Tekken = new Game("Tekken Tag Tournament 2", "Tekken");
+ 	 	Game LeagueOfLegends = new Game("League of Legends", "LOL");
+ 	 	Game CallOfDuty = new Game("Call of Duty: Black Ops 3", "COD");
+ 	 	Game Minecraft = new Game("Minecraft", "Minecraft");
+ 	 	Game Overwatch = new Game("Overwatch", "Overwatch");
+ 	 	Game Battlefield1 = new Game("Battlefield1", "BF1");
+ 	 	Game GTAV = new Game("Grand Theft Auto V", "GTAV");
+ 	 	Game NeedForSpeed = new Game("Need For Speed", "NFS");
+ 	 	Game Minesweeper = new Game("Minesweeper", "Minesweeper");
+ 	 	
  	 	gameRepository.save(hearthstone);
  	 	gameRepository.save(counterStrike);
  	 	gameRepository.save(Tekken);
-		
+		gameRepository.save(LeagueOfLegends);
+		gameRepository.save(CallOfDuty);
+		gameRepository.save(Minecraft);
+		gameRepository.save(Overwatch);
+		gameRepository.save(Battlefield1);
+		gameRepository.save(GTAV);
+		gameRepository.save(NeedForSpeed);
+		gameRepository.save(Minesweeper);
 
 		User user1 = new User("Alex", "Alex", "alex@gmail.com", "1111", "ROLE_USER");
 		User user2 = new User("Raul", "Raul", "raul@gmail.com", "2222", "ROLE_USER", "ROLE_ADMIN");
@@ -84,9 +101,9 @@ public class InitDatabase {
 		}
 		
 		
-		Tournament tournament1 = new Tournament("Torneo Hearthstone", "Hearthstone", 32, "1v1", "12-13-19 at 13:00", hearthstone);
-		Tournament tournament2 = new Tournament("Counter Final CS | World's Cup", "Counter-Strike ", 32, "5v5", "12-13-19 at 13:00", counterStrike);
-		Tournament tournament3 = new Tournament("Tekken X Street Fighter", "Tekken is a fighting video game ", 32, "5v5", "12-13-19 at 13:00", Tekken);
+		Tournament tournament1 = new Tournament("Torneo Hearthstone", "Hearthstone", 32, "Single", "12-13-19 at 13:00", hearthstone);
+		Tournament tournament2 = new Tournament("Counter Final CS | World's Cup", "Counter-Strike ", 32, "Single", "12-13-19 at 13:00", counterStrike);
+		Tournament tournament3 = new Tournament("Tekken X Street Fighter", "Tekken is a fighting video game ", 32, "Team", "12-13-19 at 13:00", Tekken);
 		tournament1.getAdmins().add(user2);
 		tournament2.getAdmins().add(user2);
 		tournament3.getAdmins().add(user2);
