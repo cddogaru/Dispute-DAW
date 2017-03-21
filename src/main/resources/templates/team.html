@@ -97,8 +97,10 @@
                             <div id="teams" class="tab-pane fade">
                                 <br>
                                 <div class="well"><strong>Games</strong></div>
-                                <ul class="list-group"> {{#actualTeam.games}}
-                                    <li class="list-group-item"><img src="../images/games/ttt2icon30x30.png" class="img-thumbnail" /> {{name}}</li> {{/actualTeam.games}} </ul>
+                                <ul class="list-group"> {{#actualTeam.games}}      
+                                    <li class="list-group-item"><img src="../image/{{img}}" height="30" width="30"/> {{name}}</li>
+                                {{/actualTeam.games}} <li class="list-group-item"> AÑADIR BOTON AÑADIR JUEGO </li>
+                                </ul>
                             </div> {{#admin}}
                             <div id="admin" class="tab-pane fade">
                                 <br>

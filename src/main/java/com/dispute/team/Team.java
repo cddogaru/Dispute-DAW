@@ -104,6 +104,14 @@ public class Team extends Participant{
 		this.games = games;
 	}
 	
+	public void addGame(Game game){
+		this.games.add(game);
+	}
+	
+	public void deleteGame(Game game){
+		this.games.remove(game);
+	}
+	
 	private int participants(){
 		return users.size();
 	}
