@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.dispute.game.Game;
+import com.dispute.game.GameRepository;
 import com.dispute.participant.Participant;
 import com.dispute.user.User;
 import com.dispute.user.UserComponent;
@@ -31,6 +33,9 @@ public class TournamentController {
 	private UserRepository userRepository;
 	@Autowired
 	private MatchUpRepository matchUpRepository;
+	@Autowired
+	private GameRepository gameRepository;
+	
 	
 	@RequestMapping(value = "/tournaments")
 	public String tournaments(Model model) {
@@ -57,18 +62,17 @@ public class TournamentController {
 
 	@RequestMapping(value = "/newTournament")
 	public String newTrournament(Model model) {
+		List<Game> games = gameRepository.findAll();
+		model.addAttribute("games", games);
 		return ("newTournament");
 	}
-
+	
 	@RequestMapping(value = "/newTournament", method = RequestMethod.POST)
-	public View addTournament(Model model, @RequestParam String name, @RequestParam String url,
-			@RequestParam boolean registration, @RequestParam String max, @RequestParam String game,
-			@RequestParam String date, @RequestParam String time, @RequestParam String comment) {
+	public View addTournament(Model model, @RequestParam String name, @RequestParam String max, @RequestParam String gameName,
+			@RequestParam String date, @RequestParam String time, @RequestParam String comment, @RequestParam String mode) {
 
-		int maxPlyrs = 60;
-
-		String dmode = "List";
-		Tournament tournament = new Tournament(name, comment, maxPlyrs, dmode, date + " " + time);
+		Game game = gameRepository.findByName(gameName);
+		Tournament tournament = new Tournament(name, comment, Integer.parseInt(max), mode, date, game);
 		User user = userRepository.findById(userComponent.getLoggedUser().getId());
 		tournament.getAdmins().add(user);
 		tournamentRepository.save(tournament);
