@@ -108,9 +108,10 @@ public class TournamentController {
 	public View joinTournament(Model model, @PathVariable String tournamentName) {
 		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
 		User user = userRepository.findByName(userComponent.getLoggedUser().getName());
-
-		user.getTournaments().add(thisTournament);
-		userRepository.save(user);
+		if(!thisTournament.getParticipants().contains(user)){
+			user.getTournaments().add(thisTournament);
+			userRepository.save(user);
+		}
 		RedirectView rv = new RedirectView("../tournament/" + tournamentName);
 		rv.setExposeModelAttributes(false);
 		return rv;

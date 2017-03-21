@@ -42,7 +42,7 @@ public class Tournament {
 	@ManyToMany(mappedBy = "tournaments")
 	private List<Participant> participants;
 
-	@OneToMany
+	@ManyToMany
 	private List<User> admins;
 	
 	@ManyToMany

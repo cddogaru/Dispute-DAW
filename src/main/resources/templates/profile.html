@@ -68,13 +68,10 @@
                         <p> <span class="fa fa-twitch"></span> {{.}}</p>{{/user.twitch}} {{#user.youtube}}
                         <p> <span class="fa fa-youtube"></span> {{.}}</p>{{/user.youtube}}
                         <p> <span class="fa fa-envelope-o"></span> {{user.email}}</p>
-                        <p><a href="/#" class="btn btn-lg btn-success text-left"><span class="fa fa-user-circle"></span> Add as friend</a></p>
-                        <p><a href="/#" class="btn btn-lg btn-success text-left"><span class="fa fa-gift"></span> Invite team</a></p>
                     </div>
                     <div class="col-md-9">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#tournaments">Tournaments</a></li>
-                            <li><a data-toggle="tab" href="#friends">Friends</a></li>
                             <li><a data-toggle="tab" href="#accounts">Accounts</a></li>
                             <li><a data-toggle="tab" href="#team">Team</a></li>
                         </ul>
@@ -83,17 +80,6 @@
                                 <br>
                                 <div class="well"><strong>Joined tournaments</strong></div>
                                 <div class="list-group"> {{#user.tournaments}}<a href="../tournament/{{name}}" class="list-group-item">{{name}}</a> {{/user.tournaments}}</div>
-                            </div>
-                            <div id="friends" class="tab-pane fade">
-                                <br>
-                                <div class="well">Friends</div>
-                                <ul class="list-group">
-                                    <li class="list-group-item"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="/profile.html">Dimi3</a></li>
-                                    <li class="list-group-item"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="/profile.html">Dimi3</a></li>
-                                    <li class="list-group-item"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="/profile.html">Dimi3</a></li>
-                                    <li class="list-group-item"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="/profile.html">Dimi3</a></li>
-                                    <li class="list-group-item"><img src="http://lorempixel.com/30/30" class="img-thumbnail" /> <a href="/profile.html">Dimi3</a></li>
-                                </ul>
                             </div>
                             <div id="accounts" class="tab-pane fade">
                                 <br>
