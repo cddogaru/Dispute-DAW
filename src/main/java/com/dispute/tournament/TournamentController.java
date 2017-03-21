@@ -80,15 +80,16 @@ public class TournamentController {
 	}
 
 	@RequestMapping(value = "/tournament/{tournamentName}")
-	public String tournament(Model model, @PathVariable String tournamentName) {
+	public String tournament(Model model, @PathVariable String tournamentName, @RequestParam(required = false) boolean errorParticipant) {
 		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
 		model.addAttribute("tournament", thisTournament);
-		
+		model.addAttribute("errorParticipant", errorParticipant);
 		if(userComponent.isLoggedUser()){
 			User user = userRepository.findById(userComponent.getLoggedUser().getId());
-			if(thisTournament.getAdmins().contains(user)){
+			if(thisTournament.getAdmins().contains(user) || user.getRoles().contains("ROLE_ADMIN")){
 				model.addAttribute("admin", true);
 			}
+			model.addAttribute("userIsInTournament", thisTournament.getParticipants().contains(user));
 		}
 		
 		if(userComponent.isLoggedUser() && thisTournament.isStarted()){
@@ -112,11 +113,15 @@ public class TournamentController {
 	public View joinTournament(Model model, @PathVariable String tournamentName) {
 		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
 		User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+		RedirectView rv;
 		if(!thisTournament.getParticipants().contains(user)){
 			user.getTournaments().add(thisTournament);
 			userRepository.save(user);
+			rv = new RedirectView("../tournament/" + tournamentName);
+		} else {
+			rv = new RedirectView("../tournament/" + tournamentName + "?errorParticipant=true");
 		}
-		RedirectView rv = new RedirectView("../tournament/" + tournamentName);
+		
 		rv.setExposeModelAttributes(false);
 		return rv;
 	}
@@ -151,22 +156,42 @@ public class TournamentController {
 			matchup.setScore2(result2);
 			matchup.setFinished(true);
 			matchUpRepository.save(matchup);
-			if(round.isFinishedRound()){
-				for(MatchUp m: round.getMatchUps()){
-					tournament.getActualParticipants().remove(m.getLosser());
-				}
-				if(tournament.getActualParticipants().size()==1){
-					tournament.setFinished(true);
-					tournamentRepository.save(tournament);
-				} else {
-					ArrayList<MatchUp> matchUps = tournament.generateMatchUps();
-					matchUpRepository.save(matchUps);
-					Round newRound = tournament.newRound(matchUps);
-					roundRepository.save(newRound);
-					tournamentRepository.save(tournament);
-				}
-			}
+			
 		}
+		RedirectView rv = new RedirectView("../../tournament/" + tournamentName);
+		rv.setExposeModelAttributes(false);
+		return rv;
+	}
+	
+	@RequestMapping(value = "/tournament/{tournamentName}/confirmRound", method=RequestMethod.POST)
+	public View confirmRound(Model model, @PathVariable String tournamentName, @RequestParam Long idRound){
+		Tournament tournament = tournamentRepository.findByName(tournamentName);
+		Round round = roundRepository.findById(idRound);
+		round.setClosedRound(true);
+		for(MatchUp m: round.getMatchUps()){
+			tournament.getActualParticipants().remove(m.getLosser());
+		}
+		if(tournament.getActualParticipants().size()==1){
+			tournament.setFinished(true);
+			tournamentRepository.save(tournament);
+		} else {
+			ArrayList<MatchUp> matchUps = tournament.generateMatchUps();
+			matchUpRepository.save(matchUps);
+			Round newRound = tournament.newRound(matchUps);
+			roundRepository.save(newRound);
+			tournamentRepository.save(tournament);
+		}
+		RedirectView rv = new RedirectView("../../tournament/" + tournamentName);
+		rv.setExposeModelAttributes(false);
+		return rv;
+	}
+	
+	@RequestMapping(value = "/tournament/{tournamentName}/newIssue", method = RequestMethod.POST)
+	public View newIssue(Model model, @PathVariable String tournamentName, @RequestParam String issue) {
+		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
+		User user = userRepository.findByName(userComponent.getLoggedUser().getName());
+		thisTournament.getIssues().add(user.getName() + ": " + issue);
+		tournamentRepository.save(thisTournament);
 		RedirectView rv = new RedirectView("../../tournament/" + tournamentName);
 		rv.setExposeModelAttributes(false);
 		return rv;

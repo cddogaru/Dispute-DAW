@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Tournament</title>
+    <link rel="icon" href="../images/logoB.png" type="image/x-icon" />
+    <link rel="icon" href="../images/logoB.png" type="image/x-icon" />
+    <title>{{tournament.name}}</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> {{#userInMatch}}
     <script type="text/javascript">
         $(document).ready(function () {
@@ -102,13 +104,14 @@
         <!-- Heading Row -->
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="row">
+                <div class="row"> {{#errorParticipant}}
+                    <div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <strong>Error: </strong>You're already in this tournament </div>{{/errorParticipant}}
                     <div class="col-md-9">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#info">Info</a></li>
                             <li><a data-toggle="tab" href="#participants">Participants</a></li>
-                            <li><a data-toggle="tab" href="#rounds">Rounds</a></li>
-                            <li><a data-toggle="tab" href="#support">Support</a></li> {{#admin}}
+                            <li><a data-toggle="tab" href="#rounds">Rounds</a></li> {{#isLogged}}
+                            <li><a data-toggle="tab" href="#support">Support</a></li>{{/isLogged}} {{#admin}}
                             <li><a data-toggle="tab" href="#admin">Admin</a></li> {{/admin}} </ul>
                         <div class="tab-content">
                             <div id="info" class="tab-pane fade in active">
@@ -149,36 +152,36 @@
                                         <br>
                                         <ul class="list-group"> {{#matchUps}}
                                             <li class="list-group-item">
-                                                <table class="table"> {{#admin}}{{^isFinishedRound}}
-                                                    <form action="../tournament/{{tournament.name}}/setMatchUp" method="post">{{/isFinishedRound}}{{/admin}}
+                                                <table class="table"> {{#admin}}{{^isClosedRound}}
+                                                    <form action="../tournament/{{tournament.name}}/setMatchUp" method="post">{{/isClosedRound}}{{/admin}}
                                                         <input type="hidden" name="_csrf" value="{{token}}" />
                                                         <input type="hidden" name="idMatchUp" value="{{id}}" />
                                                         <input type="hidden" name="idRound" value="{{getRoundId}}" />
                                                         <tbody>
                                                             <tr>
                                                                 <td><img src="../image/{{player1.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{player1.name}}">{{player1.name}}</a></td>
-                                                                <td> </td> {{^isFinishedRound}}{{#admin}}
+                                                                <td> </td> {{^isClosedRound}}{{#admin}}
                                                                 <td class="text-right">
-                                                                    <input type="number" name="result1" min="0" max="3" value="0"> </td>{{/admin}}{{/isFinishedRound}}
+                                                                    <input type="number" name="result1" min="0" max="3" value="0"> </td>{{/admin}}{{/isClosedRound}}
                                                                 <td class="text-right">
                                                                     <p>{{score1}}</p>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td><img src="../image/{{player2.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{player2.name}}">{{player2.name}}</a></td>
-                                                                <td> </td> {{^isFinishedRound}} {{#admin}}
+                                                                <td> </td> {{^isClosedRound}} {{#admin}}
                                                                 <td class="text-right">
-                                                                    <input type="number" name="result2" min="0" max="3" value="0"> </td> {{/admin}}{{/isFinishedRound}}
+                                                                    <input type="number" name="result2" min="0" max="3" value="0"> </td> {{/admin}}{{/isClosedRound}}
                                                                 <td class="text-right">
                                                                     <p>{{score2}}</p>
                                                                 </td>
-                                                            </tr> {{^isFinishedRound}} {{#admin}}
+                                                            </tr> {{^isClosedRound}} {{#admin}}
                                                             <tr>
                                                                 <td> </td>
                                                                 <td> </td>
                                                                 <td class="text-right">
                                                                     <input type="submit"> </td>
-                                                            </tr>{{/admin}} {{/isFinishedRound}} </tbody>
+                                                            </tr>{{/admin}} {{/isClosedRound}} </tbody>
                                                     </form>
                                                 </table> {{#isOddRound}}
                                                 <table class="table">
@@ -203,33 +206,48 @@
                                             <h2>AND THE WINNER IS...</h2>
                                             <br> {{#tournament.actualParticipants}} <img src="../image/{{avatar}}" class="img-thumbnail" height="200" width="200" />
                                             <p>{{name}}</p> {{/tournament.actualParticipants}} </div>
-                                    </div> {{/tournament.finished}} {{/tournament.rounds}}</div>
-                            </div>
+                                    </div> {{/tournament.finished}} {{/tournament.rounds}}{{^tournament.rounds}}
+                                    <br>
+                                    <div class="text-center">
+                                        <h2>This tournament hasn't started yet</h2></div> {{/tournament.rounds}}</div>
+                            </div> {{#isLogged}}
                             <div id="support" class="tab-pane">
                                 <br>
                                 <div class="well">Contact with an admin:</div>
-                                <textarea type="text" class="form-control" rows="5" style="max-width: 100%;"></textarea>
-                                <br>
-                                <div class="text-right"> <a href="#" class="btn btn-info btn-lg">Contact</a> </div>
-                            </div> {{#admin}}
+                                <form action="../tournament/{{tournament.name}}/newIssue" method="post" id="issueform">
+                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                    <textarea name="issue" type="text" class="form-control" rows="5" style="max-width: 100%;" form="issueform"></textarea>
+                                    <br>
+                                    <div class="text-right">
+                                        <input type="submit" class="btn btn-info btn-lg" value="Contact"> </div>
+                                </form>
+                            </div>{{/isLogged}} {{#admin}}
                             <div id="admin" class="tab-pane">
                                 <br> {{^tournament.started}}
                                 <div class="well"><strong>Start tournament</strong></div>
                                 <form action="../tournament/{{tournament.name}}/startTournament" method="post">
                                     <input type="hidden" name="_csrf" value="{{token}}" />
                                     <input type="submit" class="btn btn-large btn-block btn-success" value="START"> </form>
-                                <hr> {{/tournament.started}}
-                                <div class="well"><strong>User's Issues</strong></div>
-                            </div> {{/admin}} </div>
+                                <hr> {{/tournament.started}} {{#tournament.getActualRound}} {{#isFinishedRound}}{{^tournament.finished}}
+                                <div class="well"><strong>Confirm round and continue tournament...</strong></div>
+                                <form action="../tournament/{{tournament.name}}/confirmRound" method="post">
+                                    <input type="hidden" name="_csrf" value="{{token}}" />
+                                    <input type="hidden" name="idRound" value="{{id}}" />
+                                    <input type="submit" class="btn btn-large btn-block btn-success" value="CONFIRM"> </form>
+                                <hr>{{/tournament.finished}}{{/isFinishedRound}} {{/tournament.getActualRound}}
+                                <div class="well"><strong>User's Issues</strong></div> {{#tournament.issues}}
+                                <div class="panel panel-default">
+                                    <div class="panel-body"> {{.}} </div>
+                                </div> {{/tournament.issues}} </div> {{/admin}} </div>
                         <!-- /.row -->
                     </div>
                     <div class="col-md-3">
                         <div class="">
-                            <div class="text-right"> {{^tournament.started}}
+                            <div class="text-right"> {{^userIsInTournament}}{{^tournament.started}}
                                 <form method="post" action="/tournament/{{tournament.name}}">
                                     <input type="hidden" name="_csrf" value="{{token}}" />
-                                    <input class="btn btn-success btn-block" type="submit" value="Join In"> </form> {{/tournament.started}} {{#userInMatch}}
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> Enter the result</button>{{/userInMatch}} </div>
+                                    <input class="btn btn-success btn-block" type="submit" value="Join In"> </form> {{/tournament.started}}{{/userIsInTournament}} {{#userInMatch}}
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> Enter your result</button>{{/userInMatch}} </div>
                         </div>
                         <br>
                         <div class="panel panel-default">

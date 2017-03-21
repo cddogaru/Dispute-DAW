@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -57,6 +59,11 @@ public class Tournament {
 	
 	private boolean finished;
 	
+	@ElementCollection
+	@CollectionTable(name ="issues")
+	@Column(length = 100000)
+	private List<String> issues;
+	
 	public Tournament() {
 	}
 
@@ -71,6 +78,7 @@ public class Tournament {
 		participants = new ArrayList<Participant>();
 		actualParticipants = new ArrayList<Participant>();
 		admins = new ArrayList<User>();
+		issues = new ArrayList<String>();
 	}
 
 	public Long getId() {
@@ -224,5 +232,21 @@ public class Tournament {
 		}
 		rounds.add(round);
 		return round;
+	}
+	
+	public Round getActualRound(){
+		if(!rounds.isEmpty()){
+			return rounds.get(rounds.size()-1);
+		} else {
+			return null;
+		}
+	}
+
+	public List<String> getIssues() {
+		return issues;
+	}
+
+	public void setIssues(List<String> issues) {
+		this.issues = issues;
 	}
 }
