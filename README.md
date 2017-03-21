@@ -98,3 +98,6 @@ This page provides all visitors forms to contact the developers along with the p
 
 # Database entity diagram:
 ![ScreenShot](https://i.gyazo.com/0f8b527293c27950e91d27c2959db8b3.png)
+
+# Class and Template Diagram
+![ScreenShot](https://i.gyazo.com/2e4d00167ad7f5b037fd8805bb48b3c0.png)
