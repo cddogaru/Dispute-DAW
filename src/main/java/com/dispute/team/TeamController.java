@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.dispute.game.Game;
+import com.dispute.game.GameRepository;
 import com.dispute.user.User;
 import com.dispute.user.UserComponent;
 import com.dispute.user.UserRepository;
@@ -31,6 +33,9 @@ public class TeamController {
 	
 	@Autowired
 	private UserComponent userComponent;
+	
+	@Autowired
+	private GameRepository gameRepository;
 	
 	@RequestMapping(value = "/teams")
 	public String teams(Model model){
@@ -63,9 +68,15 @@ public class TeamController {
 		model.addAttribute("actualTeam", team);
 		model.addAttribute("error", error);
 		model.addAttribute("request", request);
+		List<Game> games =  gameRepository.findAll();
+		for(Game g: team.getGames()){
+			games.remove(g);
+		}
+		model.addAttribute("games", games);
+		
 		if(userComponent.isLoggedUser()){
 			User user = userRepository.findByName(userComponent.getLoggedUser().getName());
-			model.addAttribute("admin", team.isAdmin(user));
+			model.addAttribute("admin", team.isAdmin(user) || user.getRoles().contains("ROLE_ADMIN"));
 			List<User> requests = new ArrayList<>();
 			for(Long id: team.getRequests()){
 				requests.add(userRepository.findById(id));
@@ -193,6 +204,17 @@ public class TeamController {
 			}
 		}
 		teamRepository.save(team);
+		rv.setExposeModelAttributes(false);
+		return(rv);
+	}
+	
+	@RequestMapping(value="/team/{teamName}/addGame", method=RequestMethod.POST)
+	public View addGame(Model model, @PathVariable String teamName, @RequestParam String name){
+		Team team = teamRepository.findByName(teamName);
+		Game game = gameRepository.findByName(name);
+		team.getGames().add(game);
+		teamRepository.save(team);
+		RedirectView rv = new RedirectView("../../team/" + teamName);
 		rv.setExposeModelAttributes(false);
 		return(rv);
 	}
