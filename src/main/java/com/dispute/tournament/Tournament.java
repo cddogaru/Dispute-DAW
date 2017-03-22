@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -15,29 +14,25 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-
 import com.dispute.game.Game;
 import com.dispute.participant.Participant;
 import com.dispute.user.User;
 
 @Entity
 public class Tournament {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 
 	private String name;
 
 	@Column(length = 10000)
 	private String description;
+	
 	private int maxPlayers;
 	private String mode;
 	private String date;
+	
 	@OneToOne
 	private Game game;
 
@@ -46,46 +41,42 @@ public class Tournament {
 
 	@ManyToMany
 	private List<User> admins;
-	
+
 	@ManyToMany
 	private List<Participant> actualParticipants;
-	
+
 	@OneToMany
 	private List<Round> rounds;
-	
+
 	private int roundNumber = 0;
-	
 	private boolean started;
-	
 	private boolean finished;
-	
+
 	@ElementCollection
-	@CollectionTable(name ="issues")
+	@CollectionTable(name = "issues")
 	@Column(length = 100000)
 	private List<String> issues;
-	
-	public Tournament() {
-	}
+
+	protected Tournament() {}
 
 	public Tournament(String name, String description, int maxPlayers, String mode, String date, Game game) {
-		super();
 		this.name = name;
 		this.description = description;
 		this.maxPlayers = maxPlayers;
 		this.mode = mode;
 		this.date = date;
 		this.game = game;
-		participants = new ArrayList<Participant>();
-		actualParticipants = new ArrayList<Participant>();
-		admins = new ArrayList<User>();
-		issues = new ArrayList<String>();
+		this.participants = new ArrayList<Participant>();
+		this.actualParticipants = new ArrayList<Participant>();
+		this.admins = new ArrayList<User>();
+		this.issues = new ArrayList<String>();
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -146,7 +137,7 @@ public class Tournament {
 	}
 
 	public void addParticipant(Participant participant) {
-		if ((!participants.contains(participant)) && ((participants.size()) <= maxPlayers)) {
+		if ((!participants.contains(participant)) && (participants.size() <= maxPlayers)) {
 			participants.add(participant);
 		}
 	}
@@ -184,14 +175,13 @@ public class Tournament {
 	}
 
 	public int getNumOfParticipants() {
-		return (this.participants.size());
+		return (participants.size());
 	}
 
-	public void randomizeParticipants(){
-		long seed = System.nanoTime();
-		Collections.shuffle(actualParticipants, new Random(seed));
+	public void randomizeParticipants() {
+		Collections.shuffle(actualParticipants, new Random(System.nanoTime()));
 	}
-	
+
 	public boolean isStarted() {
 		return started;
 	}
@@ -209,34 +199,39 @@ public class Tournament {
 	}
 
 	public ArrayList<MatchUp> generateMatchUps() {
-		randomizeParticipants();
 		ArrayList<MatchUp> matchups = new ArrayList<MatchUp>();
 		int i = 0;
+		
+		randomizeParticipants();
+		
 		while (i < actualParticipants.size()) {
 			if ((i + 1) < actualParticipants.size()) {
 				MatchUp m1 = new MatchUp(actualParticipants.get(i), actualParticipants.get(i + 1));
 				matchups.add(m1);
 			}
-			i=i+2;
+			i = i + 2;
 		}
+		
 		return matchups;
 	}
-	
-	public Round newRound(ArrayList<MatchUp> matchups){
+
+	public Round newRound(ArrayList<MatchUp> matchups) {
 		roundNumber++;
 		Round round = new Round("Round " + roundNumber);
 		round.setMatchUps(matchups);
-		if(actualParticipants.size() % 2 != 0){
+		
+		if (actualParticipants.size() % 2 != 0) {
 			round.setOddRound(true);
-			round.setLastParticipant(actualParticipants.get(actualParticipants.size()-1));
+			round.setLastParticipant(actualParticipants.get(actualParticipants.size() - 1));
 		}
+		
 		rounds.add(round);
 		return round;
 	}
-	
-	public Round getActualRound(){
-		if(!rounds.isEmpty()){
-			return rounds.get(rounds.size()-1);
+
+	public Round getActualRound() {
+		if (!rounds.isEmpty()) {
+			return rounds.get(rounds.size() - 1);
 		} else {
 			return null;
 		}
