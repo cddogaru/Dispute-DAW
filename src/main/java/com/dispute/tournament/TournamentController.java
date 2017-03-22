@@ -57,6 +57,24 @@ public class TournamentController {
 		model.addAttribute("tournaments", tournaments);
 		return "tournaments";
 	}
+	
+	@RequestMapping(value = "/filterTournament", method = RequestMethod.POST)
+	public String filterTournament(Model model, @RequestParam String name, @RequestParam String description) {
+		List<Tournament> tournaments;
+		
+		if (name.isEmpty() && description.isEmpty()) {
+			tournaments = tournamentRepository.findAll();
+		} else if (description.isEmpty()) {
+			tournaments = tournamentRepository.findByNameIgnoreCaseContaining(name);
+		} else if (name.isEmpty()) {
+			tournaments = tournamentRepository.findByDescriptionIgnoreCaseContaining(description);
+		} else {
+			tournaments = tournamentRepository.findByNameIgnoreCaseContainingAndDescription(name, description);
+		}
+		
+		model.addAttribute("tournaments", tournaments);
+		return "tournaments";
+	}
 
 	@RequestMapping(value = "/newTournament")
 	public String newTrournament(Model model) {
