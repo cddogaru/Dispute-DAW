@@ -38,6 +38,7 @@ public class Tournament {
 	private int maxPlayers;
 	private String mode;
 	private String date;
+	private boolean singleTournament;
 	@OneToOne
 	private Game game;
 
@@ -79,6 +80,7 @@ public class Tournament {
 		actualParticipants = new ArrayList<Participant>();
 		admins = new ArrayList<User>();
 		issues = new ArrayList<String>();
+		this.singleTournament = (this.mode.equals("Single"));
 	}
 
 	public Long getId() {
@@ -248,5 +250,17 @@ public class Tournament {
 
 	public void setIssues(List<String> issues) {
 		this.issues = issues;
+	}
+
+	public boolean isSingleTournament() {
+		return singleTournament;
+	}
+
+	public void setSingleTournament(boolean singleTournament) {
+		this.singleTournament = singleTournament;
+	}
+	
+	public String getTournamentName(){
+		return this.name;
 	}
 }
