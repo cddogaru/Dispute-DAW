@@ -44,7 +44,6 @@ public class TournamentController {
 	public String tournaments(Model model,  @RequestParam(required = false) boolean noAdmin) {
 		model.addAttribute("tournaments", tournamentRepository.findAll());
 		model.addAttribute("noAdmin", noAdmin);
-		System.out.println(userComponent.getLoggedUser().getTeam());
 		return "tournaments";
 	}
 
