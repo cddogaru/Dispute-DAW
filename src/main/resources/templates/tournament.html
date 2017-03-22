@@ -2,24 +2,29 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../images/logoB.png" type="image/x-icon" />
-    <link rel="icon" href="../images/logoB.png" type="image/x-icon" />
-    <title>{{tournament.name}}</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> {{#userInMatch}}
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#myModal').modal('show');
-        });
-    </script> {{/userInMatch}}
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/bracketStlye.css" rel="stylesheet">
-    <link href="../css/font-awesome.css" rel="stylesheet"> </head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../images/logoB.png" type="image/x-icon" />
+<link rel="icon" href="../images/logoB.png" type="image/x-icon" />
+<title>{{tournament.name}}</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+{{#userInMatch}}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#myModal').modal('show');
+	});
+</script>
+{{/userInMatch}}
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/bracketStlye.css" rel="stylesheet">
+<link href="../css/font-awesome.css" rel="stylesheet">
+</head>
+
 
 <body> {{#userInMatch}}
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
