@@ -119,13 +119,29 @@ public class TournamentController {
 		if (userComponent.isLoggedUser() && thisTournament.isStarted()) {
 			Round round = thisTournament.getRounds().get(thisTournament.getRounds().size() - 1);
 			User user = userRepository.findById(userComponent.getLoggedUser().getId());
+			Team team;
+			if(thisTournament.isSingleTournament()){
 			for (MatchUp m : round.getMatchUps()) {
 				if (m.getPlayer1().equals(user) || m.getPlayer2().equals(user)) {
 					if (!m.isFinished()) {
 						model.addAttribute("userInMatch", true);
 						model.addAttribute("userMatch", m);
-						System.out.println(m);
 						model.addAttribute("userRound", round);
+						break;
+					}
+				}
+			}
+			} else if(user.getTeam()!=null) {
+				for (MatchUp m : round.getMatchUps()) {
+					Team player1 = (Team) m.getPlayer1();
+					Team player2 = (Team) m.getPlayer2();
+					if (player1.getAdmins().contains(user) || player2.getAdmins().contains(user)) {
+						if (!m.isFinished()) {
+							model.addAttribute("userInMatch", true);
+							model.addAttribute("userMatch", m);
+							model.addAttribute("userRound", round);
+							break;
+						}
 					}
 				}
 			}

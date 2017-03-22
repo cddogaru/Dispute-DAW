@@ -243,11 +243,12 @@
                     </div>
                     <div class="col-md-3">
                         <div class="">
-                            <div class="text-right"> {{^userIsInTournament}}{{^tournament.started}}
-                                <form method="post" action="/tournament/{{tournament.name}}">
-                                    <input type="hidden" name="_csrf" value="{{token}}" />
-                                    <input class="btn btn-success btn-block" type="submit" value="Join In"> </form> {{/tournament.started}}{{/userIsInTournament}} {{#userInMatch}}
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> Enter your result</button>{{/userInMatch}} </div>
+                            <div class="text-right"> {{^userIsInTournament}}{{^tournament.started}} {{#isLogged}} {{#tournament.singleTournament}}
+                                <form action="../tournament/{{tournament.name}}" method="post">
+                                    <input type="hidden" name="_csrf" value="{{token}}" /><strong><input type="submit" class="btn btn-large btn-success btn-block" value="Join in"></strong></form> {{/tournament.singleTournament}} {{^tournament.singleTournament}}{{#userLogged.team}}
+                                <form action="../tournament/{{tournament.getTournamentName}}" method="post" onsubmit="return confirm('Do you really want join {{name}} in the tournament?');">
+                                    <input type="hidden" name="_csrf" value="{{token}}" /><strong><input type="submit" class="btn btn-large btn-success btn-block" value="Join in"></strong></form> {{/userLogged.team}} {{^userLogged.team}}<a class="btn btn-large btn-default btn-block" href="../teams.html">Join in a team</a> {{/userLogged.team}} {{/tournament.singleTournament}}{{/isLogged}} {{^isLogged}} <a class="btn btn-success btn-large btn-block" href="/login">Join in</a> {{/isLogged}}{{/tournament.started}}{{/userIsInTournament}} {{#userInMatch}}
+                                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal"> Enter your result</button>{{/userInMatch}} </div>
                         </div>
                         <br>
                         <div class="panel panel-default">
