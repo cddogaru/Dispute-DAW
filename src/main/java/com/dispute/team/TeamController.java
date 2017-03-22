@@ -50,7 +50,7 @@ public class TeamController {
 	}
 	
 	@RequestMapping(value = "/newTeam", method = RequestMethod.POST)
-	public View addTeam(Model model, @RequestParam String name, @RequestParam String acronym, @RequestParam String games, @RequestParam String description){
+	public View addTeam(Model model, @RequestParam String name, @RequestParam String acronym, @RequestParam String description){
 		Team team = new Team(name, acronym, description);
 		User user = userRepository.findById(userComponent.getLoggedUser().getId());
 		team.getAdmins().add(user);
