@@ -183,7 +183,7 @@
                                                                     <input type="submit"> </td>
                                                             </tr>{{/admin}} {{/isClosedRound}} </tbody>
                                                     </form>
-                                                </table> {{#isOddRound}}
+                                                </table>{{/matchUps}} {{#isOddRound}}
                                                 <table class="table">
                                                     <tbody>
                                                         <tr>
@@ -198,7 +198,8 @@
                                                             <td class="text-right"> 0 </td>
                                                         </tr>
                                                     </tbody>
-                                                </table> {{/isOddRound}} </li> {{/matchUps}} </ul>
+                                                </table> {{/isOddRound}} </li>
+                                        </ul>
                                     </div> {{#tournament.finished}}
                                     <div id="winner" class="tab-pane">
                                         <br>

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.dispute.user.UserComponent;
+import com.dispute.user.UserRepository;
 
 @Configuration
 public class CSRFHandlerConfiguration extends WebMvcConfigurerAdapter {
@@ -30,6 +31,8 @@ public class CSRFHandlerConfiguration extends WebMvcConfigurerAdapter {
 class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private UserComponent userComponent;
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Override
     public void postHandle(final HttpServletRequest request,
@@ -48,7 +51,7 @@ class CSRFHandlerInterceptor extends HandlerInterceptorAdapter {
 		    	if(userComponent.isLoggedUser()){
 		    		modelAndView.addObject("isLogged", true);
 		    		modelAndView.addObject("adminPage", request.isUserInRole("ADMIN"));
-		    		modelAndView.addObject("userLogged", userComponent.getLoggedUser());
+		    		modelAndView.addObject("userLogged", userRepository.findById(userComponent.getLoggedUser().getId()));
 		    	} else {
 		    		modelAndView.addObject("isLogged", false);
 		    	}

@@ -16,6 +16,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.dispute.game.Game;
 import com.dispute.game.GameRepository;
 import com.dispute.participant.Participant;
+import com.dispute.team.Team;
+import com.dispute.team.TeamRepository;
 import com.dispute.user.User;
 import com.dispute.user.UserComponent;
 import com.dispute.user.UserRepository;
@@ -35,11 +37,14 @@ public class TournamentController {
 	private MatchUpRepository matchUpRepository;
 	@Autowired
 	private GameRepository gameRepository;
-	
+	@Autowired
+	private TeamRepository teamRepository;
 	
 	@RequestMapping(value = "/tournaments")
-	public String tournaments(Model model) {
+	public String tournaments(Model model,  @RequestParam(required = false) boolean noAdmin) {
 		model.addAttribute("tournaments", tournamentRepository.findAll());
+		model.addAttribute("noAdmin", noAdmin);
+		System.out.println(userComponent.getLoggedUser().getTeam());
 		return "tournaments";
 	}
 
@@ -114,14 +119,28 @@ public class TournamentController {
 		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
 		User user = userRepository.findByName(userComponent.getLoggedUser().getName());
 		RedirectView rv;
-		if(!thisTournament.getParticipants().contains(user)){
-			user.getTournaments().add(thisTournament);
-			userRepository.save(user);
-			rv = new RedirectView("../tournament/" + tournamentName);
+		if(thisTournament.isSingleTournament()){
+			if(!thisTournament.getParticipants().contains(user)){
+				user.getTournaments().add(thisTournament);
+				userRepository.save(user);
+				rv = new RedirectView("../tournament/" + tournamentName);
+			} else {
+				rv = new RedirectView("../tournament/" + tournamentName + "?errorParticipant=true");
+			}
 		} else {
-			rv = new RedirectView("../tournament/" + tournamentName + "?errorParticipant=true");
+			Team team = user.getTeam();
+			if(team.getAdmins().contains(user)){
+				if(!thisTournament.getParticipants().contains(team)){
+					team.getTournaments().add(thisTournament);
+					teamRepository.save(team);
+					rv = new RedirectView("../tournament/" + tournamentName);
+				} else {
+					rv = new RedirectView("../tournament/" + tournamentName + "?errorParticipant=true");
+				}
+			} else {
+				rv = new RedirectView("../tournaments?noAdmin=true");
+			}
 		}
-		
 		rv.setExposeModelAttributes(false);
 		return rv;
 	}
@@ -196,4 +215,6 @@ public class TournamentController {
 		rv.setExposeModelAttributes(false);
 		return rv;
 	}
+	
+	
 }
