@@ -101,9 +101,9 @@ public class InitDatabase {
 		}
 		
 		
-		Tournament tournament1 = new Tournament("Torneo Hearthstone", "Hearthstone", 32, "Single", "12-13-19 at 13:00", hearthstone);
-		Tournament tournament2 = new Tournament("Counter Final CS | World's Cup", "Counter-Strike ", 32, "Single", "12-13-19 at 13:00", counterStrike);
-		Tournament tournament3 = new Tournament("Tekken X Street Fighter", "Tekken is a fighting video game ", 32, "Team", "12-13-19 at 13:00", Tekken);
+		Tournament tournament1 = new Tournament("Hearthstone Tournament", "Hearthstone, originally known as Hearthstone: Heroes of Warcraft, is a free-to-play online collectible card video game developed and published by Blizzard Entertainment. ", 32, "Single", "12-13-19 at 13:00", hearthstone);
+		Tournament tournament2 = new Tournament("Counter Final CS | World's Cup", "Counter-Strike (officially abbreviated as CS) is a series of multiplayer first-person shooter video games, in which teams of terrorists and counter-terrorists battle to, respectively, perpetrate an act of terror (bombing, hostage-taking) and prevent it (bomb defusal, hostage rescue).", 32, "Single", "12-13-19 at 13:00", counterStrike);
+		Tournament tournament3 = new Tournament("Tekken X Street Fighter", "Tekken is a fighting video game franchise created, developed, and published by Namco (later Bandai Namco Entertainment). Beginning with the original Tekken in December 1994, the series has received several sequels as well as updates and spin-off titles.", 32, "Team", "12-13-19 at 13:00", Tekken);
 		tournament1.getAdmins().add(user2);
 		tournament2.getAdmins().add(user2);
 		tournament3.getAdmins().add(user2);
@@ -111,13 +111,20 @@ public class InitDatabase {
 		tournamentRepository.save(tournament2);
 		tournamentRepository.save(tournament3);
 		
-	 	team1.getTournaments().add(tournament2);
+	 	team1.getTournaments().add(tournament3);
 	 	team1.addAdmin(user2);
 	 	teamRepository.save(team1);
 	 	user1.getTournaments().add(tournament1);
 	 	userRepository.save(user1);
 	 	user3.getTournaments().add(tournament1);
 	 	userRepository.save(user3);
+	 	
+	 	users.get(0).getTournaments().add(tournament2);
+	 	users.get(1).getTournaments().add(tournament2);
+	 	users.get(2).getTournaments().add(tournament2);
+	 	users.get(3).getTournaments().add(tournament2);
+	 	
+	 	
 	 	
 	 	for(User u: users){
 	 		u.getTournaments().add(tournament1);
