@@ -79,7 +79,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h1 class="Title2">Create a tournament:</h1>
-				</div>
+				</div>{{#error}}
+                        <div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Invalid Tournament Name </strong> </div>{{/error}}
+					
 				<div class="panel-body">
 					<div class="col-lg-12">
 						<div class="row top-buffer">
@@ -88,7 +90,7 @@
 								<p class="options">Tournament name:</p>
 							</div>
 							<div class="col-md-8">
-								<input type="text" class="form-control" name="name">
+								<input type="text" class="form-control" name="name" required>
 							</div>
 						</div>
 
@@ -101,7 +103,7 @@
 							</div>
 							<div class="col-lg-8">
 								<input class="form-control" type="number" value="32"
-									id="example-number-input" name="max">
+									id="example-number-input" name="max" required>
 							</div>
 						</div>
 

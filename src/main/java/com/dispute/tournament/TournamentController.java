@@ -83,9 +83,10 @@ public class TournamentController {
 	}
 
 	@RequestMapping(value = "/newTournament")
-	public String newTrournament(Model model) {
+	public String newTrournament(Model model, @RequestParam(required = false) boolean error) {
 		List<Game> games = gameRepository.findAll();
 		model.addAttribute("games", games);
+		model.addAttribute("error", error);
 		return ("newTournament");
 	}
 
@@ -93,13 +94,20 @@ public class TournamentController {
 	public View addTournament(Model model, @RequestParam String name, @RequestParam String max,
 			@RequestParam String gameName, @RequestParam String date, @RequestParam String time,
 			@RequestParam String comment, @RequestParam String mode) {
-
-		Game game = gameRepository.findByName(gameName);
-		Tournament tournament = new Tournament(name, comment, Integer.parseInt(max), mode, date, game);
-		User user = userRepository.findById(userComponent.getLoggedUser().getId());
-		tournament.getAdmins().add(user);
-		tournamentRepository.save(tournament);
-		return new RedirectView("tournaments.html");
+		
+		RedirectView rv;
+		if (!tournamentRepository.findAllNames().contains(name)) {
+			Game game = gameRepository.findByName(gameName);
+			Tournament tournament = new Tournament(name, comment, Integer.parseInt(max), mode, date, game);
+			User user = userRepository.findById(userComponent.getLoggedUser().getId());
+			tournament.getAdmins().add(user);
+			tournamentRepository.save(tournament);
+			rv = new RedirectView("/tournaments");
+		}else{
+			rv = new RedirectView("/newTournament?error=true");
+		}
+		rv.setExposeModelAttributes(false);
+		return rv;
 	}
 
 	@RequestMapping(value = "/tournament/{tournamentName}")
@@ -120,18 +128,18 @@ public class TournamentController {
 			Round round = thisTournament.getRounds().get(thisTournament.getRounds().size() - 1);
 			User user = userRepository.findById(userComponent.getLoggedUser().getId());
 			Team team;
-			if(thisTournament.isSingleTournament()){
-			for (MatchUp m : round.getMatchUps()) {
-				if (m.getPlayer1().equals(user) || m.getPlayer2().equals(user)) {
-					if (!m.isFinished()) {
-						model.addAttribute("userInMatch", true);
-						model.addAttribute("userMatch", m);
-						model.addAttribute("userRound", round);
-						break;
+			if (thisTournament.isSingleTournament()) {
+				for (MatchUp m : round.getMatchUps()) {
+					if (m.getPlayer1().equals(user) || m.getPlayer2().equals(user)) {
+						if (!m.isFinished()) {
+							model.addAttribute("userInMatch", true);
+							model.addAttribute("userMatch", m);
+							model.addAttribute("userRound", round);
+							break;
+						}
 					}
 				}
-			}
-			} else if(user.getTeam()!=null) {
+			} else if (user.getTeam() != null) {
 				for (MatchUp m : round.getMatchUps()) {
 					Team player1 = (Team) m.getPlayer1();
 					Team player2 = (Team) m.getPlayer2();
