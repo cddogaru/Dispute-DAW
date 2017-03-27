@@ -60,10 +60,12 @@ public class InitDatabase {
 		User user1 = new User("Alex", "Alex", "alex@gmail.com", "1111", "ROLE_USER");
 		User user2 = new User("Raul", "Raul", "raul@gmail.com", "2222", "ROLE_USER", "ROLE_ADMIN");
 		User user3 = new User("Rafa", "Rafa", "rafa@gmail.com", "3333", "ROLE_USER");
+		User user4 = new User("Dragos", "Dragos", "dragos@gmail.com", "4444", "ROLE_USER");
 		
 		userRepository.save(user1);
 		userRepository.save(user2);
 		userRepository.save(user3);
+		userRepository.save(user4);
 		Team team1 = new Team("Real Madrid", "RMD", "");
 		Team team2 = new Team("FC Barcelona", "FCB", "");
 		
@@ -110,6 +112,12 @@ public class InitDatabase {
 		tournamentRepository.save(tournament1);
 		tournamentRepository.save(tournament2);
 		tournamentRepository.save(tournament3);
+		
+		for(int i=0; i<10; i++){
+			Tournament tournament = new Tournament("tournament" + i, "description" + i, 32, "Single", "12-13-19 at 13:00", Minecraft);
+			tournament.getAdmins().add(user2);
+			tournamentRepository.save(tournament);
+		}
 		
 	 	team1.getTournaments().add(tournament3);
 	 	team1.addAdmin(user2);
