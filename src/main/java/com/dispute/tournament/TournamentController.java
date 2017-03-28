@@ -65,19 +65,38 @@ public class TournamentController {
 	}
 
 	@RequestMapping(value = "/filterTournament", method = RequestMethod.POST)
-	public String filterTournament(Model model, @RequestParam String name, @RequestParam String description) {
-		List<Tournament> tournaments;
-
+	public String filterTournament(Model model, @RequestParam String name, @RequestParam String description,
+			@RequestParam String game, @RequestParam String mode) {
+		List<Tournament> tournaments = tournamentRepository.findAll();
+		
 		if (name.isEmpty() && description.isEmpty()) {
-			tournaments = tournamentRepository.findAll();
-		} else if (description.isEmpty()) {
-			tournaments = tournamentRepository.findByNameIgnoreCaseContaining(name);
+			for (Tournament tournament : tournaments) {
+				if (!(tournament.getGame().getName().equals(game) || tournament.getMode().equals(mode))) {
+					tournaments.remove(tournament);
+				}
+			}
 		} else if (name.isEmpty()) {
-			tournaments = tournamentRepository.findByDescriptionIgnoreCaseContaining(description);
+			for (Tournament tournament : tournaments) {
+				if (!(tournament.getDescription().equals(description) || tournament.getGame().getName().equals(game) ||
+						tournament.getMode().equals(mode))) {
+					tournaments.remove(tournament);
+				}
+			}
+		} else if (description.isEmpty()) {
+			for (Tournament tournament : tournaments) {
+				if (!(tournament.getName().equals(name) || tournament.getGame().getName().equals(game) || tournament.getMode().equals(mode))) {
+					tournaments.remove(tournament);
+				}
+			}
 		} else {
-			tournaments = tournamentRepository.findByNameIgnoreCaseContainingAndDescription(name, description);
+			for (Tournament tournament : tournaments) {
+				if (!(tournament.getName().equals(name) || tournament.getDescription().equals(description) ||
+						tournament.getGame().getName().equals(game) || tournament.getMode().equals(mode))) {
+					tournaments.remove(tournament);
+				}
+			}
 		}
-
+		
 		model.addAttribute("tournaments", tournaments);
 		return "tournaments";
 	}

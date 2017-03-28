@@ -10,11 +10,7 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
 	List<Tournament> findByParticipants_Name(String name);
 
 	List<Tournament> findByNameIgnoreCaseContaining(String name);
-
-	List<Tournament> findByDescriptionIgnoreCaseContaining(String description);
-
-	List<Tournament> findByNameIgnoreCaseContainingAndDescription(String name, String description);
 	
-	@Query("select name from Tournament")
+	@Query("SELECT name FROM Tournament")
 	List<String> findAllNames();
 }
