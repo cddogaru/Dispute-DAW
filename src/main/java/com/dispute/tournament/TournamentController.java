@@ -1,9 +1,13 @@
 package com.dispute.tournament;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +46,7 @@ public class TournamentController {
 
 	@RequestMapping(value = "/tournaments")
 	public String tournaments(Model model, @RequestParam(required = false) boolean noAdmin) {
-		model.addAttribute("tournaments", tournamentRepository.findAll());
+		model.addAttribute("tournaments", tournamentRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("noAdmin", noAdmin);
 		return "tournaments";
 	}
@@ -277,5 +281,12 @@ public class TournamentController {
 		rv.setExposeModelAttributes(false);
 		return rv;
 	}
-
+	
+	@RequestMapping(value="/moreTournaments")
+	public String moreTournaments(Model model, Pageable page){
+		
+		Page<Tournament> tournaments = tournamentRepository.findAll(page);
+		model.addAttribute("tournaments", tournaments);
+		return "moreTournaments";
+	}
 }

@@ -12,6 +12,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/font-awesome.css" rel="stylesheet"> </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/loading.js"></script>
 
 <body>
     <!-- Navigation -->
@@ -78,7 +80,10 @@
                             </div>
                             <p>{{description}}</p>
                         </div>
-                    </div> {{/tournaments}} </div>
+                    </div> {{/tournaments}}
+                    <div id="tournamentsContainer"></div>
+                    <div class="text-center" id="loading"> <img src="/images/spin.gif" /> </div>
+                </div>
             </div>
             <div class="col-lg-3">
                 <div class="panel panel-default">
@@ -89,82 +94,80 @@
                     </div>
                 </div>
                 <form action="../filterTournament" method="post">
-	                <div class="panel panel-default">
-	                    <div class="panel-heading">Filters</div>
-	                    <div class="panel-body">
-	                        <br>
-	                        <div class="row">
-	                            <div class="col-lg-12">
-	                                <div class="col-lg-4">
-	                                    <p>Name:</p>
-	                                </div>
-	                                <div class="col-lg-8">
-	                                    <input type="hidden" name="_csrf" value="{{token}}">
-	                                    <input type="text" name="name" class="form-control">
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <br>
-	                        <div class="row">
-	                            <div class="col-lg-12">
-	                                <div class="col-lg-4">
-	                                    <p>Description:</p>
-	                                </div>
-	                                <div class="col-lg-8">
-	                                    <input type="hidden" name="_csrf" value="{{token}}">
-	                                    <textarea type="text" name="description" class="form-control" rows="3" style="max-width: 100%;"></textarea>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <hr>
-	                        <div class="row">
-	                            <div class="col-lg-12">
-	                                <div class="col-lg-4">
-	                                    <p>Game:</p>
-	                                </div>
-	                                <div class="col-lg-8">
-	                                    <div class="form-group">
-	                                        <select class="form-control" id="sel1" name="game">
-	                                            <option>Hearthstone</option>
-	                                            <option>Counter Strike - Global Offensive</option>
-	                                            <option>Tekken Tag Tournament 2</option>
-	                                            <option>League of Legends</option>
-	                                            <option>Call of Duty: Black Ops 3</option>
-	                                            <option>Minecraft</option>
-	                                            <option>Overwatch</option>
-	                                            <option>Battlefield1</option>
-	                                            <option>Grand Theft Auto V"</option>
-	                                            <option>Need For Speed</option>
-	                                            <option>Minesweeper</option>
-	                                        </select>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <div class="row">
-	                            <div class="col-lg-12">
-	                                <div class="col-lg-4">
-	                                    <p>Mode:</p>
-	                                </div>
-	                                <div class="col-lg-8">
-	                                    <div class="form-group">
-	                                        <select class="form-control" id="sel1" name="mode">
-	                                            <option>Single</option>
-	                                            <option>Team</option>
-	                                        </select>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <div class="row">
-	                            <div class="col-lg-12">
-	                                <div class="text-right">
-	                                    <input type="submit" class="btn btn-info btn-lg" value="Filter">
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Filters</div>
+                        <div class="panel-body">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4">
+                                        <p>Name:</p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="hidden" name="_csrf" value="{{token}}">
+                                        <input type="text" name="name" class="form-control"> </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4">
+                                        <p>Description:</p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="hidden" name="_csrf" value="{{token}}">
+                                        <textarea type="text" name="description" class="form-control" rows="3" style="max-width: 100%;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4">
+                                        <p>Game:</p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <select class="form-control" id="sel1" name="game">
+                                                <option>Hearthstone</option>
+                                                <option>Counter Strike - Global Offensive</option>
+                                                <option>Tekken Tag Tournament 2</option>
+                                                <option>League of Legends</option>
+                                                <option>Call of Duty: Black Ops 3</option>
+                                                <option>Minecraft</option>
+                                                <option>Overwatch</option>
+                                                <option>Battlefield1</option>
+                                                <option>Grand Theft Auto V"</option>
+                                                <option>Need For Speed</option>
+                                                <option>Minesweeper</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4">
+                                        <p>Mode:</p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                            <select class="form-control" id="sel1" name="mode">
+                                                <option>Single</option>
+                                                <option>Team</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="text-right">
+                                        <input type="submit" class="btn btn-info btn-lg" value="Filter"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
