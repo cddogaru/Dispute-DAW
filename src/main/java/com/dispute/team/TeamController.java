@@ -104,11 +104,12 @@ public class TeamController {
 	@RequestMapping(value = "/team/kickUser", method = RequestMethod.POST)
 	public View kickUser(Model model, @RequestParam Long teamId, @RequestParam Long userId) {
 
+		User loggedUser = userComponent.getLoggedUser();
 		User user = userRepository.findById(userId);
 		Team team = teamRepository.findById(teamId);
-
+		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ROLE_ADMIN");
 		RedirectView rv;
-		if (user.getTeam() != null && user.getTeam().equals(team)) {
+		if (user.getTeam() != null && user.getTeam().equals(team) && isAdmin) {
 			if (team.isAdmin(user)) {
 				team.getAdmins().remove(user);
 			}
@@ -125,11 +126,12 @@ public class TeamController {
 	@RequestMapping(value = "/team/addAdmin", method = RequestMethod.POST)
 	public View addAdmin(Model model, @RequestParam Long teamId, @RequestParam Long userId) {
 
+		User loggedUser = userComponent.getLoggedUser();
 		User user = userRepository.findById(userId);
 		Team team = teamRepository.findById(teamId);
-
+		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ROLE_ADMIN");
 		RedirectView rv;
-		if (!team.isAdmin(user) && user.getTeam().equals(team)) {
+		if (!team.isAdmin(user) && user.getTeam().equals(team) && isAdmin) {
 			team.addAdmin(user);
 			rv = new RedirectView("../team/" + team.getName());
 		} else {
@@ -161,29 +163,36 @@ public class TeamController {
 	public View addUser(Model model, @PathVariable String teamName, @RequestParam Long userId,
 			@RequestParam boolean accept) {
 
+		User loggedUser = userComponent.getLoggedUser();
 		Team team = teamRepository.findByName(teamName);
 		User user = userRepository.findById(userId);
+		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ROLE_ADMIN");
 		RedirectView rv;
-		if (accept) {
-			if (team.getRequests().contains(userId) && user.getTeam() == null) {
-				team.getRequests().remove(userId);
-				user.setTeam(team);
-				userRepository.save(user);
-				teamRepository.save(team);
-				rv = new RedirectView("../../team/" + teamName);
+
+		if (isAdmin) {
+			if (accept) {
+				if (team.getRequests().contains(userId) && user.getTeam() == null) {
+					team.getRequests().remove(userId);
+					user.setTeam(team);
+					userRepository.save(user);
+					teamRepository.save(team);
+					rv = new RedirectView("../../team/" + teamName);
+				} else {
+					team.getRequests().remove(userId);
+					rv = new RedirectView("../../team/" + teamName + "?error=true");
+				}
 			} else {
-				team.getRequests().remove(userId);
-				rv = new RedirectView("../../team/" + teamName + "?error=true");
+				if (team.getRequests().contains(userId)) {
+					team.getRequests().remove(userId);
+					teamRepository.save(team);
+					rv = new RedirectView("../../team/" + teamName);
+				} else {
+					team.getRequests().remove(userId);
+					rv = new RedirectView("../../team/" + teamName + "?error=true");
+				}
 			}
 		} else {
-			if (team.getRequests().contains(userId)) {
-				team.getRequests().remove(userId);
-				teamRepository.save(team);
-				rv = new RedirectView("../../team/" + teamName);
-			} else {
-				team.getRequests().remove(userId);
-				rv = new RedirectView("../../team/" + teamName + "?error=true");
-			}
+			rv = new RedirectView("../../team/" + teamName + "?error=true");
 		}
 		rv.setExposeModelAttributes(false);
 		return rv;
@@ -192,11 +201,11 @@ public class TeamController {
 	@RequestMapping(value = "/team/{teamName}/changeAvatar", method = RequestMethod.POST)
 	public View changeAvatar(Model model, @PathVariable String teamName, @RequestParam("pic") MultipartFile file) {
 
+		User loggedUser = userComponent.getLoggedUser();
 		Team team = teamRepository.findByName(teamName);
-		System.out.println(team.getName());
 		RedirectView rv = new RedirectView("../../team/" + teamName);
-		;
-		if (!file.isEmpty()) {
+		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ROLE_ADMIN");
+		if (!file.isEmpty() && isAdmin) {
 			String fileName = team.getName() + team.getId() + ".jpg";
 			try {
 				File filesFolder = new File("files");
@@ -218,11 +227,18 @@ public class TeamController {
 
 	@RequestMapping(value = "/team/{teamName}/addGame", method = RequestMethod.POST)
 	public View addGame(Model model, @PathVariable String teamName, @RequestParam String name) {
+		User loggedUser = userComponent.getLoggedUser();
 		Team team = teamRepository.findByName(teamName);
-		Game game = gameRepository.findByName(name);
-		team.getGames().add(game);
-		teamRepository.save(team);
-		RedirectView rv = new RedirectView("../../team/" + teamName);
+		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ROLE_ADMIN");
+		RedirectView rv;
+		if (isAdmin) {
+			Game game = gameRepository.findByName(name);
+			team.getGames().add(game);
+			teamRepository.save(team);
+			rv = new RedirectView("../../team/" + teamName);
+		} else {
+			rv = new RedirectView("../../team/" + teamName + "?error=true");
+		}
 		rv.setExposeModelAttributes(false);
 		return (rv);
 	}
