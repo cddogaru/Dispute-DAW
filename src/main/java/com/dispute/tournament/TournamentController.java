@@ -1,6 +1,5 @@
 package com.dispute.tournament;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +47,7 @@ public class TournamentController {
 	public String tournaments(Model model, @RequestParam(required = false) boolean noAdmin) {
 		model.addAttribute("tournaments", tournamentRepository.findAll(new PageRequest(0, 10)));
 		model.addAttribute("noAdmin", noAdmin);
+		model.addAttribute("games", gameRepository.findAll());
 		return "tournaments";
 	}
 
@@ -56,8 +56,7 @@ public class TournamentController {
 		List<Tournament> tournaments = tournamentRepository
 				.findByParticipants_Name(userComponent.getLoggedUser().getName());
 
-		model.addAttribute("tournaments",
-				tournamentRepository.findByParticipants_Name(userComponent.getLoggedUser().getName()));
+		model.addAttribute("tournaments", tournamentRepository.findByParticipants_Name(userComponent.getLoggedUser().getName()));
 		return "tournaments";
 	}
 
@@ -67,41 +66,57 @@ public class TournamentController {
 		model.addAttribute("tournaments", tournaments);
 		return "tournaments";
 	}
-
+	
+	
 	@RequestMapping(value = "/filterTournament", method = RequestMethod.POST)
 	public String filterTournament(Model model, @RequestParam String name, @RequestParam String description,
 			@RequestParam String game, @RequestParam String mode) {
+
 		List<Tournament> tournaments = tournamentRepository.findAll();
-		
-		if (name.isEmpty() && description.isEmpty()) {
+		List<Tournament> toRemove = new ArrayList<Tournament>();
+
+		if (name.equals("") && description.equals("")) {
 			for (Tournament tournament : tournaments) {
-				if (!(tournament.getGame().getName().equals(game) || tournament.getMode().equals(mode))) {
-					tournaments.remove(tournament);
+				if (!((tournament.getGame().getName().equals(game) || tournament.getGame().getName().equals("")) && tournament.getMode().equals(mode))) {
+					if (!toRemove.contains(tournament)) {
+						toRemove.add(tournament);
+					}
 				}
 			}
-		} else if (name.isEmpty()) {
+		} else if (name.equals("")) {
 			for (Tournament tournament : tournaments) {
-				if (!(tournament.getDescription().equals(description) || tournament.getGame().getName().equals(game) ||
-						tournament.getMode().equals(mode))) {
-					tournaments.remove(tournament);
+				if (!(tournament.getDescription().equals(description) || (tournament.getGame().getName().equals(game) || tournament.getGame().getName().equals(""))
+						&& tournament.getMode().equals(mode))) {
+					if (!toRemove.contains(tournament)) {
+						toRemove.add(tournament);
+					}
 				}
 			}
-		} else if (description.isEmpty()) {
+		} else if (description.equals("")) {
 			for (Tournament tournament : tournaments) {
-				if (!(tournament.getName().equals(name) || tournament.getGame().getName().equals(game) || tournament.getMode().equals(mode))) {
-					tournaments.remove(tournament);
+				if (!(tournament.getName().equals(name) || (tournament.getGame().getName().equals(game) || tournament.getGame().getName().equals(""))
+						&& tournament.getMode().equals(mode))) {
+					if (!toRemove.contains(tournament)) {
+						toRemove.add(tournament);
+					}
 				}
 			}
 		} else {
 			for (Tournament tournament : tournaments) {
 				if (!(tournament.getName().equals(name) || tournament.getDescription().equals(description) ||
-						tournament.getGame().getName().equals(game) || tournament.getMode().equals(mode))) {
-					tournaments.remove(tournament);
+						(tournament.getGame().getName().equals(game) || tournament.getGame().getName().equals("")) && tournament.getMode().equals(mode))) {
+					if (!toRemove.contains(tournament)) {
+						toRemove.add(tournament);
+					}
 				}
 			}
 		}
-		
+
+		for (Tournament tournament : toRemove) {
+			tournaments.remove(tournament);
+		}
 		model.addAttribute("tournaments", tournaments);
+		model.addAttribute("games", gameRepository.findAll());
 		return "tournaments";
 	}
 
@@ -117,7 +132,7 @@ public class TournamentController {
 	public View addTournament(Model model, @RequestParam String name, @RequestParam String max,
 			@RequestParam String gameName, @RequestParam String date, @RequestParam String time,
 			@RequestParam String comment, @RequestParam String mode) {
-		
+
 		RedirectView rv;
 		if (!tournamentRepository.findAllNames().contains(name)) {
 			Game game = gameRepository.findByName(gameName);
@@ -126,7 +141,7 @@ public class TournamentController {
 			tournament.getAdmins().add(user);
 			tournamentRepository.save(tournament);
 			rv = new RedirectView("/tournaments");
-		}else{
+		} else {
 			rv = new RedirectView("/newTournament?error=true");
 		}
 		rv.setExposeModelAttributes(false);
@@ -281,10 +296,10 @@ public class TournamentController {
 		rv.setExposeModelAttributes(false);
 		return rv;
 	}
-	
-	@RequestMapping(value="/moreTournaments")
-	public String moreTournaments(Model model, Pageable page){
-		
+
+	@RequestMapping(value = "/moreTournaments")
+	public String moreTournaments(Model model, Pageable page) {
+
 		Page<Tournament> tournaments = tournamentRepository.findAll(page);
 		model.addAttribute("tournaments", tournaments);
 		return "moreTournaments";
