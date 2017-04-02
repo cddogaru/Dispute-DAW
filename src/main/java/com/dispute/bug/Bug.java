@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Bug {
-	private interface BasicAtt {}
+	interface BasicAtt {}
 
 	@JsonView(BasicAtt.class)
 	@Id
@@ -40,10 +40,5 @@ public class Bug {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	@Override
-	public String toString() {
-		return "Bug [id=" + id + ", description=" + description + "]";
 	}
 }

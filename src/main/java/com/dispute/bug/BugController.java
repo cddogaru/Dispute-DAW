@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BugController {
 	@Autowired
 	private BugRepository bugRepository;
-	
+
 	@RequestMapping(value = "/reportbug")
 	public String reportbug() {
 		return "reportbug";
 	}
-	
+
 	@RequestMapping(value = "/reportbug", method = RequestMethod.POST)
 	public String newReportbug(@RequestParam String description) {
 		if (!description.trim().isEmpty()) {
 			bugRepository.save(new Bug(description));
 		}
-		
+
 		return "reportbug";
 	}
 }
