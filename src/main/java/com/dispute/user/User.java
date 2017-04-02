@@ -14,44 +14,61 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.dispute.participant.Participant;
 import com.dispute.team.Team;
 import com.dispute.tournament.Tournament;
+import com.dispute.tournament.Tournament.BasicAtt;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "email" }))
 public class User extends Participant{
 
-
+	public interface BasicAtt {}
 //	@Id
 //	@GeneratedValue(strategy = GenerationType.AUTO)
 //	private Long id;
-//	
+
+	@JsonView(BasicAtt.class)
 	@Column(nullable = false)
 	private String nickName;
 	
 //	@Column(nullable = false)
 //	private String name;
 
+	@JsonView(BasicAtt.class)
 	@Column(nullable = false)
 	private String email;
 
+	@JsonView(BasicAtt.class)
 	@Column(nullable = false)
 	private String password;
 
+	@JsonView(BasicAtt.class)
 	@ManyToOne
 	private Team team;
-	
+
+	@JsonView(BasicAtt.class)
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
 	//RRSS
+
+	@JsonView(BasicAtt.class)
 	private String twitter;
+	@JsonView(BasicAtt.class)
 	private String twitch;
+	@JsonView(BasicAtt.class)
 	private String youtube;
 	
+	
 	//Game Accounts
+	@JsonView(BasicAtt.class)
 	private String steam;
+	@JsonView(BasicAtt.class)
 	private String origin;
+	@JsonView(BasicAtt.class)
 	private String battlenet;
+	@JsonView(BasicAtt.class)
 	private String psn;
+	@JsonView(BasicAtt.class)
 	private String xbox;
 	
 
