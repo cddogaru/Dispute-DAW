@@ -23,28 +23,41 @@ import org.springframework.beans.factory.annotation.Configurable;
 import com.dispute.game.Game;
 import com.dispute.participant.Participant;
 import com.dispute.user.User;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Tournament {
-
+	
+	public interface BasicAtt {}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(BasicAtt.class)
 	private Long id;
-
+	
+	@JsonView(BasicAtt.class)
 	private String name;
-
+	
+	@JsonView(BasicAtt.class)
 	@Column(length = 10000)
 	private String description;
+	@JsonView(BasicAtt.class)
 	private int maxPlayers;
+	@JsonView(BasicAtt.class)
 	private String mode;
+	@JsonView(BasicAtt.class)
 	private String date;
+	@JsonView(BasicAtt.class)
 	private boolean singleTournament;
+	@JsonView(BasicAtt.class)
 	@OneToOne
 	private Game game;
-
+	
+	@JsonView(BasicAtt.class)
 	@ManyToMany(mappedBy = "tournaments")
 	private List<Participant> participants;
-
+	
+	@JsonView(BasicAtt.class)
 	@ManyToMany
 	private List<User> admins;
 	
@@ -60,6 +73,7 @@ public class Tournament {
 	
 	private boolean finished;
 	
+	@JsonView(BasicAtt.class)
 	@ElementCollection
 	@CollectionTable(name ="issues")
 	@Column(length = 100000)
