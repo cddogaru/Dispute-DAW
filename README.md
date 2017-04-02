@@ -101,3 +101,5 @@ This page provides all visitors forms to contact the developers along with the p
 
 # Class and Template Diagram
 ![ScreenShot](https://i.gyazo.com/2e4d00167ad7f5b037fd8805bb48b3c0.png)
+
+## API REST documentation: https://github.com/cddogaru/Dispute-DAW/blob/master/API.md
