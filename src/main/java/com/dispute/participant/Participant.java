@@ -21,6 +21,7 @@ public abstract class Participant{
 	public interface BasicAtt{}
 	
 	@Id
+	@JsonView(BasicAtt.class)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
@@ -28,9 +29,11 @@ public abstract class Participant{
 	@Column(nullable = false)
 	private String name;
 	
+	//@JsonView(BasicAtt.class)
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Tournament> tournaments; 
 	
+	@JsonView(BasicAtt.class)
 	private String avatar;
 	
 	

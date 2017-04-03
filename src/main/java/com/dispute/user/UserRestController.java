@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,38 @@ public class UserRestController {
 	@ResponseStatus(HttpStatus.OK)
 	public List<User> user(){
 		return userRepository.findAll();
+	}
+	
+	@JsonView(UserPrivateView.class)
+	@RequestMapping(value = "/", method = RequestMethod.PUT)
+	public ResponseEntity<User> modifyUser(@RequestBody User user){
+		ResponseEntity<User> toRet;
+		User modUser = userRepository.findByName(user.getName());
+		
+		if((user.anyNull()) && ((userRepository.findByName(userComponent.getLoggedUser().getName())).getName().equals(user.getName()))){
+			modUser.setAvatar(user.getAvatar());
+			modUser.setEmail(user.getEmail());
+			modUser.setName(user.getName());
+			modUser.setNickName(user.getNickName());
+			modUser.setEncryptedPassword(user.getPassword());
+			modUser.setRoles(user.getRoles());
+			modUser.setTeam(user.getTeam());
+			
+			modUser.setTwitter(user.getTwitter());
+			modUser.setTwitch(user.getTwitch());
+			modUser.setYoutube(user.getYoutube());
+			modUser.setSteam(user.getSteam());
+			modUser.setOrigin(user.getOrigin());
+			modUser.setBattlenet(user.getBattlenet());
+			modUser.setPsn(user.getPsn());
+			modUser.setXbox(user.getXbox());
+			
+			userRepository.save(modUser);
+			toRet = new ResponseEntity<>(modUser, HttpStatus.OK);
+		}else{
+			toRet = new ResponseEntity<>(modUser, HttpStatus.BAD_REQUEST);
+		}
+		return toRet;
 	}
 	
 	@JsonView(UserPrivateView.class)

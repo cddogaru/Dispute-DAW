@@ -121,6 +121,10 @@ public class User extends Participant{
 	public void setPassword(String password) {
 		this.password = new BCryptPasswordEncoder().encode(password);
 	}
+	
+	public void setEncryptedPassword(String password){
+		this.password = password;
+	}
 
 	public Team getTeam() {
 		return team;

@@ -51,8 +51,7 @@ public class UserController {
 
 	@RequestMapping("/settings")
 	public String settings(Model model) {
-
-		return "settings";
+		return "settings2";
 	}
 
 	@RequestMapping("/profileSettings")
