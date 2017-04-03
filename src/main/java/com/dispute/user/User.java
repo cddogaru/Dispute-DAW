@@ -21,64 +21,53 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "email" }))
 public class User extends Participant{
 
-	public interface BasicAtt {}
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-//	private Long id;
+	public interface PublicDataUser extends Participant.BasicAtt{}
+	public interface PrivateDataUser extends PublicDataUser{}
 
-	@JsonView(BasicAtt.class)
+	
+	@JsonView(PublicDataUser.class)
 	@Column(nullable = false)
 	private String nickName;
 	
-//	@Column(nullable = false)
-//	private String name;
 
-	@JsonView(BasicAtt.class)
+	@JsonView(PublicDataUser.class)
 	@Column(nullable = false)
 	private String email;
 
-	@JsonView(BasicAtt.class)
+	@JsonView(PrivateDataUser.class)
 	@Column(nullable = false)
 	private String password;
 
-	@JsonView(BasicAtt.class)
+	@JsonView(PublicDataUser.class)
 	@ManyToOne
 	private Team team;
 
-	@JsonView(BasicAtt.class)
+	@JsonView(PrivateDataUser.class)
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
 	//RRSS
 
-	@JsonView(BasicAtt.class)
+	@JsonView(PublicDataUser.class)
 	private String twitter;
-	@JsonView(BasicAtt.class)
+	@JsonView(PublicDataUser.class)
 	private String twitch;
-	@JsonView(BasicAtt.class)
+	@JsonView(PublicDataUser.class)
 	private String youtube;
 	
 	
 	//Game Accounts
-	@JsonView(BasicAtt.class)
+	@JsonView(PublicDataUser.class)
 	private String steam;
-	@JsonView(BasicAtt.class)
+	@JsonView(PublicDataUser.class)
 	private String origin;
-	@JsonView(BasicAtt.class)
+	@JsonView(PublicDataUser.class)
 	private String battlenet;
-	@JsonView(BasicAtt.class)
+	@JsonView(PublicDataUser.class)
 	private String psn;
-	@JsonView(BasicAtt.class)
+	@JsonView(PublicDataUser.class)
 	private String xbox;
 	
-
-//	public Long getId() {
-//		return id;
-//	}
-
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
 
 	public String getNickName() {
 		return nickName;
@@ -205,6 +194,14 @@ public class User extends Participant{
 		this.xbox = xbox;
 	}
 
+	public boolean anyNull(){
+		if((this.email != null) && (this.nickName != null) && (this.password != null) && (this.email != null) && (this.getName() != null)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "User [userName=" + nickName + ", name=" + this.getName() + ", email=" + email + ", password=" + password
