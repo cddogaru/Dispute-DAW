@@ -1,3 +1,5 @@
-# API REST DOC
+# Documentación API REST
 
-### Work in progress
+## Bug
+
+### URL: /api/reportbug
