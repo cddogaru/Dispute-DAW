@@ -5,7 +5,7 @@
 ### URL: /api/reportbug
 **Método:** GET  
 **Entrada:** -  
-**Salida:** Muestra todos los bugs almacenados en la base de datos.  
+**Salida:** Devuelve todos los bugs almacenados en la base de datos.  
 **Descripción:** La petición siempre devuelve el código de estado "200 OK".
 
 ### URL: /api/reportbug
@@ -16,7 +16,7 @@
   "description": "Bug 1"
 }
 ```
-**Salida:** Muestra el bug que se acaba de almacenar en la base de datos.  
+**Salida:** Devuelve el bug que se acaba de almacenar en la base de datos.  
 **Descripción:** La petición devuelve el código de estado "201 Created" si se ha enviado correctamente.
 
 ## Login
@@ -32,3 +32,17 @@
 **Entrada:** -  
 **Salida:** El usuario que estaba logeado tiene ahora la sesión cerrada.  
 **Descripción:** Si el usuario no está logeado, la petición devuelve el código de estado "401 Unauthorized". En caso contrario, devuelve "200 OK".
+
+## Tournament
+
+### URL: /api/tournaments
+**Método:** GET  
+**Entrada:** -  
+**Salida:** Devuelve todos los torneos que se encuentran almacenados en la base de datos.  
+**Descripción:** La petición siempre devuelve el código de estado "200 OK".
+
+### URL: /api/tournaments/{tournamentName}
+**Método:** GET  
+**Entrada:** -  
+**Salida:** Devuelve toda la información del torneo cuyo nombre es igual al proporcionado en la URL (tournamentName).  
+**Descripción:** Si el torneo existe, la petición devuelve el código de estado "200 OK". En caso contrario, devuelve "404 Not Found".
