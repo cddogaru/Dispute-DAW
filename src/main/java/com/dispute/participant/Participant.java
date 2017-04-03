@@ -12,20 +12,28 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 
 import com.dispute.tournament.Tournament;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Participant{
+	
+	public interface BasicAtt{}
+	
 	@Id
+	@JsonView(BasicAtt.class)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@JsonView(BasicAtt.class)
 	@Column(nullable = false)
 	private String name;
 	
+	//@JsonView(BasicAtt.class)
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Tournament> tournaments; 
 	
+	@JsonView(BasicAtt.class)
 	private String avatar;
 	
 	

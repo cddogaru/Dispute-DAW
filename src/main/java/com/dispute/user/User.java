@@ -14,54 +14,60 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.dispute.participant.Participant;
 import com.dispute.team.Team;
 import com.dispute.tournament.Tournament;
+import com.dispute.tournament.Tournament.BasicAtt;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "email" }))
 public class User extends Participant{
 
+	public interface PublicDataUser extends Participant.BasicAtt{}
+	public interface PrivateDataUser extends PublicDataUser{}
 
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-//	private Long id;
-//	
+	
+	@JsonView(PublicDataUser.class)
 	@Column(nullable = false)
 	private String nickName;
 	
-//	@Column(nullable = false)
-//	private String name;
 
+	@JsonView(PublicDataUser.class)
 	@Column(nullable = false)
 	private String email;
 
+	@JsonView(PrivateDataUser.class)
 	@Column(nullable = false)
 	private String password;
 
+	@JsonView(PublicDataUser.class)
 	@ManyToOne
 	private Team team;
-	
+
+	@JsonView(PrivateDataUser.class)
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
 	//RRSS
+
+	@JsonView(PublicDataUser.class)
 	private String twitter;
+	@JsonView(PublicDataUser.class)
 	private String twitch;
+	@JsonView(PublicDataUser.class)
 	private String youtube;
 	
+	
 	//Game Accounts
+	@JsonView(PublicDataUser.class)
 	private String steam;
+	@JsonView(PublicDataUser.class)
 	private String origin;
+	@JsonView(PublicDataUser.class)
 	private String battlenet;
+	@JsonView(PublicDataUser.class)
 	private String psn;
+	@JsonView(PublicDataUser.class)
 	private String xbox;
 	
-
-//	public Long getId() {
-//		return id;
-//	}
-
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
 
 	public String getNickName() {
 		return nickName;
@@ -114,6 +120,10 @@ public class User extends Participant{
 
 	public void setPassword(String password) {
 		this.password = new BCryptPasswordEncoder().encode(password);
+	}
+	
+	public void setEncryptedPassword(String password){
+		this.password = password;
 	}
 
 	public Team getTeam() {
@@ -188,6 +198,14 @@ public class User extends Participant{
 		this.xbox = xbox;
 	}
 
+	public boolean anyNull(){
+		if((this.email != null) && (this.nickName != null) && (this.password != null) && (this.email != null) && (this.getName() != null)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "User [userName=" + nickName + ", name=" + this.getName() + ", email=" + email + ", password=" + password
