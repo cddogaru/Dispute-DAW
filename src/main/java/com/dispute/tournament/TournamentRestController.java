@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dispute.game.Game;
+import com.dispute.game.GameRepository;
+import com.dispute.participant.Participant;
+import com.dispute.participant.ParticipantRepository;
 import com.dispute.security.UserRepositoryAuthenticationProvider;
+import com.dispute.team.TeamRepository;
 import com.dispute.user.User;
 import com.dispute.user.UserComponent;
 import com.dispute.user.UserRepository;
@@ -24,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @RequestMapping("/api/tournaments")
 public class TournamentRestController {
 	
-	interface TournamentListView extends Tournament.BasicAtt {}
+	interface TournamentListView extends Tournament.BasicAtt, User.PublicDataUser {}
 	interface TournamentRoundsView extends Tournament.BasicAtt, Round.BasicAtt, MatchUp.BasicAtt {}
 	@Autowired
 	UserRepository userRepository;
@@ -36,6 +41,9 @@ public class TournamentRestController {
 	UserComponent userComponent;
 	
 	@Autowired
+	TeamRepository teamRepository;
+	
+	@Autowired
 	TournamentService tournamentService;
 	
 	@Autowired
@@ -44,6 +52,10 @@ public class TournamentRestController {
 	@Autowired
 	RoundRepository roundRepository;
 	
+	@Autowired
+	GameRepository gameRepository;
+	
+
 	@JsonView(TournamentListView.class)
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
@@ -65,6 +77,10 @@ public class TournamentRestController {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Tournament newTournament(@RequestBody Tournament tournament){
+		Game game = tournament.getGame();
+		if(game != null){
+			tournament.setGame(gameRepository.findByName(game.getName()));
+		}
 		tournamentRepository.save(tournament);
 		return tournament;
 	}
@@ -163,4 +179,30 @@ public class TournamentRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@JsonView(TournamentListView.class)
+	@RequestMapping(value = "/{tournamentName}/participants", method = RequestMethod.GET)
+	public ResponseEntity<List<Participant>> participants(@PathVariable String tournamentName){
+		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
+		return new ResponseEntity<>(thisTournament.getParticipants(), HttpStatus.OK);
+	}
+	
+	/**
+	@JsonView(TournamentListView.class)
+	@RequestMapping(value = "/{tournamentName}/participants", method = RequestMethod.PUT)
+	public ResponseEntity<List<Participant>> addParticipant(@RequestBody Participant participant, @PathVariable String tournamentName){
+		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
+		User loggedUser = userRepository.findById(userComponent.getLoggedUser().getId());
+		if(participant){
+			if(loggedUser.equals((User) thisParticipant)){
+				thisParticipant.getTournaments().add(thisTournament);
+				participantRepository.save(thisParticipant);
+			}
+		} else {
+			System.out.println("Team");
+		}
+		return new ResponseEntity<>(thisTournament.getParticipants(), HttpStatus.OK);
+	}
+	**/
+
 }
