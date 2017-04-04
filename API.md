@@ -47,6 +47,10 @@
 **Output:** Returns all the information belonging to the tournament with the same name as the one wrote in the URL (tournamentName).  
 **Description:** If the tournament exists, the request returns the status code "200 OK", otherwise it will return "404 Not Found".
 
+### URL: /api/tournaments/{tournamentName}/rounds
+**Method:** GET  
+**Description:** Returns the rounds of a specific tournament.
+
 ## User
 
 ### URL: /api/users
@@ -148,6 +152,4 @@
  
  **Method:** GET
  **Description:** It returns the list of IDs from users who had have requested to join the team {team}.
-
-
-## Tournament
+ 
