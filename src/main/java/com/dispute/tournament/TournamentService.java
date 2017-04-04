@@ -49,4 +49,22 @@ public class TournamentService {
 		return isAdmin;
 	}
 	
+	public void confirmRound(String tournamentName, Long idRound){
+		Tournament tournament = tournamentRepository.findByName(tournamentName);
+		Round round = roundRepository.findById(idRound);
+		round.setClosedRound(true);
+		for (MatchUp m : round.getMatchUps()) {
+			tournament.getActualParticipants().remove(m.getLosser());
+		}
+		if (tournament.getActualParticipants().size() == 1) {
+			tournament.setFinished(true);
+			tournamentRepository.save(tournament);
+		} else {
+			ArrayList<MatchUp> matchUps = tournament.generateMatchUps();
+			matchUpRepository.save(matchUps);
+			Round newRound = tournament.newRound(matchUps);
+			roundRepository.save(newRound);
+			tournamentRepository.save(tournament);
+		}
+	}
 }

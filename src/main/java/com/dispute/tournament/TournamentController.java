@@ -261,22 +261,7 @@ public class TournamentController {
 
 	@RequestMapping(value = "/tournament/{tournamentName}/confirmRound", method = RequestMethod.POST)
 	public View confirmRound(Model model, @PathVariable String tournamentName, @RequestParam Long idRound) {
-		Tournament tournament = tournamentRepository.findByName(tournamentName);
-		Round round = roundRepository.findById(idRound);
-		round.setClosedRound(true);
-		for (MatchUp m : round.getMatchUps()) {
-			tournament.getActualParticipants().remove(m.getLosser());
-		}
-		if (tournament.getActualParticipants().size() == 1) {
-			tournament.setFinished(true);
-			tournamentRepository.save(tournament);
-		} else {
-			ArrayList<MatchUp> matchUps = tournament.generateMatchUps();
-			matchUpRepository.save(matchUps);
-			Round newRound = tournament.newRound(matchUps);
-			roundRepository.save(newRound);
-			tournamentRepository.save(tournament);
-		}
+		tournamentService.confirmRound(tournamentName, idRound);
 		RedirectView rv = new RedirectView("../../tournament/" + tournamentName);
 		rv.setExposeModelAttributes(false);
 		return rv;

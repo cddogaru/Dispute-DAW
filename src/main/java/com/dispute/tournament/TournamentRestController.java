@@ -69,13 +69,16 @@ public class TournamentRestController {
 		return tournament;
 	}
 	
+	@JsonView(TournamentRoundsView.class)
 	@RequestMapping(value = "/{tournamentName}", method = RequestMethod.PUT)
 	public ResponseEntity<Tournament> editTournament(@RequestBody Tournament tournament, @PathVariable String tournamentName){
 		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
 		User loggedUser = userRepository.findById(userComponent.getLoggedUser().getId());
-		if(thisTournament.getAdmins().contains(loggedUser)){
-			tournamentRepository.save(tournament);
-			return new ResponseEntity<>(tournament, HttpStatus.ACCEPTED);
+		if(thisTournament.getAdmins().contains(loggedUser) || loggedUser.getRoles().contains("ROLE_ADMIN")){
+			if(!thisTournament.isStarted() && tournament.isStarted()){
+				tournamentService.startTournament(tournamentName);
+			}
+			return new ResponseEntity<>(thisTournament, HttpStatus.ACCEPTED);
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
@@ -114,7 +117,7 @@ public class TournamentRestController {
 	}
 	
 	@JsonView(TournamentRoundsView.class)
-	@RequestMapping(value = "/{tournamentName}/rounds/{idRound}/matchUp/{idMatchup}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{tournamentName}/rounds/{idRound}/matchUps/{idMatchUp}", method = RequestMethod.GET)
 	public ResponseEntity<MatchUp> matchUp(@PathVariable String tournamentName,  @PathVariable Long idRound,  @PathVariable Long idMatchUp){
 		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
 		Round round = roundRepository.findById(idRound);
@@ -126,14 +129,38 @@ public class TournamentRestController {
 		}
 	}
 	
-	/**
-	@RequestMapping(value="/{tournamentName}/startTournament")
-	public ResponseEntity<Tournament> startTournament(@PathVariable String tournamentName){
-		if(tournamentService.startTournament(tournamentName)){
-			return new ResponseEntity<>(HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	@JsonView(TournamentRoundsView.class)
+	@RequestMapping(value = "/{tournamentName}/rounds/{idRound}/matchUps/{idMatchUp}", method = RequestMethod.PUT)
+	public ResponseEntity<MatchUp> setMatchUp(@RequestBody MatchUp matchUp, @PathVariable String tournamentName,  @PathVariable Long idRound,  @PathVariable Long idMatchUp){
+		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
+		Round round = roundRepository.findById(idRound);
+		MatchUp thisMatchUp = matchUpRepository.findById(idMatchUp);
+		if(thisTournament.getRounds().contains(round) && round.getMatchUps().contains(thisMatchUp)){
+			thisMatchUp.setScore1(matchUp.getScore1());
+			thisMatchUp.setScore2(matchUp.getScore2());
+			thisMatchUp.setFinished(matchUp.isFinished());
+			
+			matchUpRepository.save(thisMatchUp);
+			return new ResponseEntity<>(thisMatchUp, HttpStatus.ACCEPTED);
+		}else{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		**/
-	
 	}
+	
+	
+	@JsonView(TournamentRoundsView.class)
+	@RequestMapping(value = "/{tournamentName}/rounds/{idRound}", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Round> finishRound(@RequestBody Round round, @PathVariable String tournamentName, @PathVariable Long idRound){
+		Round thisRound = roundRepository.findById(idRound);
+		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
+		if(thisTournament.getRounds().contains(thisRound)){
+			if(round.isClosedRound() && !thisRound.isClosedRound()){
+				tournamentService.confirmRound(tournamentName, idRound);
+			}
+			return new ResponseEntity<>(thisRound, HttpStatus.OK);
+		} else{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+}
