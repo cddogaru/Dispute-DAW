@@ -16,6 +16,7 @@ import com.dispute.game.Game;
 import com.dispute.participant.Participant;
 import com.dispute.tournament.Tournament;
 import com.dispute.user.User;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"acronym"}))
@@ -29,24 +30,34 @@ public class Team extends Participant{
 //	@Column(nullable = false)
 //	private String name;
 	
+	public interface basicAtt extends Participant.BasicAtt{}
+	public interface adminAtt extends basicAtt{}
+	
+	@JsonView(basicAtt.class)
 	@OneToOne
 	private User creator;
 	
+	@JsonView(basicAtt.class)
 	@Column(length = 3, nullable = false)
 	private String acronym;
 	
+	@JsonView(basicAtt.class)
 	@Column(length = 1000, nullable = true)
 	private String description;
 	
+	@JsonView(basicAtt.class)
 	@OneToMany(mappedBy="team")
 	private List<User> users;
 	
+	@JsonView(basicAtt.class)
 	@OneToMany
 	private List<Game> games;
 	
+	@JsonView(basicAtt.class)
 	@ManyToMany
 	private List<User> admins;
 	
+	@JsonView(adminAtt.class)
 	@ElementCollection
 	@CollectionTable(name ="requests")
 	private List<Long> requests;
@@ -59,11 +70,7 @@ public class Team extends Participant{
 //		this.name = name;
 		this.acronym = acronym;
 		this.description = description;
-		users = new ArrayList<>();
-		games = new ArrayList<>();
-		admins = new ArrayList<>();
-		requests = new ArrayList();
-		this.setAvatar("DefaultTeam");
+		this.initLists();
 	}
 
 //	public String getName() {
@@ -101,6 +108,10 @@ public class Team extends Participant{
 
 	public List<Game> getGames() {
 		return games;
+	}
+	
+	public void addUser(User user){
+		this.users.add(user);
 	}
 
 	public void setGames(List<Game> games) {
@@ -150,6 +161,14 @@ public class Team extends Participant{
 		this.creator = creator;
 	}
 
+	public void initLists(){
+		users = new ArrayList<>();
+		games = new ArrayList<>();
+		admins = new ArrayList<>();
+		requests = new ArrayList();
+		this.setAvatar("DefaultTeam");
+	}
+	
 	@Override
 	public String toString() {
 		return "Team [name=" + this.getName() + ", acronym=" + acronym + "]";
