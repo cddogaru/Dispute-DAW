@@ -57,7 +57,7 @@ public class TeamRestController {
 			
 			teamRepository.save(team);
 			
-			toRet = new ResponseEntity<>(team, HttpStatus.OK);
+			toRet = new ResponseEntity<>(team, HttpStatus.CREATED);
 		}else{
 			toRet = new ResponseEntity<>(team, HttpStatus.BAD_REQUEST);
 		}
