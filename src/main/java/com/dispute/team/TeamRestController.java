@@ -76,6 +76,24 @@ public class TeamRestController {
 		}
 	}
 
+	@JsonView(basicAtt.class)
+	@RequestMapping(value = "/{team}", method = RequestMethod.PUT)
+	public ResponseEntity<Team> applyteam(@PathVariable String team) {
+		Team toret = teamRepository.findByName(team);
+		User currentUser = userRepository.findById(userComponent.getLoggedUser().getId());
+		if (toret != null) {
+			List<Long> requests = toret.getRequests();
+			List<User> members = toret.getUsers();
+			if(!members.contains(currentUser)){
+				requests.add(currentUser.getId());
+				toret.setRequests(requests);
+				teamRepository.save(toret);
+			}
+			return new ResponseEntity<>(toret, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
 
 	// Requests
