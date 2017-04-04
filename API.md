@@ -3,73 +3,73 @@
 ## Bug
 
 ### URL: /api/reportbug
-**Método:** GET  
-**Entrada:** -  
-**Salida:** Devuelve todos los bugs almacenados en la base de datos.  
-**Descripción:** La petición siempre devuelve el código de estado "200 OK".
+**Method:** GET  
+**Input:** -  
+**Output:** Returns all the bugs helded in the data base. 
+**Description:** The request always returns the status code "200 OK".
 
 ### URL: /api/reportbug
-**Método:** POST  
-**Entrada:** (entrada en formato JSON)
+**Method:** POST  
+**Input:** (input in format JSON)
 ```json
 {
   "description": "Bug 1"
 }
 ```
-**Salida:** Devuelve el bug que se acaba de almacenar en la base de datos.  
-**Descripción:** La petición devuelve el código de estado "201 Created" si se ha enviado correctamente.
+**Output:** Returns the bug which just have been added to the data base.  
+**Description:** The request returns the status code "201 Created".
 
 ## Login
 
 ### URL: /api/logIn
-**Método:** GET  
-**Entrada:** El usuario tiene que autorizarse con su username y password para iniciar sesión.  
-**Salida:** -  
-**Descripción:** Si el usuario no está logeado, la petición devuelve el código de estado "401 Unauthorized". En caso contrario, devuelve "200 OK".
+**Method:** GET  
+**Input:** The user have to get authorize with his username and password for login in.  
+**Output:** -  
+**Description:** If the user manage to log in, the request returns the status code "200 OK", otherwise (probably due to not matching username or password) the request returns the status code "401 Unauthorized".
 
 ### URL: /api/logOut
-**Método:** GET  
-**Entrada:** -  
-**Salida:** El usuario que estaba logeado tiene ahora la sesión cerrada.  
-**Descripción:** Si el usuario no está logeado, la petición devuelve el código de estado "401 Unauthorized". En caso contrario, devuelve "200 OK".
+**Method:** GET  
+**Input:** - 
+**Output:** The user which was logged in has his session expired now.
+**Description:** If the user manage to log out, the request returns the status code "200 OK", otherwise the request will return the status code "401 Unauthorized".
 
 ## Tournament
 
 ### URL: /api/tournaments
-**Método:** GET  
-**Entrada:** -  
-**Salida:** Devuelve todos los torneos que se encuentran almacenados en la base de datos.  
-**Descripción:** La petición siempre devuelve el código de estado "200 OK".
+**Method:** GET  
+**Input:** -  
+**Output:** It returns all the tournaments saved in the data base. 
+**Description:** The request returns the status code "200 OK".
 
 ### URL: /api/tournaments/{tournamentName}
-**Método:** GET  
-**Entrada:** -  
-**Salida:** Devuelve toda la información del torneo cuyo nombre es igual al proporcionado en la URL (tournamentName).  
-**Descripción:** Si el torneo existe, la petición devuelve el código de estado "200 OK". En caso contrario, devuelve "404 Not Found".
+**Method:** GET 
+**Input:** -  
+**Output:** Returns all the information belonging to the tournament with the same name as the one wrote in the URL (tournamentName).  
+**Description:** If the tournament exists, the request returns the status code "200 OK", otherwise it will return "404 Not Found".
 
 ## User
 
 ### URL: /api/users
-**Método:** GET  
-**Entrada:** -  
-**Salida:** Devuelve todos los usuarios que están registrados en la aplicación y, por lo tanto, almacenados en la base de datos.  
-**Descripción:** La petición siempre devuelve el código de estado "200 OK".
+**Method:** GET  
+**Input:** -  
+**Output:** It returns all the users registered in the application, which are also saved in the data base. 
+**Description:** The request returns the status code "200 OK".
 
 ### URL: /api/users/{user}
-**Método:** GET  
-**Entrada:** -  
-**Salida:** Devuelve toda la información del usuario cuyo nombre es igual al proporcionado en la URL (user).  
-**Descripción:** Si el usuario existe, la petición devuelve el código de estado "200 OK". En caso contrario, devuelve "404 Not Found".
+**Method:** GET 
+**Input:** -  
+**Output:** Returns all the information belonging to the user with the same name as the one wrote in the URL (userName).  
+**Description:** If the user exists, the request returns the status code "200 OK", otherwise it will return "404 Not Found".
 
 ### URL: /api/users/loggedUser
-**Método:** GET  
-**Entrada:** -  
-**Salida:** -  
-**Descripción:** Si el usuario está logeado, la petición devuelve el código de estado "200 OK". En caso contrario, devuelve "404 Not Found".
+**Method:** GET  
+**Input:** -  
+**Output:** -  
+**Description:** If there is a logged user, it will return this users information along with status code "200 OK", otherwise it will return "404 Not Found".
 
 ### URL: /api/users
-**Método:** POST  
-**Entrada:** (entrada en formato JSON)
+**Method:** POST  
+**Input:** (input in JSON fomrat)
 ```json
 {
   "id": 1,
@@ -92,5 +92,5 @@
   "xbox": null
 }
 ```
-**Salida:** -  
-**Descripción:** La petición devuelve el código de estado "201 Created" si se ha enviado correctamente. En caso contrario, devuelve "400 Bad Request".
+**Output:** -  
+**Description:** The request returns the status code "201 Created" if it has been uploaded succesfully, otherwise it will return "400 Bad Request".
