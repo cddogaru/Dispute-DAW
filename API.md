@@ -125,6 +125,18 @@
 
 
 ## Team
+### URL: /api/teams/
+  **Method:** GET
+  **Description:** It returns an list with all the teams made in the aplication
+
+  
+  **Method:** POST
+  **Input:** new Team
+  **Description:** It returns "201 Created" if the team has beed created succesfully and "400 Bad Request" otherwise
+### URL: /api/teams/{team}
+  **Method:** GET
+  **Description:** It returns the information belonging to the team {team}
+
 ### URL: /api/teams/{team}/admin
  **Method:** PUT
  **Input:** Long, matching to an user's ID.
