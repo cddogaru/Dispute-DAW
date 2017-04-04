@@ -123,9 +123,9 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Info</div>
                                     <div class="panel-body">
-                                        <p><strong>  Game: <img src="../images/{{tournament.game.img}}.png" height="20" width="20"/>   {{tournament.game.name}}</strong></p>
+                                        <p><strong>  Game: <img src="../images/{{#tournament.game}}{{tournament.game.img}}.png{{/tournament.game}}" height="20" width="20"/> {{#tournament.game}}  {{tournament.game.name}}{{/tournament.game}}</strong></p>
                                         <p><strong>Mode: </strong>{{tournament.mode}}</p>
-                                        <p><strong>participants: </strong>{{tournament.getNumOfParticipants}}/{{tournament.maxPlayers}}</p>
+                                        <p><strong>participants: </strong>{{tournament.numOfParticipants}}/{{tournament.maxPlayers}}</p>
                                         <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> {{tournament.date}}</p>
                                     </div>
                                 </div>
@@ -228,13 +228,13 @@
                                 <form action="../tournament/{{tournament.name}}/startTournament" method="post">
                                     <input type="hidden" name="_csrf" value="{{token}}" />
                                     <input type="submit" class="btn btn-large btn-block btn-success" value="START"> </form>
-                                <hr> {{/tournament.started}} {{#tournament.getActualRound}} {{#isFinishedRound}}{{^tournament.finished}}
+                                <hr> {{/tournament.started}} {{#tournament.actualRound}} {{#isFinishedRound}}{{^tournament.finished}}
                                 <div class="well"><strong>Confirm round and continue tournament...</strong></div>
                                 <form action="../tournament/{{tournament.name}}/confirmRound" method="post">
                                     <input type="hidden" name="_csrf" value="{{token}}" />
                                     <input type="hidden" name="idRound" value="{{id}}" />
                                     <input type="submit" class="btn btn-large btn-block btn-success" value="CONFIRM"> </form>
-                                <hr>{{/tournament.finished}}{{/isFinishedRound}} {{/tournament.getActualRound}}
+                                <hr>{{/tournament.finished}}{{/isFinishedRound}} {{/tournament.actualRound}}
                                 <div class="well"><strong>User's Issues</strong></div> {{#tournament.issues}}
                                 <div class="panel panel-default">
                                     <div class="panel-body"> {{.}} </div>
@@ -256,7 +256,7 @@
                             <div class="panel-body">
                                 <p><strong>Game: </strong></p>
                                 <p><strong>Mode: </strong>{{tournament.mode}}</p>
-                                <p><strong>participants: </strong>{{tournament.getNumOfParticipants}}/{{tournament.maxPlayers}}</p>
+                                <p><strong>participants: </strong>{{tournament.numOfParticipants}}/{{tournament.maxPlayers}}</p>
                                 <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> {{tournament.date}}</p>
                             </div>
                         </div>

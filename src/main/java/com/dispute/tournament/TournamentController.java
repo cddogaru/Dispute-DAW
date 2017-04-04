@@ -42,7 +42,9 @@ public class TournamentController {
 	private GameRepository gameRepository;
 	@Autowired
 	private TeamRepository teamRepository;
-
+	@Autowired
+	TournamentService tournamentService;
+	
 	@RequestMapping(value = "/tournaments")
 	public String tournaments(Model model, @RequestParam(required = false) boolean noAdmin) {
 		model.addAttribute("tournaments", tournamentRepository.findAll(new PageRequest(0, 10)));
@@ -228,18 +230,12 @@ public class TournamentController {
 
 	@RequestMapping(value = "/tournament/{tournamentName}/startTournament", method = RequestMethod.POST)
 	public View startTournament(Model model, @PathVariable String tournamentName) {
-		Tournament thisTournament = tournamentRepository.findByName(tournamentName);
-		thisTournament.setStarted(true);
-		for (Participant p : thisTournament.getParticipants()) {
-			thisTournament.getActualParticipants().add(p);
+		RedirectView rv;
+		if(tournamentService.startTournament(tournamentName)){
+			rv = new RedirectView("../../tournament/" + tournamentName);
+		} else {
+			rv = new RedirectView("../../tournament/" + tournamentName + "?error=true");
 		}
-		ArrayList<MatchUp> matchUps = thisTournament.generateMatchUps();
-		matchUpRepository.save(matchUps);
-		Round round = thisTournament.newRound(matchUps);
-		round.setFirstRound(true);
-		roundRepository.save(round);
-		tournamentRepository.save(thisTournament);
-		RedirectView rv = new RedirectView("../../tournament/" + tournamentName);
 		rv.setExposeModelAttributes(false);
 		return rv;
 	}
@@ -265,22 +261,7 @@ public class TournamentController {
 
 	@RequestMapping(value = "/tournament/{tournamentName}/confirmRound", method = RequestMethod.POST)
 	public View confirmRound(Model model, @PathVariable String tournamentName, @RequestParam Long idRound) {
-		Tournament tournament = tournamentRepository.findByName(tournamentName);
-		Round round = roundRepository.findById(idRound);
-		round.setClosedRound(true);
-		for (MatchUp m : round.getMatchUps()) {
-			tournament.getActualParticipants().remove(m.getLosser());
-		}
-		if (tournament.getActualParticipants().size() == 1) {
-			tournament.setFinished(true);
-			tournamentRepository.save(tournament);
-		} else {
-			ArrayList<MatchUp> matchUps = tournament.generateMatchUps();
-			matchUpRepository.save(matchUps);
-			Round newRound = tournament.newRound(matchUps);
-			roundRepository.save(newRound);
-			tournamentRepository.save(tournament);
-		}
+		tournamentService.confirmRound(tournamentName, idRound);
 		RedirectView rv = new RedirectView("../../tournament/" + tournamentName);
 		rv.setExposeModelAttributes(false);
 		return rv;

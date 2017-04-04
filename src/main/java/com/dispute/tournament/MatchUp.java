@@ -1,6 +1,7 @@
 package com.dispute.tournament;
 
 import com.dispute.user.User;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,19 +9,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.dispute.participant.Participant;;
+import com.dispute.participant.Participant;
+import com.dispute.tournament.Tournament.BasicAtt;;
 
 @Entity
 public class MatchUp {
 	
+	public interface BasicAtt {}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(BasicAtt.class)
 	private Long id;
 	
+	@JsonView(BasicAtt.class)
 	@ManyToOne
 	private Participant player1, player2;
+	@JsonView(BasicAtt.class)
 	private int score1 = 0;
+	@JsonView(BasicAtt.class)
 	private int score2 = 0;
+	@JsonView(BasicAtt.class)
 	private boolean finished;
 	public MatchUp(){}
 	

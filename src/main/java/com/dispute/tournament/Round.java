@@ -11,16 +11,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.dispute.participant.Participant;
+import com.dispute.tournament.Tournament.BasicAtt;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Round {
 	
+	public interface BasicAtt {}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(BasicAtt.class)
 	private Long id;
 	
 	private String name;
 	
+	@JsonView(BasicAtt.class)
 	@OneToMany
 	private List<MatchUp> matchUps;
 	
@@ -31,6 +37,7 @@ public class Round {
 	
 	private boolean firstRound;
 	
+	@JsonView(BasicAtt.class)
 	private boolean closedRound = false;
 	
 	public Round(){}
