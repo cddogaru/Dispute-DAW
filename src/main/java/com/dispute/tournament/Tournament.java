@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import com.dispute.game.Game;
 import com.dispute.participant.Participant;
 import com.dispute.user.User;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
@@ -199,7 +200,7 @@ public class Tournament {
 		this.roundNumber = roundNumber;
 	}
 
-	public int getNumOfParticipants() {
+	public int numOfParticipants() {
 		return (this.participants.size());
 	}
 
@@ -250,7 +251,7 @@ public class Tournament {
 		return round;
 	}
 	
-	public Round getActualRound(){
+	public Round actualRound(){
 		if(!rounds.isEmpty()){
 			return rounds.get(rounds.size()-1);
 		} else {

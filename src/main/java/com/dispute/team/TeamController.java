@@ -104,10 +104,10 @@ public class TeamController {
 	@RequestMapping(value = "/team/kickUser", method = RequestMethod.POST)
 	public View kickUser(Model model, @RequestParam Long teamId, @RequestParam Long userId) {
 
-		User loggedUser = userComponent.getLoggedUser();
+		User loggedUser = userRepository.findById(userComponent.getLoggedUser().getId());
 		User user = userRepository.findById(userId);
 		Team team = teamRepository.findById(teamId);
-		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ROLE_ADMIN");
+		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ROLE_ADMIN") || user.equals(loggedUser);
 		RedirectView rv;
 		if (user.getTeam() != null && user.getTeam().equals(team) && isAdmin) {
 			if (team.isAdmin(user)) {
@@ -163,7 +163,7 @@ public class TeamController {
 	public View addUser(Model model, @PathVariable String teamName, @RequestParam Long userId,
 			@RequestParam boolean accept) {
 
-		User loggedUser = userComponent.getLoggedUser();
+		User loggedUser = userRepository.findById(userComponent.getLoggedUser().getId());
 		Team team = teamRepository.findByName(teamName);
 		User user = userRepository.findById(userId);
 		boolean isAdmin = team.isAdmin(loggedUser) || loggedUser.getRoles().contains("ROLE_ADMIN");
