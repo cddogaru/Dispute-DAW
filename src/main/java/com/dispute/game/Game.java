@@ -5,13 +5,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.dispute.team.Team.basicAtt;
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Game {
+	
+	public interface basicAtt{}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
 	
+	@JsonView(basicAtt.class)
 	String name;
+	
+	@JsonView(basicAtt.class)
 	String img;
 	
 	protected Game(){}

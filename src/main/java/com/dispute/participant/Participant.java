@@ -12,13 +12,14 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 
 import com.dispute.tournament.Tournament;
+import com.dispute.game.Game;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Participant{
 	
-	public interface BasicAtt{}
+	public interface BasicAtt extends Game.basicAtt{}
 	
 	@Id
 	@JsonView(BasicAtt.class)
