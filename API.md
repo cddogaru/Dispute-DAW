@@ -94,3 +94,48 @@
 ```
 **Output:** -  
 **Description:** The request returns the status code "201 Created" if it has been uploaded succesfully, otherwise it will return "400 Bad Request".
+
+### URL: /api/users
+**Method:** PUT
+**Input:** (input in JSON format)
+```json
+{
+  "id": 1,
+  "name": "Alex",
+  "avatar": "Default",
+  "nickName": "Alex",
+  "email": "alex@gmail.com",
+  "team": {
+    "id": 5,
+    "name": "Real Madrid",
+    "avatar": "DefaultTeam"
+  },
+  "twitter": null,
+  "twitch": null,
+  "youtube": null,
+  "steam": null,
+  "origin": null,
+  "battlenet": null,
+  "psn": null,
+  "xbox": null
+}
+```
+**Output:** -
+**Description:** If you are the user that you are aiming to modify or an global admin, this will modify the user with the new information and return an "200 OK" status code, otherwise it will return "400 Bad Request".
+
+
+## Team
+### URL: /api/teams/{team}/admin
+ **Method:** PUT
+ **Input:** Long, matching to an user's ID.
+ **Description:** As a global admin or this team's admin, you can accept someone elses request to join your the team {team}, or if he is already a member, promote him to team's admins status. Both operations by entering the user's ID in the body.
+ 
+ **Method:** DELETE
+ **Input:** Long, matching to an user's ID.
+ **Description:** If the owner of these ID is currently on the request list, he will be removed from there. If he is a member, he will be kicked. In order to do this two things, you have to be logged in as a global admin or as the team's admin. You can also Leave the team by doing the same request with your own ID as a regular member.
+ 
+ **Method:** GET
+ **Description:** It returns the list of IDs from users who had have requested to join the team {team}.
+
+
+## Tournament
