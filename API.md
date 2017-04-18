@@ -35,21 +35,45 @@
 
 ## Tournament
 
-### URL: /api/tournaments
+### URL: /api/tournaments/
 **Method:** GET  
 **Input:** -  
 **Output:** It returns all the tournaments saved in the data base. 
 **Description:** The request returns the status code "200 OK".
 
-### URL: /api/tournaments/{tournamentName}
+**Method:** POST 
+**Description:** It creates a new Tournament.
+
+### URL: /api/tournaments/{tournamentId}
 **Method:** GET 
 **Input:** -  
 **Output:** Returns all the information belonging to the tournament with the same name as the one wrote in the URL (tournamentName).  
 **Description:** If the tournament exists, the request returns the status code "200 OK", otherwise it will return "404 Not Found".
 
-### URL: /api/tournaments/{tournamentName}/rounds
+**Method:** PUT
+**Description:** It modifies the tournament.
+
+### URL: /api/tournaments/{tournamentId}/rounds
 **Method:** GET  
 **Description:** Returns the rounds of a specific tournament.
+
+### URL: /api/tournaments/{tournamentId}/rounds/{roundId}
+**Method:** GET  
+**Description:** Returns the indicated round of a specific tournament.
+
+**Methosd:** PUT
+**Description:** It allows the admin to make the tournament advance to the next round.
+
+### URL: /api/tournaments/{tournamentId}/rounds/{roundId}
+**Method:** GET  
+**Description:** Returns the indicated mathcup of an indicated round of a specific tournament.
+
+**Method:** PUT 
+**Description:** It allows the user which are facing each other in this matchup and the admin to post the score of it.
+
+### URL: /api/tournaments/{tournamentId}/participants
+**Method:** GET  
+**Description:** Returns the list of participants of a specific tournament.
 
 ## User
 
@@ -59,7 +83,7 @@
 **Output:** It returns all the users registered in the application, which are also saved in the data base. 
 **Description:** The request returns the status code "200 OK".
 
-### URL: /api/users/{user}
+### URL: /api/users/{userId}
 **Method:** GET 
 **Input:** -  
 **Output:** Returns all the information belonging to the user with the same name as the one wrote in the URL (userName).  
@@ -71,7 +95,7 @@
 **Output:** -  
 **Description:** If there is a logged user, it will return this users information along with status code "200 OK", otherwise it will return "404 Not Found".
 
-### URL: /api/users
+### URL: /api/users/
 **Method:** POST  
 **Input:** (input in JSON fomrat)
 ```json
@@ -137,11 +161,11 @@
   **Method:** POST
   **Input:** new Team
   **Description:** It returns "201 Created" if the team has beed created succesfully and "400 Bad Request" otherwise
-### URL: /api/teams/{team}
+### URL: /api/teams/{teamId}
   **Method:** GET
   **Description:** It returns the information belonging to the team {team}
 
-### URL: /api/teams/{team}/admin
+### URL: /api/teams/{teamId}/admin
  **Method:** PUT
  **Input:** Long, matching to an user's ID.
  **Description:** As a global admin or this team's admin, you can accept someone elses request to join your the team {team}, or if he is already a member, promote him to team's admins status. Both operations by entering the user's ID in the body.
