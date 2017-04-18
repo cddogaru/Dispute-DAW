@@ -68,7 +68,7 @@ public class TeamRestController {
 	@JsonView(basicAtt.class)
 	@RequestMapping(value = "/{team}", method = RequestMethod.GET)
 	public ResponseEntity<Team> team(@PathVariable String team) {
-		Team toret = teamRepository.findByName(team);
+		Team toret = teamRepository.findById(Long.parseLong(team));
 		if (toret != null) {
 			return new ResponseEntity<>(toret, HttpStatus.OK);
 		} else {
@@ -79,7 +79,7 @@ public class TeamRestController {
 	@JsonView(basicAtt.class)
 	@RequestMapping(value = "/{team}", method = RequestMethod.PUT)
 	public ResponseEntity<Team> applyteam(@PathVariable String team) {
-		Team toret = teamRepository.findByName(team);
+		Team toret = teamRepository.findById(Long.parseLong(team));
 		User currentUser = userRepository.findById(userComponent.getLoggedUser().getId());
 		if (toret != null) {
 			List<Long> requests = toret.getRequests();
@@ -101,7 +101,7 @@ public class TeamRestController {
 	@RequestMapping(value = "/{team}/admin", method = RequestMethod.GET)
 	private ResponseEntity<List<Long>> getRequestsTeam(@PathVariable String team){
 		ResponseEntity<List<Long>> toRet;
-		Team currentTeam = teamRepository.findByName(team);
+		Team currentTeam = teamRepository.findById(Long.parseLong(team));
 		User currentUser = userRepository.findByName(userComponent.getLoggedUser().getName());
 		
 		if((currentTeam.isAdmin(currentUser)) || (currentUser.getRoles().contains("ROLE_ADMIN"))){
@@ -118,7 +118,7 @@ public class TeamRestController {
 	private ResponseEntity<Team> adminTeamPut(@PathVariable String team, @RequestBody String sid){
 		Long id = Long.parseLong(sid);
 		ResponseEntity<Team> toRet;
-		Team currentTeam = teamRepository.findByName(team);
+		Team currentTeam = teamRepository.findById(Long.parseLong(team));
 		User currentUser = userRepository.findByName(userComponent.getLoggedUser().getName());
 		List<Long> requests = currentTeam.getRequests();
 		List<User> members = currentTeam.getUsers();
@@ -158,7 +158,7 @@ public class TeamRestController {
 	private ResponseEntity<Team> adminTeamDelete(@PathVariable String team, @RequestBody String sid){
 		Long id = Long.parseLong(sid);
 		ResponseEntity<Team> toRet;
-		Team currentTeam = teamRepository.findByName(team);
+		Team currentTeam = teamRepository.findById(Long.parseLong(team));
 		User currentUser = userRepository.findByName(userComponent.getLoggedUser().getName());
 		List<Long> requests = currentTeam.getRequests();
 		List<User> members = currentTeam.getUsers();

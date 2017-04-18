@@ -96,7 +96,7 @@ public class UserRestController {
 	@JsonView(UserPublicView.class)
 	@RequestMapping(value = "/{user}", method = RequestMethod.GET)
 	public ResponseEntity<User> user(@PathVariable String user){
-		User toret = userRepository.findByName(user);
+		User toret = userRepository.findById(Long.parseLong(user));
 		if(toret != null){
 			return new ResponseEntity<>(toret, HttpStatus.OK);
 		} else {
