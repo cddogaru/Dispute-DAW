@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\com",
+    "\\src\\main\\resources",
+    "\\src\\main\\resources\\static",
+    "\\src\\main\\resources\\templates"
+  ],
+  "SelectedNode": "\\src\\main\\resources\\templates\\moreTournaments.html",
+  "PreviewInSolutionExplorer": false
+}

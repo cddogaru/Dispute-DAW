@@ -1,0 +1,45 @@
+﻿<header>
+  <nav class="navbar navbar-default navbar-fixed-top" id="skinNavbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <a href="index.html"><img id="navbar-icon" src="images/logoHeader.png" /></a>
+      </div>
+      <div class="navbar-collapse collapse" id="navbar" id="navbar">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href='index.html'><span class="skinNavbarLinks">Home</span></a></li>
+          <li><a href='tournaments.html'><span class="skinNavbarLinks">Tournaments</span></a></li>
+          <li> <a href='teams.html'><span class="skinNavbarLinks">Teams</span></a> </li>
+          <li> <a href='../admin'><span class="skinNavbarLinks">Administration</span></a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" " height="50" width="50" />
+            <ul class="dropdown-menu">
+              <li>
+                <a href="">
+                  <strong></strong>
+                  <p class="small">Profile</p>
+                </a>
+              </li>
+              <li><a href="../myTournaments">My Tournaments</a></li>
+              <li>
+                <form action="/logout" method="post">
+                  <input type="hidden" name="_csrf">
+                  <button type="submit" class="btn btn-link">Logout</button>
+                </form>
+              </li>
+            </ul>
+          </li>
+          <li><a href="settings.html" id="topRightMenu"><span class="skinNavbarLinks">Settings</span></a></li>
+          <li><a href="login.html"><span class="skinNavbarLinks">Sign in</span></a></li>
+          <li><a href="contactus.html"><span class="skinNavbarLinks">Contact</span></a></li>
+        </ul>
+        <form class="navbar-form navbar-left" action="../findTournament" method="post">
+          <input type="hidden" name="_csrf"  >
+          <input type="text" class="form-control" placeholder="Search tournament..." name="name">
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>

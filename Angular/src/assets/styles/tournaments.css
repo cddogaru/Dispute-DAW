@@ -1,0 +1,77 @@
+/*!
+ * Start Bootstrap - Small Business (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    padding-top: 70px;
+    /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    background: #28C8C0;
+    color: white;
+}
+
+footer {
+    padding: 30px 0;
+    /* background-color: #141716; */
+    color: #8DEFEC;
+    text-align: center;
+    margin-top: 5em;
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 100px;
+        /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+}
+
+.Title1 {
+    color: #141716;
+}
+
+#profile {
+    cursor: hand;
+    cursor: pointer;
+}
+
+.well {
+    background: #2B2E2D;
+}
+
+.btn-primary {
+    background-color: #141716;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #226764;
+    color: white;
+}
+
+.btn-primary:active:hover {
+    background-color: #226764;
+    color: white;
+}
+
+.btn-primary:focus {
+    background-color: #8DEFEB;
+    color: black;
+}
+
+.tournamentLinks {
+    color: black;
+}
+
+#TournamentsDesc {
+    align-content: center;
+    text-align: center;
+}
+
+.row {
+    text-align: center;
+}
+
+.tournament {
+    font-size: 1.5em;
+}

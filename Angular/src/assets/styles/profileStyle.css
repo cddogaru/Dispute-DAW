@@ -1,0 +1,68 @@
+/* colores
+ De mas claro a mas oscuro
+
+             #f2f2f2;
+    color 1: #B6B6D4;
+    color 2: #6969A2;
+    color 3: #11114C;
+    color 4: #020221;
+    color 5: #343477;
+*/
+
+footer {
+    padding: 30px 0;
+    /* background-color: #141716; */
+    color: #8DEFEC;
+    text-align: center;
+    margin-top: 5em;
+}
+
+@media(min-width:768px) {
+    .navbar-fixed-top .navbar-brand {
+        padding: 15px 0;
+    }
+}
+
+#profile {
+    cursor: hand;
+    cursor: pointer;
+}
+
+#profileBdy {
+    margin-top: 10%;
+}
+
+.profileText1 {
+    text-align: left;
+}
+
+.profileText2 {
+    text-align: left;
+    margin-left: 5%;
+}
+
+#profileInfo {
+    background: #B6B6D4;
+    border-radius: 25px;
+    border: 2px solid #11114C;
+    padding: 20px;
+}
+
+#profileImg {
+    background: #B6B6D4;
+    border-radius: 25px;
+    border: 2px solid #11114C;
+    padding: 20px;
+}
+
+.separator {
+    height: 1em;
+}
+
+#profileMainPic {
+    padding: 5%;
+}
+
+#profileSetLeftSide {
+    height: 50em;
+}

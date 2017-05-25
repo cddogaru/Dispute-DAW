@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../images/logoB.png" type="image/x-icon" />
+  <link rel="icon" href="../images/logoB.png" type="image/x-icon" />
+  <title>{{tournament.name}}</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> {{#userInMatch}}
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#myModal').modal('show');
+    });
+  </script> {{/userInMatch}}
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/bracketStlye.css" rel="stylesheet">
+  <link href="../css/font-awesome.css" rel="stylesheet">
+</head>
+
+<body>
+  {{#userInMatch}}
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="../tournament/{{tournament.name}}/setMatchUp" method="post">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">You have a matchup</h4>
+          </div>
+          <div class="modal-body">
+            <table class="table">
+              <input type="hidden" name="_csrf" value="{{token}}" />
+              <input type="hidden" name="idMatchUp" value="{{userMatch.id}}" />
+              <input type="hidden" name="idRound" value="{{userRound.getRoundId}}" />
+              <tbody>
+                <tr>
+                  <td><img src="../image/{{userMatch.player1.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{userMatch.player1.name}}">{{userMatch.player1.name}}</a></td>
+                  <td> </td>
+                  <td class="text-right">
+                    <input type="number" name="result1" min="0" max="3" value="0">
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="../image/{{userMatch.player2.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{userMatch.player2.name}}">{{userMatch.player2.name}}</a></td>
+                  <td> </td>
+                  <td class="text-right">
+                    <input type="number" name="result2" min="0" max="3" value="0">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" value="Save changes">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> {{/userInMatch}}
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a href="../index.html"><img id="navbar-icon" src="../images/logoHeader.png" /></a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href='../index.html'>Home</a></li>
+            <li><a href='../tournaments.html'>Tournaments</a></li>
+            <li> <a href='../teams.html'>Teams</a> </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {{#isLogged}}
+            <li>
+              <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="../image/{{userLogged.avatar}}" height="50" width="50" />
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="../user/{{userLogged.name}}">
+                    <strong>{{userLogged.name}}</strong>
+                    <p class="small">Profile</p>
+                  </a>
+                </li>
+                <li><a href="../myTournaments">My Tournaments</a></li>
+                <li>
+                  <form action="../logout" method="post">
+                    <input type="hidden" name="_csrf" value="{{token}}" />
+                    <button type="submit" class="btn btn-link">Logout</button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+            <li><a href="../settings.html" id="topRightMenu"><span class="skinNavbarLinks">Settings</span></a></li> {{/isLogged}} {{^isLogged}}
+            <li><a href="../login.html"><span class="skinNavbarLinks">Sign in</span></a></li> {{/isLogged}}
+            <li><a href="../contactus.html"><span class="skinNavbarLinks">Contact</span></a></li>
+          </ul>
+          <form class="navbar-form navbar-left" action="../findTournament" method="post">
+            <input type="hidden" name="_csrf" value="{{token}}" />
+            <input type="text" class="form-control" placeholder="Search tournament..." name="name">
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- Page Content -->
+  <div class="container">
+    <!-- Heading Row -->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          {{#errorParticipant}}
+          <div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <strong>Error: </strong>You're already in this tournament </div>{{/errorParticipant}}
+          <div class="col-md-9">
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#info">Info</a></li>
+              <li><a data-toggle="tab" href="#participants">Participants</a></li>
+              <li><a data-toggle="tab" href="#rounds">Rounds</a></li> {{#isLogged}}
+              <li><a data-toggle="tab" href="#support">Support</a></li>{{/isLogged}} {{#admin}}
+              <li><a data-toggle="tab" href="#admin">Admin</a></li> {{/admin}}
+            </ul>
+            <div class="tab-content">
+              <div id="info" class="tab-pane fade in active">
+                <br>
+                <div class="jumbotron">
+                  <h1>{{tournament.name}}</h1>
+                  <p>{{tournament.description}}</p>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">Info</div>
+                  <div class="panel-body">
+                    <p><strong>  Game: <img src="../images/{{#tournament.game}}{{tournament.game.img}}.png{{/tournament.game}}" height="20" width="20" /> {{#tournament.game}}  {{tournament.game.name}}{{/tournament.game}}</strong></p>
+                    <p><strong>Mode: </strong>{{tournament.mode}}</p>
+                    <p><strong>participants: </strong>{{tournament.numOfParticipants}}/{{tournament.maxPlayers}}</p>
+                    <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> {{tournament.date}}</p>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">Winner</div>
+                  <div class="panel-body">
+                    {{#tournament.finished}}
+                    <div class="tab-pane">
+                      {{#tournament.actualParticipants}}
+                      <h1>
+                        <img src="../image/{{avatar}}" class="img-thumbnail" height="70" width="70" />
+                        {{name}}
+                      </h1> {{/tournament.actualParticipants}}
+                    </div> {{/tournament.finished}}
+                  </div>
+                </div>
+              </div>
+              <div id="participants" class="tab-pane">
+                <br> {{#tournament.participants}}
+                <ul class="list-group">
+                  <li class="list-group-item">{{#avatar}}<img src="../image/{{.}}" class="img-thumbnail" height="50" width="50" />{{/avatar}} {{#nickName}}<a href="../user/{{name}}">{{.}}</a>{{/nickName}}{{^nickName}}<a href="../team/{{name}}">{{name}}</a>{{/nickName}}</li>
+                </ul> {{/tournament.participants}}
+              </div>
+              <div id="rounds" class="tab-pane">
+                <ul class="nav nav-tabs">
+                  {{#tournament.rounds}}
+                  <li {{#isFirstRound}} class="active" {{/isFirstRound}}><a data-toggle="tab" href="#{{id}}">{{name}}</a></li> {{/tournament.rounds}}{{#tournament.finished}}
+                  <li><a data-toggle="tab" href="#winner">Winner</a></li> {{/tournament.finished}}
+                </ul>
+                <div class="tab-content">
+                  {{#tournament.rounds}}
+                  <div id="{{id}}" class="tab-pane {{#isFirstRound}}fade in active{{/isFirstRound}}">
+                    <br>
+                    <ul class="list-group">
+                      {{#matchUps}}
+                      <li class="list-group-item">
+                        <table class="table">
+                          {{#admin}}{{^isClosedRound}}
+                          <form action="../tournament/{{tournament.name}}/setMatchUp" method="post">
+                            {{/isClosedRound}}{{/admin}}
+                            <input type="hidden" name="_csrf" value="{{token}}" />
+                            <input type="hidden" name="idMatchUp" value="{{id}}" />
+                            <input type="hidden" name="idRound" value="{{getRoundId}}" />
+                            <tbody>
+                              <tr>
+                                <td><img src="../image/{{player1.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{player1.name}}">{{player1.name}}</a></td>
+                                <td> </td> {{^isClosedRound}}{{#admin}}
+                                <td class="text-right">
+                                  <input type="number" name="result1" min="0" max="3" value="0">
+                                </td>{{/admin}}{{/isClosedRound}}
+                                <td class="text-right">
+                                  <p>{{score1}}</p>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td><img src="../image/{{player2.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{player2.name}}">{{player2.name}}</a></td>
+                                <td> </td> {{^isClosedRound}} {{#admin}}
+                                <td class="text-right">
+                                  <input type="number" name="result2" min="0" max="3" value="0">
+                                </td> {{/admin}}{{/isClosedRound}}
+                                <td class="text-right">
+                                  <p>{{score2}}</p>
+                                </td>
+                              </tr> {{^isClosedRound}} {{#admin}}
+                              <tr>
+                                <td> </td>
+                                <td> </td>
+                                <td class="text-right">
+                                  <input type="submit">
+                                </td>
+                              </tr>{{/admin}} {{/isClosedRound}}
+                            </tbody>
+                          </form>
+                        </table>{{/matchUps}} {{#isOddRound}}
+                        <table class="table">
+                          <tbody>
+                            <tr>
+                              <td><img src="../image/{{lastParticipant.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{lastParticipant.name}}">{{lastParticipant.name}}</a></td>
+                              <td> </td>
+                              <td class="text-right"> 3 </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <h3>FREE WIN</h3>
+                              </td>
+                              <td> </td>
+                              <td class="text-right"> 0 </td>
+                            </tr>
+                          </tbody>
+                        </table> {{/isOddRound}}
+                      </li>
+                    </ul>
+                  </div> {{#tournament.finished}}
+                  <div id="winner" class="tab-pane">
+                    <br>
+                    <div class="text-center">
+                      <h2>AND THE WINNER IS...</h2>
+                      <br> {{#tournament.actualParticipants}} <img src="../image/{{avatar}}" class="img-thumbnail" height="200" width="200" />
+                      <p>{{name}}</p> {{/tournament.actualParticipants}}
+                    </div>
+                  </div> {{/tournament.finished}} {{/tournament.rounds}}{{^tournament.rounds}}
+                  <br>
+                  <div class="text-center">
+                    <h2>This tournament hasn't started yet</h2>
+                  </div> {{/tournament.rounds}}
+                </div>
+              </div> {{#isLogged}}
+              <div id="support" class="tab-pane">
+                <br>
+                <div class="well">Contact with an admin:</div>
+                <form action="../tournament/{{tournament.name}}/newIssue" method="post" id="issueform">
+                  <input type="hidden" name="_csrf" value="{{token}}" />
+                  <textarea name="issue" type="text" class="form-control" rows="5" style="max-width: 100%;" form="issueform"></textarea>
+                  <br>
+                  <div class="text-right">
+                    <input type="submit" class="btn btn-info btn-lg" value="Contact">
+                  </div>
+                </form>
+              </div>{{/isLogged}} {{#admin}}
+              <div id="admin" class="tab-pane">
+                <br> {{^tournament.started}}
+                <div class="well"><strong>Start tournament</strong></div>
+                <form action="../tournament/{{tournament.name}}/startTournament" method="post">
+                  <input type="hidden" name="_csrf" value="{{token}}" />
+                  <input type="submit" class="btn btn-large btn-block btn-success" value="START">
+                </form>
+                <hr> {{/tournament.started}} {{#tournament.actualRound}} {{#isFinishedRound}}{{^tournament.finished}}
+                <div class="well"><strong>Confirm round and continue tournament...</strong></div>
+                <form action="../tournament/{{tournament.name}}/confirmRound" method="post">
+                  <input type="hidden" name="_csrf" value="{{token}}" />
+                  <input type="hidden" name="idRound" value="{{id}}" />
+                  <input type="submit" class="btn btn-large btn-block btn-success" value="CONFIRM">
+                </form>
+                <hr>{{/tournament.finished}}{{/isFinishedRound}} {{/tournament.actualRound}}
+                <div class="well"><strong>User's Issues</strong></div> {{#tournament.issues}}
+                <div class="panel panel-default">
+                  <div class="panel-body"> {{.}} </div>
+                </div> {{/tournament.issues}}
+              </div> {{/admin}}
+            </div>
+            <!-- /.row -->
+          </div>
+          <div class="col-md-3">
+            <div class="">
+              <div class="text-right">
+                {{^userIsInTournament}}{{^tournament.started}} {{#isLogged}} {{#tournament.singleTournament}}
+                <form action="../tournament/{{tournament.name}}" method="post">
+                  <input type="hidden" name="_csrf" value="{{token}}" /><strong><input type="submit" class="btn btn-large btn-success btn-block" value="Join in"></strong>
+                </form> {{/tournament.singleTournament}} {{^tournament.singleTournament}}{{#userLogged.team}}
+                <form action="../tournament/{{tournament.getTournamentName}}" method="post" onsubmit="return confirm('Do you really want join {{name}} in the tournament?');">
+                  <input type="hidden" name="_csrf" value="{{token}}" /><strong><input type="submit" class="btn btn-large btn-success btn-block" value="Join in"></strong>
+                </form> {{/userLogged.team}} {{^userLogged.team}}<a class="btn btn-large btn-default btn-block" href="../teams.html">Join in a team</a> {{/userLogged.team}} {{/tournament.singleTournament}}{{/isLogged}} {{^isLogged}} <a class="btn btn-success btn-large btn-block" href="/login">Join in</a> {{/isLogged}}{{/tournament.started}}{{/userIsInTournament}} {{#userInMatch}}
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal"> Enter your result</button>{{/userInMatch}}
+              </div>
+            </div>
+            <br>
+            <div class="panel panel-default">
+              <div class="panel-heading">Info</div>
+              <div class="panel-body">
+                <p><strong>Game: </strong></p>
+                <p><strong>Mode: </strong>{{tournament.mode}}</p>
+                <p><strong>participants: </strong>{{tournament.numOfParticipants}}/{{tournament.maxPlayers}}</p>
+                <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> {{tournament.date}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="panel panel-default">
+              <div class="panel-heading">Admins:</div>
+              <ul class="panel-body list-group">
+                {{#tournament.admins}}
+                <li class="list-group-item"> <a href="../user/{{name}}"> {{name}}</a> </li> {{/tournament.admins}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+  <!-- Footer -->
+  <footer class="col-lg-12 navbar-default">
+    <div class="row">
+      <div class="col-lg-12 ">
+        <div class="col-xs-4">
+          <div class="text-left">
+            <p id="footerLogo"><span><img src="../images/logoG.png"></span> Dispute Project</p>
+          </div>
+        </div>
+        <div class="col-xs-4"> </div>
+        <div class="text-right">
+          <div class="col-xs-4"> <a href="https://twitter.com/DisputeWeb?lang=es"><span class="fa fa-twitter-square" id="footerLinks"></span></a> <a href="https://www.facebook.com/Dispute-627402047448785/?ref=ts&fref=ts"><span class="fa  fa-facebook-square " id="footerLinks"></span></a> <a href="https://github.com/cddogaru/Dispute-DAW"><span class="fa  fa-github " id="footerLinks"></span></a> </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- jQuery -->
+  <script src="../js/jquery.js "></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../js/bootstrap.min.js "></script>
+</body>
+
+</html>

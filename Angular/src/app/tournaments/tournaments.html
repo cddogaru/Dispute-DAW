@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Dispute Project</title>
+  <link rel="icon" href="images/logoB.png" type="image/x-icon" />
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/font-awesome.css" rel="stylesheet">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/loading.js"></script>
+
+<body>
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed"
+                  data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                  aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+          </button>
+          <a href="index.html">
+            <img id="navbar-icon"
+                 src="images/logoHeader.png" />
+          </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href='index.html'>Home</a></li>
+            <li><a href='tournaments.html'>Tournaments</a></li>
+            <li><a href='teams.html'>Teams</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {{#isLogged}}
+            <li>
+              <img id="profile" class="img-circle dropdown-toggle"
+                   data-toggle="dropdown" src="../image/{{userLogged.avatar}}"
+                   height="50" width="50" />
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/user/{{userLogged.name}}">
+                    <strong>{{userLogged.name}}</strong>
+                    <p class="small">Profile</p>
+                  </a>
+                </li>
+                <li><a href="../myTournaments">My Tournaments</a></li>
+                <li>
+                  <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="{{token}}" />
+                    <button type="submit" class="btn btn-link">Logout</button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="settings.html" id="topRightMenu">
+                <span class="skinNavbarLinks">Settings</span>
+              </a>
+            </li> {{/isLogged}}
+            {{^isLogged}}
+            <li>
+              <a href="login.html">
+                <span class="skinNavbarLinks">
+                  Sign
+                  in
+                </span>
+              </a>
+            </li> {{/isLogged}}
+            <li>
+              <a href="contactus.html">
+                <span class="skinNavbarLinks">Contact</span>
+              </a>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left" action="../findTournament"
+                method="post">
+            <input type="hidden" name="_csrf" value="{{token}}" /> <input type="text" class="form-control"
+                                                                          placeholder="Search tournament..." name="name">
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- Page Content -->
+  <div class="container-fluid">
+    <div class="row">
+      {{#noAdmin}}
+      <div class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <strong>Error: </strong>You're not admin of your team
+      </div>
+      {{/noAdmin}}
+      <div class="col-lg-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">TOURNAMENTS</div>
+          {{#tournaments}}
+          <div class="panel-group">
+            <div class="panel panel-default text-left">
+              <a href="tournament/{{name}}" class="tournament"><strong>{{name}}</strong></a>
+              <div class="row">
+                <div class="col-lg-6">
+                  <p class="info">
+                    <span>
+                      <img src="../images/{{#game}}{{game.img}}.png{{/game}}" height="20"
+                           width="20" />
+                    </span>{{#game}}{{game.name}}{{/game}} || {{mode}} || Participans:
+                    {{numOfParticipants}}/{{maxPlayers}}
+                  </p>
+                  <p class="info">{{date}}</p>
+                </div>
+                <div class="col-lg-1 col-lg-offset-4">
+                  {{#isLogged}} {{^started}} {{#singleTournament}}
+                  <form action="/tournament/{{name}}" method="post">
+                    <input type="hidden" name="_csrf" value="{{token}}" /><strong>
+                      <input type="submit" class="btn btn-large btn-success"
+                             value="Join in">
+                    </strong>
+                  </form>
+                  {{/singleTournament}} {{^singleTournament}}{{#userLogged.team}}
+                  <form action="/tournament/{{getTournamentName}}" method="post"
+                        onsubmit="return confirm('Do you really want join {{name}} in the tournament?');">
+                    <input type="hidden" name="_csrf" value="{{token}}" /><strong>
+                      <input type="submit" class="btn btn-large btn-success"
+                             value="Join in">
+                    </strong>
+                  </form>
+                  {{/userLogged.team}} {{^userLogged.team}}<a class="btn btn-large btn-default" href="teams.html">
+                    Join
+                    in a team
+                  </a> {{/userLogged.team}} {{/singleTournament}}
+                  {{/started}} {{/isLogged}} {{^isLogged}} <a class="btn btn-success btn-large" href="/login">Join in</a>
+                  {{/isLogged}}
+                </div>
+              </div>
+              <p>{{description}}</p>
+            </div>
+          </div>
+          {{/tournaments}}
+          <div id="tournamentsContainer"></div>
+          <div class="text-center" id="loading">
+            <img src="/images/spin.gif" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">New tournament</div>
+          <div class="panel-body">
+            <p>You can create your own tournament!</p>
+            <div class="text-right">
+              <a href="newTournament.html" class="btn btn-info btn-lg">Create</a>
+            </div>
+          </div>
+        </div>
+        <form action="../filterTournament" method="post">
+          <div class="panel panel-default">
+            <div class="panel-heading">Filters</div>
+            <div class="panel-body">
+              <br>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="col-lg-4">
+                    <p>Name:</p>
+                  </div>
+                  <div class="col-lg-8">
+                    <input type="hidden" name="_csrf" value="{{token}}"> <input type="text" name="name" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="col-lg-4">
+                    <p>Description:</p>
+                  </div>
+                  <div class="col-lg-8">
+                    <input type="hidden" name="_csrf" value="{{token}}">
+                    <textarea type="text" name="description" class="form-control"
+                              rows="3" style="max-width: 100%;"></textarea>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="col-lg-4">
+                    <p>Game:</p>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="form-group">
+                      <select class="form-control" id="sel1" name="game">
+
+                        <option></option>
+                        {{#games}}
+                        <option>{{name}}</option> {{/games}}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="col-lg-4">
+                    <p>Mode:</p>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="form-group">
+                      <select class="form-control" id="sel1" name="mode">
+                        <option>Single</option>
+                        <option>Team</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="text-right">
+                    <input type="submit" class="btn btn-info btn-lg"
+                           value="Filter">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.row -->
+  <!-- /.container -->
+  <!-- Footer -->
+  <footer class="col-lg-12 navbar-default">
+    <div class="row">
+      <div class="col-lg-12 ">
+        <div class="col-xs-4">
+          <div class="text-left">
+            <p id="footerLogo">
+              <span><img src="images/logoG.png"></span> Dispute Project
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-4"></div>
+        <div class="text-right">
+          <div class="col-xs-4">
+            <a href="https://twitter.com/DisputeWeb?lang=es">
+              <span class="fa fa-twitter-square" id="footerLinks"></span>
+            </a> <a href="https://www.facebook.com/Dispute-627402047448785/?ref=ts&fref=ts">
+              <span class="fa  fa-facebook-square " id="footerLinks"></span>
+            </a> <a href="https://github.com/cddogaru/Dispute-DAW">
+              <span class="fa  fa-github " id="footerLinks"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- jQuery -->
+  <script src="js/jquery.js "></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="js/bootstrap.min.js "></script>
+</body>
+
+</html>
