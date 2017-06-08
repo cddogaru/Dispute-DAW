@@ -1,0 +1,22 @@
+/* colores
+ De mas claro a mas oscuro
+
+             #f2f2f2;
+    color 1: #B6B6D4;
+    color 2: #6969A2;
+    color 3: #11114C;
+    color 4: #020221;
+    color 5: #343477;
+*/
+
+.bracket {
+    height: 800px;
+    background: BLACK;
+    width: 110%;
+    margin-left: -5%;
+    color: white;
+}
+
+.separator {
+    height: 1em;
+}

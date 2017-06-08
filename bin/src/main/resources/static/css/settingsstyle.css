@@ -1,0 +1,67 @@
+/* colores
+ De mas claro a mas oscuro
+
+             #f2f2f2;
+    color 1: #B6B6D4;
+    color 2: #6969A2;
+    color 3: #11114C;
+    color 4: #020221;
+    color 5: #343477;
+*/
+
+#applyChanges {
+    padding-top: 13%;
+    text-align-last: center;
+}
+
+.btn-primary {
+    background-color: #141716;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #226764;
+    color: white;
+}
+
+.btn-primary:active:hover {
+    background-color: #226764;
+    color: white;
+}
+
+.btn-primary:focus {
+    background-color: #8DEFEB;
+    color: black;
+}
+
+#title {
+    text-align: center;
+    margin-right: 18%;
+    margin-top: 3%;
+    font-size: 70;
+    font-weight: bolder;
+    color: #11114C;
+}
+
+#contactUsBody {
+    text-align: center;
+    text-align-last: center;
+    color: black;
+}
+
+.settingsSecTitle {
+    margin-left: 1.5em;
+}
+
+
+.separator2 {
+    height: 2.2em;
+}
+
+#profileSetLeftSide {
+    height: 27em;
+}
+
+#navbar-icon {
+
+}
