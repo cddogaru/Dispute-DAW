@@ -3,7 +3,7 @@
 @Component({
     selector: 'as-header-component',
     templateUrl: './header.html',
-    styleUrls: ['../assets/styles/bootstrap.css', '../assets/styles/style.css', '../assets/styles/bootstrap.min.css']
+    styleUrls: ['../assets/styles/style.css']
 })
 
 export class HeaderComponent { }
