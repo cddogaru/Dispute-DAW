@@ -1,10 +1,10 @@
 ﻿/* You can add global styles to this file, and also import other style files */
 
-body {
+body#loadingb {
   background-color: #344557;
 }
 
-#content {
+#loadingd {
   color: white;
   text-decoration-color: white;
   align-content: center;
@@ -13,7 +13,7 @@ body {
   margin-top: 8%;
 }
 
-h1#loading {
+#loadingh {
   color: white;
   align-self: center;
   margin-left: 1em;
