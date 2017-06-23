@@ -28,7 +28,20 @@
         "../src/assets/js/bootstrap.js",
         "../src/assets/js/bootstrap.min.js",
         "../src/assets/js/loading.js",
-        "../src/assets/js/password.js"
+        "../src/assets/js/password.js",
+        "../src/assets/js/dropdown.js",
+
+        "../src/assets/js/affix.js",
+        "../src/assets/js/alert.js",
+        "../src/assets/js/button.js",
+        "../src/assets/js/carousel.js",
+        "../src/assets/js/collapse.js",
+        "../src/assets/js/modal.js",
+        "../src/assets/js/popover.js",
+        "../src/assets/js/scrollspy.js",
+        "../src/assets/js/tab.js",
+        "../src/assets/js/tooltip.js",
+        "../src/assets/js/transition.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
