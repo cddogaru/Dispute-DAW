@@ -13,7 +13,7 @@ export class IndexComponent {
     constructor(private http: Http) { 
         this.tournaments = [];
 
-        let url = "https://localHost:8443/api/tournaments/";
+        let url = "https://localhost:8443/api/tournaments/";
 
         this.http.get(url).subscribe(
             response => {

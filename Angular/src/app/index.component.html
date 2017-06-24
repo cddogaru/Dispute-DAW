@@ -35,21 +35,15 @@
     <!-- Content Row -->
     <div class="row">
 
-      <div class="col-md-4">
-
-        <p></p> <a class="btn btn-primary btn-lg">View bracket</a>
+      <div class="col-md-4" *ngFor="let tournament of tournaments">
+          
+        <h2><a href="tournament/{{tournament.name}}"><span>{{tournament.name}}</span></a></h2>
+                <p>{{tournament.description}}</p> <a class="btn btn-primary btn-lg" href="tournament/{{tournament.name}}">View bracket</a> 
       </div>
     </div>
     <!-- /.row -->
 
     <hr>
-
-        <div class="row" *ngFor="let tournament of tournaments">
-            <div class="col-md-4">
-                <h2><a href="tournament/{{tournament.name}}"><span>{{tournament.name}}</span></a></h2>
-                <p>{{tournament.description}}</p> <a class="btn btn-primary btn-lg" href="tournament/{{tournament.name}}">View bracket</a> 
-            </div>
-        </div>
 
 
 
