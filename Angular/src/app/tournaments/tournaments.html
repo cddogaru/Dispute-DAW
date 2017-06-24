@@ -1,133 +1,123 @@
-﻿<div class="container-fluid">
-  <div class="row">
-    {{#noAdmin}}
-    <div class="alert alert-danger alert-dismissable">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-      <strong>Error: </strong>You're not admin of your team
-    </div>
-    {{/noAdmin}}
-    <div class="col-lg-8">
-      <div class="panel panel-default">
-        <div class="panel-heading">TOURNAMENTS</div>
-        {{#tournaments}}
-        <div class="panel-group">
-          <div class="panel panel-default text-left">
-            <a href="tournament/{{name}}" class="tournament"><strong>{{name}}</strong></a>
-            <div class="row">
-              <div class="col-lg-6">
-                <p class="info">
-                  <span><img src="../images/{{#game}}{{game.img}}.png{{/game}}" height="20"
-											width="20" /></span>{{#game}}{{game.name}}{{/game}} || {{mode}} || Participans: {{numOfParticipants}}/{{maxPlayers}}
-                </p>
-                <p class="info">{{date}}</p>
-              </div>
-              <div class="col-lg-1 col-lg-offset-4">
-                {{#isLogged}} {{^started}} {{#singleTournament}}
-                <form action="/tournament/{{name}}" method="post">
-                  <input type="hidden" name="_csrf" value="{{token}}" /><strong><input
-											type="submit" class="btn btn-large btn-success"
-											value="Join in"></strong>
-                </form>
-                {{/singleTournament}} {{^singleTournament}}{{#userLogged.team}}
-                <form action="/tournament/{{getTournamentName}}" method="post" onsubmit="return confirm('Do you really want join {{name}} in the tournament?');">
-                  <input type="hidden" name="_csrf" value="{{token}}" /><strong><input
-											type="submit" class="btn btn-large btn-success"
-											value="Join in"></strong>
-                </form>
-                {{/userLogged.team}} {{^userLogged.team}}<a class="btn btn-large btn-default" href="teams.html">Join
-										in a team</a> {{/userLogged.team}} {{/singleTournament}} {{/started}} {{/isLogged}} {{^isLogged}} <a class="btn btn-success btn-large"
-                  href="/login">Join in</a> {{/isLogged}}
-              </div>
+﻿<div class="container-fluid row">
+
+  <div class="alert alert-danger alert-dismissable" *ngIf="noAdmin">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    <strong>Error: </strong>You're not admin of your team
+  </div>
+
+  <div class="col-lg-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">TOURNAMENTS</div>
+      <div class="panel-group" *ngFor="let tournament of tournaments">
+        <div class="panel panel-default text-left">
+          <a href="tournament/{{tournament.name}}" class="tournament"><strong>{{tournament.name}}</strong></a>
+          <div class="row">
+            <div class="col-lg-6">
+              <p class="info">
+                <span><img src="./assets/images/{{tournament.game.img}}.png" height="20"
+											width="20" /></span>{{tournament.game.name}} || {{tournament.mode}} || Participans: {{tournament.numOfParticipants}}/{{tournament.maxPlayers}}
+              </p>
+              <p class="info">{{tournament.date}}</p>
             </div>
-            <p>{{description}}</p>
+
+            <div class="col-lg-1 col-lg-offset-4">
+
+              <form action="/tournament/{{tournament.name}}" method="post" *ngIf="isLogged">
+                <input type="hidden" name="_csrf" value="{{token}}" /><strong><input
+											type="submit" class="btn btn-large btn-success"
+											value="Join in"></strong>
+              </form>
+
+              <form action="/tournament/{{getTournamentName}}" method="post">
+                <input type="hidden" name="_csrf" value="{{token}}" /><strong><input
+											type="submit" class="btn btn-large btn-success"
+											value="Join in"></strong>
+              </form>
+
+            </div>
           </div>
+          <p>{{tournament.description}}</p>
         </div>
-        {{/tournaments}}
-        <div id="tournamentsContainer"></div>
-        <div class="text-center" id="loading">
-          <img src="/images/spin.gif" />
+      </div>
+      <div id="tournamentsContainer"></div>
+      <div class="text-center" id="loading">
+        Loading...
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">New tournament</div>
+      <div class="panel-body">
+        <p>You can create your own tournament!</p>
+        <div class="text-right">
+          <a href="newTournament.html" class="btn btn-info btn-lg">Create</a>
         </div>
       </div>
     </div>
-    <div class="col-lg-3">
+
+    <form action="../filterTournament" method="post">
       <div class="panel panel-default">
-        <div class="panel-heading">New tournament</div>
+        <div class="panel-heading">Filters</div>
         <div class="panel-body">
-          <p>You can create your own tournament!</p>
-          <div class="text-right">
-            <a href="newTournament.html" class="btn btn-info btn-lg">Create</a>
+
+          <br>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-lg-4">
+                <p>Name:</p>
+              </div>
+              <div class="col-lg-8">
+                <input type="hidden" name="_csrf" value="{{token}}"> <input type="text" name="name" class="form-control">
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <form action="../filterTournament" method="post">
-        <div class="panel panel-default">
-          <div class="panel-heading">Filters</div>
-          <div class="panel-body">
-            <br>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="col-lg-4">
-                  <p>Name:</p>
-                </div>
-                <div class="col-lg-8">
-                  <input type="hidden" name="_csrf" value="{{token}}"> <input type="text" name="name" class="form-control">
-                </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-lg-4">
+                <p>Description:</p>
+              </div>
+              <div class="col-lg-8">
+                <input type="hidden" name="_csrf" value="{{token}}">
+                <textarea type="text" name="description" class="form-control" rows="3" style="max-width: 100%;"></textarea>
               </div>
             </div>
-            <br>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="col-lg-4">
-                  <p>Description:</p>
-                </div>
-                <div class="col-lg-8">
-                  <input type="hidden" name="_csrf" value="{{token}}">
-                  <textarea type="text" name="description" class="form-control" rows="3" style="max-width: 100%;"></textarea>
-                </div>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-lg-4">
+                <p>Mode:</p>
               </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="col-lg-4">
-                  <p>Game:</p>
-                </div>
-                <div class="col-lg-8">
-                  <div class="form-group">
-                    <select class="form-control" id="sel1" name="game">
-												
-												<option></option>
-												{{#games}}
-												<option>{{name}}</option> {{/games}}
-											</select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="col-lg-4">
-                  <p>Mode:</p>
-                </div>
-                <div class="col-lg-8">
-                  <div class="form-group">
-                    <select class="form-control" id="sel1" name="mode">
+              <div class="col-lg-8">
+                <div class="form-group">
+                  <select class="form-control" id="sel1" name="tournament.mode">
 												<option>Single</option>
 												<option>Team</option>
 											</select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="text-right">
-                  <input type="submit" class="btn btn-info btn-lg" value="Filter">
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-right">
+                <input type="submit" class="btn btn-info btn-lg" value="Filter" />
+              </div>
+            </div>
+          </div>
+
         </div>
-    </div>
+      </div>
+    </form>
   </div>
 </div>
