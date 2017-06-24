@@ -1,14 +1,13 @@
-<!--
 <div class="container">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-3"> <img src="../image/{{user.avatar}}" height="150" width="150" class="img-thumbnail" />
+                    <div class="col-md-3"> <img src="../assets/images/{{user.avatar}}.jpg" height="150" width="150" class="img-thumbnail" />
                         <h3><strong>{{user.nickName}}</strong></h3>
-                        <hr> {{#user.twitter}}
-                        <p> <span class="fa fa-twitter"></span> {{.}}</p>{{/user.twitter}} {{#user.twitch}}
-                        <p> <span class="fa fa-twitch"></span> {{.}}</p>{{/user.twitch}} {{#user.youtube}}
-                        <p> <span class="fa fa-youtube"></span> {{.}}</p>{{/user.youtube}}
+                        <hr>
+                        <p> <span class="fa fa-twitter"></span> {{user.twitter}}</p>
+                        <p> <span class="fa fa-twitch"></span> {{user.twitch}}</p>
+                        <p> <span class="fa fa-youtube"></span> {{user.youtube}}</p>
                         <p> <span class="fa fa-envelope-o"></span> {{user.email}}</p>
                     </div>
                     <div class="col-md-9">
@@ -21,29 +20,26 @@
                             <div id="tournaments" class="tab-pane fade in active">
                                 <br>
                                 <div class="well"><strong>Joined tournaments</strong></div>
-                                <div class="list-group"> {{#user.tournaments}}<a href="../tournament/{{name}}" class="list-group-item"><span><img src="../images/{{game.img}}.png" height="20" width="20"/>  - {{name}}</span></a> {{/user.tournaments}}</div>
+                                <div class="list-group" *ngFor="let tournament of tournaments"> {{tournament.name}}<a href="../tournament/{{user.name}}" class="list-group-item"><span><img src="../assets/images/{{user.game.img}}.png" height="20" width="20"/>  - {{user.name}}</span></a></div>
                             </div>
                             <div id="accounts" class="tab-pane fade">
                                 <br>
-                                <div class="well">Games id</div> {{#user.steam}}
-                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/steam.png"></span> {{.}}</p>{{/user.steam}} {{#user.battlenet}}
-                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/battlenet.png"></span> {{.}}</p>{{/user.battlenet}} {{#user.psn}}
-                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/psn.png"></span> {{.}}</p>{{/user.psn}} {{#user.xbox}}
-                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../images/icons/xbox.png"></span> {{.}} </p>{{/user.xbox}} </div>
+                                <div class="well">Games id</div>
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../assets/images/icons/steam.png"></span> {{user.steam}}</p>
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../assets/images/icons/battlenet.png"></span> {{user.battlenet}}</p>
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../assets/images/icons/psn.png"></span> {{user.psn}}</p>
+                                <p class="options">&ensp;&ensp;<span><img class="icons" src="../assets/images/icons/xbox.png"></span> {{user.xbox}} </p></div>
                             <div id="team" class="tab-pane fade">
                                 <br>
                                 <div class="well">Team</div>
-                                <br> {{#user.team}}
+                                <br> 
                                 <div class="row">
-                                    <div class="col-md-4"> <img src="../image/{{user.team.avatar}}" class="img-thumbnail" height="100" width="100" /></div>
+                                    <div class="col-md-4"> <img src="../assets/images/{{user.team.avatar}}.jpg" class="img-thumbnail" height="100" width="100" /></div>
                                     <div class="col-md-8"><a href="../team/{{user.team.name}}"><h3><strong>{{user.team.name}}</strong></h3></a></div>
-                                </div> {{/user.team}} {{^user.team}} NO TEAM {{/user.team}} </div>
+                                </div>  </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
--->
-
-ERRORES

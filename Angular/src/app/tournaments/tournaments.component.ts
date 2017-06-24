@@ -11,6 +11,7 @@ export class TournamentsComponent {
     private user = null;
 
     private isLoged: boolean = false;
+    private numOfParticipants: number = 0;
 
     constructor(private http: Http) { 
         this.tmethod();
@@ -32,7 +33,7 @@ export class TournamentsComponent {
             response => {
                 let data = response.json();
                 this.tournaments = data;
-        
+                this.numOfParticipants = data.participants[1];
                 console.log(this.tournaments);
             },
             error => console.error(error)
