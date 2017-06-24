@@ -8,6 +8,5 @@ import {Http} from '@angular/http';
   
 })
 export class AppComponent {
-  constructor(private http: Http){}
-  
+
 }
