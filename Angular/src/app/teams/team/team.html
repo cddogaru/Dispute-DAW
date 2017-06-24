@@ -1,5 +1,4 @@
-﻿<!--
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+﻿<!--  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <form action="../team/{{actualTeam.name}}/addGame" method="post">
         <input type="hidden" name="_csrf" value="{{token}}" />
@@ -23,17 +22,17 @@
       </form>
     </div>
   </div>
-
+-->
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="row">
           <div class="col-md-3">
-            <img src="../image/{{actualTeam.avatar}}" class="img-thumbnail" height="100" width="100" />
+            <img src="./assets/files/{{actualTeam.avatar}}.jpg" class="img-thumbnail" height="100" width="100" />
             <h3><strong>{{actualTeam.name}}</strong></h3>
             <hr>
             <p> <span class="fa fa-futbol-o"></span> {{actualTeam.acronym}}</p>
-            <br> {{#isLogged}} {{#doRequest}}
+            <br> <!-- {{#isLogged}} {{#doRequest}}
             <form action="../team/{{actualTeam.name}}/newRequest" method="post">
               <input type="hidden" name="_csrf" value="{{token}}" />
               <input type="hidden" name="userId" value="{{userLogged.Id}}" />
@@ -45,44 +44,49 @@
               <input type="hidden" name="userId" value="{{userLogged.id}}" />
               <input type="submit" class="btn btn-danger btn-lg" value="Leave Team">
             </form> {{/leaveTeam}} {{/isLogged}}
+            -->
           </div>
           <div class="col-md-9">
+            <!--
             {{#error}}
             <div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <strong>An error occurred </strong> </div>{{/error}} {{#request}}
             <div class="alert alert-success alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <strong>Success! Wait for an admin </strong> </div>{{/request}}
+            -->
             <ul class="nav nav-tabs">
               <li class="active"><a data-toggle="tab" href="#tournaments">Tournaments</a></li>
               <li><a data-toggle="tab" href="#friends">Members</a></li>
-              <li><a data-toggle="tab" href="#teams">Games</a></li> {{#admin}}
+              <li><a data-toggle="tab" href="#teams">Games</a></li> <!--{{#admin}}
               <li><a data-toggle="tab" href="#admin">Admin</a></li>{{/admin}}
+              -->
             </ul>
             <div class="tab-content">
               <div id="tournaments" class="tab-pane fade in active">
                 <br>
                 <div class="well"><strong>Joined tournaments</strong></div>
-                <div class="list-group">{{#actualTeam.tournaments}}<a href="../tournament/{{name}}" class="list-group-item"><span><img src="../images/{{game.img}}.png" height="20" width="20" />  - {{name}}</span></a>{{/actualTeam.tournaments}}</div>
+                <div class="list-group"><span *ngFor="let tournament of actualTeam.tournaments"><a href="../tournament/{{tournament.name}}" class="list-group-item"><span><img src="../files/{{tournament.game.img}}.png" height="20" width="20" />  - {{tournament.name}}</span></a></span></div>
               </div>
               <div id="friends" class="tab-pane fade">
                 <br>
                 <div class="well"><strong>Members</strong></div>
                 <ul class="list-group">
-                  {{#actualTeam.users}}
-                  <li class="list-group-item" id="captain"><img src="../image/{{avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{name}}">{{name}}</a></li> {{/actualTeam.users}}
+                  <li class="list-group-item" id="captain"  *ngFor="let user of actualTeam.users"><img src="./assets/files/{{user.avatar}}.jpg" class="img-thumbnail" height="50" width="50" /> <a href="../user/{{user.name}}">{{user.name}}</a></li>
                 </ul>
               </div>
               <div id="teams" class="tab-pane fade">
                 <br>
                 <div class="well"><strong>Games</strong></div>
                 <ul class="list-group">
-                  {{#actualTeam.games}}
-                  <li class="list-group-item"><img src="../images/{{img}}.png" height="30" width="30" /> {{name}}</li> {{/actualTeam.games}} {{#admin}}
+                  <li class="list-group-item" *ngFor="let game of actualTeam.games"><img src="./assets/images/{{game.img}}.png" height="30" width="30" /> {{game.name}}</li><!--{{#admin}}
                   <li class="list-group-item">
                     <div class="text-right">
                       <button class="btn btn-default" data-toggle="modal" data-target="#myModal">+Add Game</button>
                     </div>
                   </li> {{/admin}}
+                  -->
                 </ul>
-              </div> {{#admin}}
+              </div> 
+              <!--
+              {{#admin}}
               <div id="admin" class="tab-pane fade">
                 <br>
                 <div class="well"><strong>Requests</strong></div>
@@ -150,12 +154,10 @@
                   </div>
                 </form>
               </div> {{/admin}}
+              -->
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  -->
-
-  ERRORES

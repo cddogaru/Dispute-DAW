@@ -19,6 +19,7 @@ public class Application {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+            	registry.addMapping("/api/users/loggedUser").allowedOrigins("http://localhost:4200");
             	registry.addMapping("/api/**").allowedOrigins("http://localhost:4200");
             	registry.addMapping("/api/logIn").allowedOrigins("http://localhost:4200");
                 registry.addMapping("/api/tournaments/").allowedOrigins("http://localhost:4200");

@@ -1,6 +1,7 @@
 ﻿  <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">
+        <div class="panelBody text-right"> <a class="btn btn-success" href="newTeam.html">Create a Team</a> </div>
         <table class="table ">
           <thead>
             <tr>
@@ -9,11 +10,10 @@
               <th>Members</th>
               <th>Games</th>
             </tr>
-            <div class="panelBody text-right"> <a class="btn btn-success" href="newTeam.html">Create a Team</a> </div>
           </thead>
           <tbody>
-            <tr onclick="window.document.location='#';"  *ngFor="let team of teams">
-              <td><a [routerLink]="['/team/' + team.name]">{{team.name}}</a></td>
+            <tr  *ngFor="let team of teams">
+              <td><a [routerLink]="['/team/' + team.id]">{{team.name}}</a></td>
               <td> <a href="">{{team.creator.name}}</a> </td>
               <td>{{team.participants}}</td>
               <td> <span  *ngFor="let game of team.games"> | {{game.name}} </span></td>
