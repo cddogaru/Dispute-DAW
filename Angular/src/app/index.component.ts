@@ -10,24 +10,20 @@ import { Http } from '@angular/http';
 export class IndexComponent {
     private tournaments: string[] = [];
 
-    constructor(private http: Http) { }
-
-    dathing(){
-        console.log("hi");
+    constructor(private http: Http) { 
         this.tournaments = [];
 
         let url = "https://localHost:8443/api/tournaments/";
 
         this.http.get(url).subscribe(
             response => {
-                console.log("response");
-                /*
                 let data = response.json();
-                console.log(data);
-                for (var i = 0; i < data.items.length; i++) {
-                    let tournament = data.items[i].tournament.name;
-                    this.tournaments.push(tournament);
-                }*/
+                this.tournaments[0] = data[0];
+                this.tournaments[1] = data[1];
+                this.tournaments[2] = data[2];
+                
+                
+                console.log(this.tournaments);
             },
             error => console.error(error)
         );

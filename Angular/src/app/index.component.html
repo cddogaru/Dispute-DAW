@@ -44,11 +44,13 @@
 
     <hr>
 
-    <button 
-(click)="dathing();">
-Buscar</button>
+        <div class="row" *ngFor="let tournament of tournaments">
+            <div class="col-md-4">
+                <h2><a href="tournament/{{tournament.name}}"><span>{{tournament.name}}</span></a></h2>
+                <p>{{tournament.description}}</p> <a class="btn btn-primary btn-lg" href="tournament/{{tournament.name}}">View bracket</a> 
+            </div>
+        </div>
 
 
-        <p *ngFor="let tournament of tournaments">{{tournament}} </p>
 
   </div>
