@@ -12,11 +12,12 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
+          <div *ngIf="logged; else elseContainer">
           <li>
             <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" height="50" width="50" />
             <ul class="dropdown-menu">
               <li>
-                <a [routerLink]="['user/0']">
+                <a [routerLink]="['user/0 ']">
                   <strong></strong>
                   <p class="small">Profile</p>
                 </a>
@@ -31,7 +32,10 @@
             </ul>
           </li>
           <li><a [routerLink]="['settings1']" id="topRightMenu"><span class="skinNavbarLinks">Settings</span></a></li>
-          <li><a [routerLink]="['login']"><span class="skinNavbarLinks">Sign in</span></a></li>
+          </div>
+          
+          <ng-template #elseContainer><a [routerLink]="['login']"><span class="skinNavbarLinks">Sign in</span></a></ng-template>
+          
           <li><a [routerLink]="['contactus']"><span class="skinNavbarLinks">Contact</span></a></li>
         </ul>
         <form class="navbar-form navbar-left" action="../findTournament" method="post">
