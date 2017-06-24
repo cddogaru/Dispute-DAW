@@ -35,17 +35,13 @@ export class UserComponent {
         this.http.get(url2).subscribe(
             response =>{
                 let fatournaments = response.json();
-                console.log(fatournaments.participants.length);
-                for(var i = 0; i < this.tournaments.length; i++){
+                for(var i = 0; i < fatournaments.length; i++){
                     for(var j = 0; j < fatournaments[i].participants.length; j++){
-                        console.log(fatournaments[i].participants[j].id);
                         if(fatournaments[i].participants[j].id === this.userId){
-                            console.log(fatournaments[i]);
-                            this.tournaments.push(fatournaments[i].participants[j]);
+                            this.tournaments.push(fatournaments[i]);
                         }
                     }
                 }
-                console.log(this.tournaments);
             },
             error => console.log(error)
         );

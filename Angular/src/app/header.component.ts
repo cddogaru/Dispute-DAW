@@ -9,23 +9,31 @@ import { Http } from '@angular/http';
 export class HeaderComponent {
 
      private user;
-
+     private logged: boolean = false;
     constructor(private http: Http) { 
 
         let url = "https://localhost:8443/api/users/loggedUser/";
-        let logged = false;
         this.http.get(url).subscribe(
             response => {
                 console.log("LOGGED");
                 this.user = response.json();
                 if(this.user!=null){
-                    logged=true;
+                    this.logged=true;
                 }
                 console.log(this.user);
             }
         );
-        console.log(logged);
+        console.log(this.logged);
     }
 
+    logout(){
+        console.log("hola");
+         this.http.get("https://localhost:8443/api/logOut").subscribe(
+            response =>{
+                location.reload();
+            },
+            error => console.log(error)
+        );
+    }
 
  }
