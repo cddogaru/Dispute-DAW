@@ -1,10 +1,10 @@
 ﻿import { Component } from '@angular/core';
 
 @Component({
-    selector: 'as-newTournament',
-    templateUrl: 'app/tournaments/newTournament/newTournament.html',
+    selector: 'newTournament',
+    templateUrl: './newTournament.html',
     styleUrls: [
-        'tournaments/newTournament/newTournament.css'
+        './newTournament.css'
     ]
 })
 export class NewTournamentComponent {

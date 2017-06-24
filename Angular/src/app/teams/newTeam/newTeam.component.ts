@@ -1,10 +1,10 @@
 ﻿import { Component } from '@angular/core';
 
 @Component({
-    selector: 'as-newTeam',
-    templateUrl: 'app/teams/newTeam/newTeam.html',
+    selector: 'newTeam',
+    templateUrl: './newTeam.html',
     styleUrls: [
-        'teams/newTeam/newTeam.css'
+        './newTeam.css'
     ]
 })
 export class NewTeamComponent {

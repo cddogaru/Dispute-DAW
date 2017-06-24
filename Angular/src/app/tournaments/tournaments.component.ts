@@ -2,7 +2,7 @@
 
 @Component({
     selector: 'as-tournaments',
-    templateUrl: 'app/tournaments/tournaments.html',
+    templateUrl: './tournaments.html',
     styleUrls: [
         'tournaments.css'
     ]

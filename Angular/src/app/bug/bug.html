@@ -1,0 +1,35 @@
+<div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="sidebar-nav">
+                        <div class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse"> <span class="sr-only">Settings</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <span class="visible-xs navbar-brand">Settings</span> </div>
+                            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li><a [routerLink]="['../contactus']">Contact us</a></li>
+                                    <li class="active"><a [routerLink]="['../reportBug']">Report bug</a></li>
+                                </ul>
+                            </div>
+                            <!--/.nav-collapse -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h1>Report bug:</h1>
+                            <hr>
+                            <form method="post">
+                            	<input type="hidden" name="_csrf" value="{{token}}">
+	                            <textarea id="report_bug" name="description" class="form-control" rows="6" style="max-width: 100%;" placeholder="Please, write the bug you found to report it. (max 1000 characters)"></textarea>
+	                            <br>
+	                            <input type="submit" class="btn btn-success" value="Send">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -2,9 +2,9 @@
 
 @Component({
     selector: 'as-login',
-    templateUrl: 'app/login/login.html',
+    templateUrl: './login.html',
     styleUrls: [
-        'login.css'
+        './login.css'
     ]
 })
 export class LoginComponent {
