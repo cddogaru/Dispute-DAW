@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'settings1',
     templateUrl: './settings1.html',
-    styles:['./assets/styles/settingsstyle.css']
+    styles:['../assets/styles/settingsstyle.css']
 })
 
 export class Settings1Component {
