@@ -28,8 +28,6 @@ export class TeamComponent {
     this.http.get(url).subscribe(
             response => {
                 this.actualTeam = response.json();
-                console.log("EQUIPO: ")
-                console.log(this.actualTeam);
             },
             error => console.error(error)
         );
