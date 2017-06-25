@@ -30,7 +30,7 @@ export class SignupComponent {
 
 
     singup(username: string, email: string, nick: string, password: string) {
-        if (this.data.name != "" && this.data.userName != "" && this.data.email != "" && this.data.nickname != "" && this.data.password != "") {
+        if (username != "" && email != "" && nick != "" && password != "") {
             this.data.name = username;
             this.data.userName = username;
             this.data.email = email;
