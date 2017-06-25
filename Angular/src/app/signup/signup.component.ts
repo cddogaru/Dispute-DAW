@@ -7,7 +7,6 @@ import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 })
 export class SignupComponent {
     private data = {
-        id: 23,
         name: "",
         userName: "",
         avatar: "",
