@@ -10,6 +10,7 @@ import { Http } from '@angular/http';
 export class IndexComponent {
     private tournaments: string[] = [];
     private isLogged: boolean = false;
+    private isNotLogged: boolean = true;
 
     constructor(private http: Http) { 
         this.tournaments = [];
@@ -38,6 +39,7 @@ export class IndexComponent {
                 }else{
                     this.isLogged = true;
                 }
+                this.isNotLogged = !this.isLogged;
             },
             error=> console.log(error)
         );
