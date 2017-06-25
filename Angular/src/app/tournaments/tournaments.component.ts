@@ -33,8 +33,6 @@ export class TournamentsComponent {
             response => {
                 let data = response.json();
                 this.tournaments = data;
-                this.numOfParticipants = data.participants[1];
-                console.log(this.tournaments);
             },
             error => console.error(error)
         );

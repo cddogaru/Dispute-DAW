@@ -36,7 +36,7 @@ export class NewTeamComponent {
                 },
                 error => {
                     this.error = true;
-                    this.errorText = "Error in the data";
+                    this.errorText = "Data error";
                     window.scrollTo(0, 0);
                 }
             );

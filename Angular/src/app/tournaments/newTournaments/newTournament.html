@@ -1,5 +1,4 @@
 ﻿
-<!--
   <div class="container">
     <br>
     <form class="forml" method="post">
@@ -7,9 +6,9 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h1 class="Title2">Create a tournament:</h1>
-        </div>{{#error}}
+        </div><!--{{#error}}
         <div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Invalid Tournament Name </strong> </div>{{/error}}
-
+        -->
         <div class="panel-body">
           <div class="col-lg-12">
             <div class="row top-buffer">
@@ -18,7 +17,7 @@
                 <p class="options">Tournament name:</p>
               </div>
               <div class="col-md-8">
-                <input type="text" class="form-control" name="name" required>
+                <input #name type="text" class="form-control" name="name" required>
               </div>
             </div>
 
@@ -30,7 +29,7 @@
                 <p class="options">Tournament participant capacity:</p>
               </div>
               <div class="col-lg-8">
-                <input class="form-control" type="number" value="32"
+                <input #maxPlayers class="form-control" type="number" value="32"
                        id="example-number-input" name="max" required>
               </div>
             </div>
@@ -44,7 +43,7 @@
               </div>
               <div class="col-lg-8">
                 <div class="form-group">
-                  <label for="gameSelect">Select tournament's mode</label> <select class="form-control" name="mode">
+                  <label for="gameSelect">Select tournament's mode</label> <select #mode class="form-control" name="mode">
                     <option>Single</option>
                     <option>Team</option>
                   </select>
@@ -60,8 +59,8 @@
                 <p class="options">Start time:</p>
               </div>
               <div class="col-lg-8">
-                <input type="date" name="date" step="1" min="2017-01-01"
-                       max="2017-12-31" value="2017-03-20"> <input type="time"
+                <input #date1 type="date" name="date" step="1" min="2017-01-01"
+                       max="2017-12-31" value="2017-03-20"> <input #date2 type="time"
                                                                    name="time" value="00:00">
               </div>
             </div>
@@ -73,9 +72,9 @@
               </div>
               <div class="col-lg-8">
                 <div class="form-group">
-                  <label for="gameSelect">Select tournament's game</label> <select class="form-control" name="gameName">
-                    {{#games}}
-                    <option>{{name}}</option> {{/games}}
+                  <label for="gameSelect">Select tournament's game</label> <select #game class="form-control" name="gameName">
+                   
+                    <option *ngFor="let game of games">{{game.name}}</option>
                   </select>
                 </div>
 
@@ -89,7 +88,7 @@
               </div>
               <div class="col-lg-8">
                 <div class="form-group">
-                  <textarea class="form-control" rows="5" name="comment"
+                  <textarea #description class="form-control" rows="5" name="comment"
                             style="max-width: 100%"></textarea>
                 </div>
               </div>
@@ -98,14 +97,14 @@
             <div class="text-center">
               <div>
                 <input class="btn btn-primary btn-md" type="submit"
-                       value="Create">
+                       value="Create" (click)="newTournament(name.value, description.value, maxPlayers.value, mode.value, date1.value, date2.value, game.value)">
               </div>
             </div>
             <br>
+    
+  </div>
+
+  </div>
+  </div>
     </form>
   </div>
-  </div>
-  </div>
-  </div>
-  -->
-  NewTournament

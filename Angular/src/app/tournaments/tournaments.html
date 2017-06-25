@@ -10,7 +10,7 @@
       <div class="panel-heading">TOURNAMENTS</div>
       <div class="panel-group" *ngFor="let tournament of tournaments">
         <div class="panel panel-default text-left">
-          <a href="tournament/{{tournament.name}}" class="tournament"><strong>{{tournament.name}}</strong></a>
+          <a [routerLink]="['../tournament/' + tournament.id]" class="tournament"><strong>{{tournament.name}}</strong></a>
           <div class="row">
             <div class="col-lg-6">
               <p class="info">
@@ -49,7 +49,7 @@
       <div class="panel-body">
         <p>You can create your own tournament!</p>
         <div class="text-right">
-          <a href="newTournament.html" class="btn btn-info btn-lg">Create</a>
+          <a [routerLink]="['../newTournament']" class="btn btn-info btn-lg">Create</a>
         </div>
       </div>
     </div>
