@@ -9,6 +9,7 @@ import { Http } from '@angular/http';
 
 export class IndexComponent {
     private tournaments: string[] = [];
+    private isLogged: boolean = false;
 
     constructor(private http: Http) { 
         this.tournaments = [];
@@ -26,6 +27,19 @@ export class IndexComponent {
                 console.log(this.tournaments);
             },
             error => console.error(error)
+        );
+
+        this.http.get("https://localhost:8443/api/users/loggedUser/").subscribe(
+            response=>{
+                let data1 = response.json();
+                if(data1 === null){
+                    this.isLogged = false;
+
+                }else{
+                    this.isLogged = true;
+                }
+            },
+            error=> console.log(error)
         );
     }
 }
