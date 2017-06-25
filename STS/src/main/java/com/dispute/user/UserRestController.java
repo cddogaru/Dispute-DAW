@@ -72,12 +72,15 @@ public class UserRestController {
 	@JsonView(UserPrivateView.class)
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<User> newUser(@RequestBody User user){
+		System.out.println(user);
 		ResponseEntity<User> toRet;
 		if(user.anyNull()){
 			user.setAvatar("Default");
 			userRepository.save(user);
 			toRet = new ResponseEntity<>(user, HttpStatus.CREATED);
+			System.out.println("ACIERTOOOOOO");
 		}else{
+			System.out.println("ERROOOOOR");
 			toRet = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return toRet;

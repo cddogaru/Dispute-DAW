@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="form-group text-center">
-              <button class="btn btn-default" (click)="login(username.value, password.value);">Login</button> <a href="/signup" type="button" class="btn btn-info">Sign up!</a>
+              <button class="btn btn-default" (click)="login(username.value, password.value);">Login</button> <a [routerLink]="['../signup']" type="button" class="btn btn-info">Sign up!</a>
             </div>
           </form>
         </div>

@@ -20,6 +20,7 @@ import {BugComponent} from './bug/bug.component'
 import {UserComponent} from './user/user.component'
 import {Settings1Component} from './settings/settings1.component'
 import {Settings2Component} from './settings/settings2.component'
+import {SignupComponent} from './signup/signup.component'
 @NgModule({
   declarations: [
       AppComponent,
@@ -37,7 +38,8 @@ import {Settings2Component} from './settings/settings2.component'
       BugComponent,
       UserComponent,
       Settings1Component,
-      Settings2Component
+      Settings2Component,
+      SignupComponent
   ],
   imports: [
     BrowserModule,
