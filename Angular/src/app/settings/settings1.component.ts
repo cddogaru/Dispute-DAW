@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 @Component({
     selector: 'settings1',
@@ -9,18 +9,39 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class Settings1Component {
-
     private user: string[] = [];
+    private currentid = "";
+    private file: File;
 
-    constructor(private route: ActivatedRoute, private http: Http) { }
+    constructor(private route: ActivatedRoute, private http: Http, private router: Router) { }
 
     ngOnInit() {
         this.http.get("https://localhost:8443/api/users/loggedUser/").subscribe(
             response => {
-                this.user = response.json();
+                let uuser = response.json();
+                this.user = uuser;
+                this.currentid = uuser.id;
             },
             error => console.error(error)
         );
     }
+
+    setAvatar(newavatar: any){
+        let eventObj: MSInputMethodContext = <MSInputMethodContext> newavatar;
+        let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
+        let files: FileList = target.files;
+        this.file = files[0];
+
+        console.log(this.file);
+        this.http.post("https://localhost:8443/api/users/"+this.currentid+"/image/", this.currentid, this.file).subscribe(
+                response => {
+                    this.router.navigate(['/users/'+this.currentid]);
+                },
+                error => {
+                    window.scrollTo(0, 0)
+                }
+        );
+    }
+
 
 }

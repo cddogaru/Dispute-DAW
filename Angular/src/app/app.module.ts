@@ -21,6 +21,8 @@ import {UserComponent} from './user/user.component'
 import {Settings1Component} from './settings/settings1.component'
 import {Settings2Component} from './settings/settings2.component'
 import {SignupComponent} from './signup/signup.component'
+
+
 @NgModule({
   declarations: [
       AppComponent,

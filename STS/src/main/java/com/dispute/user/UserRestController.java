@@ -74,13 +74,14 @@ public class UserRestController {
 	
 	@JsonView(UserPublicView.class)
 	@RequestMapping(value = "/{user}/image", method = RequestMethod.POST)
-	public ResponseEntity<User> postImage(@RequestBody User user, @RequestParam("pic") MultipartFile file){
+	public ResponseEntity<User> postImage(@RequestBody long user, @RequestParam("pic") MultipartFile file){
 		ResponseEntity<User> toRet;
-		User modUser = userRepository.findByName(user.getName());
-		if((user.anyNull()) && ((modUser.getRoles().contains("ROLE_ADMIN")) || ((userRepository.findByName(userComponent.getLoggedUser().getName())).getName().equals(user.getName())))){
+		User modUser = userRepository.findById(user);
+		System.out.println("hola");
+		if((modUser.anyNull()) && ((modUser.getRoles().contains("ROLE_ADMIN")) || ((userRepository.findByName(userComponent.getLoggedUser().getName())).getName().equals(modUser.getName())))){
 
 			if (!file.isEmpty()) {
-				String fileName = user.getName() + ".jpg";
+				String fileName = modUser.getName() + ".jpg";
 				try {
 					File filesFolder = new File("files");
 					if (!filesFolder.exists()) {
@@ -89,7 +90,7 @@ public class UserRestController {
 
 					File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
 					file.transferTo(uploadedFile);
-					user.setAvatar(user.getName());
+					modUser.setAvatar(modUser.getName());
 
 				} catch (Exception e) {
 					toRet = new ResponseEntity<>(modUser, HttpStatus.INTERNAL_SERVER_ERROR);

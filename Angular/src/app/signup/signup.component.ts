@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
+
 @Component({
     selector: 'signup',
     templateUrl: './signup.html'
 })
+
 export class SignupComponent {
     private data = {
         name: "",
