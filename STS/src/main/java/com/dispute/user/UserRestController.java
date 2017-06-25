@@ -1,5 +1,6 @@
 package com.dispute.user;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -69,6 +72,39 @@ public class UserRestController {
 		return toRet;
 	}
 	
+	@JsonView(UserPublicView.class)
+	@RequestMapping(value = "/{user}/image", method = RequestMethod.POST)
+	public ResponseEntity<User> postImage(@RequestBody User user, @RequestParam("pic") MultipartFile file){
+		ResponseEntity<User> toRet;
+		User modUser = userRepository.findByName(user.getName());
+		if((user.anyNull()) && ((modUser.getRoles().contains("ROLE_ADMIN")) || ((userRepository.findByName(userComponent.getLoggedUser().getName())).getName().equals(user.getName())))){
+
+			if (!file.isEmpty()) {
+				String fileName = user.getName() + ".jpg";
+				try {
+					File filesFolder = new File("files");
+					if (!filesFolder.exists()) {
+						filesFolder.mkdirs();
+					}
+
+					File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
+					file.transferTo(uploadedFile);
+					user.setAvatar(user.getName());
+
+				} catch (Exception e) {
+					toRet = new ResponseEntity<>(modUser, HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+			}
+
+			userRepository.save(modUser);
+			toRet = new ResponseEntity<>(modUser, HttpStatus.OK);
+		}else{
+			toRet = new ResponseEntity<>(modUser, HttpStatus.BAD_REQUEST);
+		}
+		
+		return toRet;
+	}
+	
 	@JsonView(UserPrivateView.class)
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<User> newUser(@RequestBody User user){
@@ -105,5 +141,6 @@ public class UserRestController {
 		}
 	}
 	
+
 	
 }
