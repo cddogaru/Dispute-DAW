@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
-
+import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 @Component({
     selector: 'signup',
     templateUrl: './signup.html'
 })
-export class SignupComponent { 
+export class SignupComponent {
     private data = {
         id: 23,
         name: "",
@@ -13,7 +13,7 @@ export class SignupComponent {
         avatar: "",
         nickname: "",
         password: "",
-        email: "",
+        email: null,
         team: null,
         twitter: null,
         twitch: null,
@@ -24,25 +24,33 @@ export class SignupComponent {
         psn: null,
         xbox: null
     };
+    private error: boolean = false;
+    private errorText: string;
+    constructor(private http: Http, private router: Router) { }
 
-    constructor(private http: Http) { }
 
-
-    singup(username: string, email: string, nick: string, password: string){
-        this.data.name= username;
-        this.data.userName = username;
-        this.data.email = email;
-        this.data.nickname = nick;
-        this.data.password = password;
-        this.data.avatar = "Default";
-        this.http.post("https://localhost:8443/api/users/", this.data).subscribe(
-            response =>{
-                console.log("CREADO " + this.data);
-            },
-            error => { console.log("Error singup");
-                    console.log(error);
-                    console.log(this.data);
-            }
-        );
+    singup(username: string, email: string, nick: string, password: string) {
+        if (this.data.name != "" && this.data.userName != "" && this.data.email != "" && this.data.nickname != "" && this.data.password != "") {
+            this.data.name = username;
+            this.data.userName = username;
+            this.data.email = email;
+            this.data.nickname = nick;
+            this.data.password = password;
+            this.data.avatar = "Default";
+            this.http.post("https://localhost:8443/api/users/", this.data).subscribe(
+                response => {
+                    this.router.navigate(['/login']);
+                },
+                error => {
+                    this.error = true;
+                    this.errorText = "UserName already exists";
+                    window.scrollTo(0, 0);
+                }
+            );
+        } else {
+            this.error = true;
+            this.errorText = "Empty fields";
+            window.scrollTo(0, 0);
         }
     }
+}

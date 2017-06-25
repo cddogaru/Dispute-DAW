@@ -15,7 +15,7 @@
             <div class="col-lg-6">
               <p class="info">
                 <span><img src="./assets/images/{{tournament.game.img}}.png" height="20"
-											width="20" /></span>{{tournament.game.name}} || {{tournament.mode}} || Participans: {{numOfParticipants}}/{{tournament.maxPlayers}}
+											width="20" /></span>{{tournament.game.name}} || {{tournament.mode}} || Participans: {{tournament.participants.length}}/{{tournament.maxPlayers}}
               </p>
               <p class="info">{{tournament.date}}</p>
             </div>
@@ -39,7 +39,6 @@
           <p>{{tournament.description}}</p>
         </div>
       </div>
-      <div id="tournamentsContainer"></div>
       <div class="text-center" id="loading">
         Loading...
       </div>

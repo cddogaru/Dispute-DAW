@@ -18,8 +18,6 @@ export class TeamsComponent {
         this.http.get(url).subscribe(
             response => {
                 this.teams = response.json();
-                
-                console.log(this.teams);
             },
             error => console.error(error)
         );

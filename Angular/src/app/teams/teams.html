@@ -15,7 +15,7 @@
             <tr  *ngFor="let team of teams">
               <td><a [routerLink]="['/team/' + team.id]">{{team.name}}</a></td>
               <td> <a href="">{{team.creator.name}}</a> </td>
-              <td>{{team.participants}}</td>
+              <td>{{team.users.length}}</td>
               <td> <span  *ngFor="let game of team.games"> | {{game.name}} </span></td>
             </tr>
           </tbody>
