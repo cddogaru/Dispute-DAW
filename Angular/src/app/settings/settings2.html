@@ -36,7 +36,7 @@
                 <div class="col-lg-9">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form action="/profileAccounts" method="post">
+                            <form >
                                 <h2>Linked Accounts:</h2>
 
                                 <hr>
@@ -48,7 +48,7 @@
                                         <p class="options"><span><img class="icons" src="../assets/images/icons/psn.png"></span> PSN: </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="psn" value="{{user.psn}}">
+                                        <input #psn type="text" class="form-control" name="psn">
                                     </div>
                                 </div>
 
@@ -58,7 +58,7 @@
                                             </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="xbox" value="{{user.xbox}}">
+                                        <input #xbox type="text" class="form-control" name="xbox">
                                     </div>
                                 </div>
 
@@ -67,7 +67,7 @@
                                         <p class="options"><span><img class="icons" src="../assets/images/icons/steam.png"></span> Steam: </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="steam" value="{{user.steam}}">
+                                        <input #steam type="text" class="form-control" name="steam">
                                     </div>
                                 </div>
 
@@ -77,7 +77,7 @@
                                             </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="battlenet" value="{{user.battlenet}}">
+                                        <input #battlenet type="text" class="form-control" name="battlenet">
                                     </div>
                                 </div>
 
@@ -87,7 +87,7 @@
                                             </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="origin" value="{{user.origin}}">
+                                        <input #origin type="text" class="form-control" name="origin">
                                     </div>
                                 </div>
 
@@ -97,7 +97,7 @@
                                             </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="twitter" value="{{user.twitter}}">
+                                        <input #twitter type="text" class="form-control" name="twitter">
                                     </div>
                                 </div>
 
@@ -107,7 +107,7 @@
                                             </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="twitch" value="{{user.twitch}}">
+                                        <input #twitch type="text" class="form-control" name="twitch" >
                                     </div>
                                 </div>
 
@@ -119,13 +119,13 @@
 
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="youtube" value="{{user.youtube}}">
+                                        <input #youtube type="text" class="form-control" name="youtube" >
                                     </div>
                                 </div>
 
                                 <br>
 
-                                <div class="text-right"> <input class="btn btn-primary btn-lg" type="submit" value="Apply changes">
+                                <div class="text-right"> <input class="btn btn-primary btn-lg" type="submit" value="Apply changes" (click)="changes(twitter.value, twitch.value, youtube.value, steam.value, origin.value, battlenet.value, psn.value, xbox.value)">
                                 </div>
 
                             </form>
