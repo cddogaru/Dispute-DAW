@@ -1,5 +1,5 @@
 ﻿<body>
-
+<!--
  
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" *ngFor="let UserInMatch of usersInMatch">
     <div class="modal-dialog" role="document">
@@ -40,13 +40,13 @@
       </div>
     </div>
   </div> 
-
+-->
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="row">
           
-          <div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <strong>Error: </strong>You're already in this tournament </div>
+          <!-- <div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <strong>Error: </strong>You're already in this tournament </div>-->
           <div class="col-md-9">
 
             <ul class="nav nav-tabs">
@@ -56,14 +56,6 @@
               <li><a data-toggle="tab" href="#support">Support</a></li>
               <li><a data-toggle="tab" href="#admin" *ngIf="isAdmin">Admin</a></li> 
             </ul>
-
-
-
-
-
-
-
-
 
 
             <div class="tab-content">
@@ -76,40 +68,34 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">Info</div>
                   <div class="panel-body">
-                    <p><strong>  Game: <img src="../images/DefaultTeam.jpg" height="20" width="20" /></strong></p>
+                    <p><strong>  Game: <img src="/assets/images/{{tournament.game.img}}.png" height="20" width="20" /> {{tournament.game.name}}</strong></p>
                     <p><strong>Mode: </strong>{{tournament.mode}}</p>
-                    <p><strong>participants: </strong>{{tournament.numOfParticipants}}/{{tournament.maxPlayers}}</p>
+                    <p><strong>participants: </strong>{{tournament.participants.length}}/{{tournament.maxPlayers}}</p>
                     <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> {{tournament.date}}</p>
                   </div>
                 </div>
                 <div class="panel panel-default">
                   <div class="panel-heading">Winner</div>
                   <div class="panel-body">
-                    <div class="tab-pane" *ngFor="let participant of participatns">
-                      <h1>
-                        <img src="../image/{{avatar}}" class="img-thumbnail" height="70" width="70" />
-                      </h1> 
-                    </div> 
+                   
                   </div>
                 </div>
               </div>
               <div id="participants" class="tab-pane">
                 <br> 
-                <ul class="list-group">
-                  <li class="list-group-item"><img src="https://localhost:8043/image/Default" class="img-thumbnail" height="50" width="50" /><a href="../user/{{name}}">hi </a><a href="../team/{{name}}">{{tournament.name}}</a></li>
+                <ul *ngFor="let participant of participants" class="list-group">
+                  <li class="list-group-item"><img src="https://localhost:8443/image/{{participant.avatar}}" class="img-thumbnail" height="50" width="50" /><a href="../user/{{participant.name}}">{{participant.name}} </a></li>
                 </ul> 
               </div>
-              <div id="rounds" class="tab-pane" *ngFor="let round of tournament.rounds">
-                <ul class="nav nav-tabs">
-                  <li class="active"><a data-toggle="tab" href="#{{id}}">{{round.name}}</a></li>
-                  <li><a data-toggle="tab">Winner</a></li> 
+              <div id="rounds" class="tab-pane">
+                <ul class="nav nav-tabs"  *ngFor="let round of rounds">
+                  <li ><a data-toggle="tab" href="#{{round.id}}">Round {{round.id}}</a></li>
+                  <!--<li><a data-toggle="tab">Winner</a></li>--> 
                 </ul>
                 <div class="tab-content">
-                  
-                  <div id="{{id}}" class="tab-pane fade in active">
+                  <div *ngFor="let round of rounds" id="{{round.id}}" class="tab-pane">
                     <br>
                     <ul class="list-group">
-                      
                       <li class="list-group-item">
                         <table class="table">
                           
@@ -121,7 +107,7 @@
 
                             <tbody>
                               <tr>
-                                <td><img src="https://localhost:8043/image/Default" class="img-thumbnail" height="50" width="50" /> <a href="users">Raul</a></td>
+                                <td><img src="https://localhost:8443/image/Default" class="img-thumbnail" height="50" width="50" /> <a href="users">Raul</a></td>
                                 <td> </td> 
                                 <td class="text-right">
                                   <input type="number" name="result1" min="0" max="3" value="0"/>
@@ -131,7 +117,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <td><img src="https://localhost:8043/image/Default" class="img-thumbnail" height="50" width="50" /> <a href="users">Rafa</a></td>
+                                <td><img src="https://localhost:8443/image/Default" class="img-thumbnail" height="50" width="50" /> <a href="users">Rafa</a></td>
                                 <td> </td> 
                                 <td class="text-right">
                                   <input type="number" name="result2" min="0" max="3" value="0"/>
@@ -230,7 +216,7 @@
               <div class="panel-body">
                 <p><strong>Game: </strong></p>
                 <p><strong>Mode: </strong>{{tournament.mode}}</p>
-                <p><strong>participants: </strong>{{tournament.numOfParticipants}}/{{tournament.maxPlayers}}</p>
+                <p><strong>participants: </strong>{{tournament.participants.length}}/{{tournament.maxPlayers}}</p>
                 <p><i class="fa fa-clock-o fa-5" aria-hidden="true"></i> {{tournament.date}}</p>
               </div>
             </div>

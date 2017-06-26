@@ -53,7 +53,7 @@ export class Settings1Component {
         console.log(this.file);
         this.http.post('https://localhost:8443/api/users/' + this.currentid + "/image/", this.formData).subscribe(
             response => {
-                this.router.navigate(['/users/' + this.currentid]);
+                location.reload();
             },
             error => {
                 window.scrollTo(0, 0)

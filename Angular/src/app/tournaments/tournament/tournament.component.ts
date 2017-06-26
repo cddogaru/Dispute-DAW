@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     ]
 })
 export class TournamentComponent {
-    private tournament: string[] = [];
+    private tournament;
     private user = null;
     private admins: any;
     private isLoged: boolean = false;
@@ -20,18 +20,27 @@ export class TournamentComponent {
     private participants = "";
     private isAdmin: any;
     private usersInMatch: any;
-
+    private rounds;
     constructor(private route: ActivatedRoute, private http: Http) {
-        this.tmethod();
 
+    }
+
+     ngOnInit() : void{
+         
+         
+           
         this.http.get("https://localhost:8443/api/users/loggedUser/").subscribe(
             response => {
                 this.user = response.json();
                 this.isLoged = (this.user != null);
+                this.isAdmin = this.isAdmin || this.user.roles.includes("ROLE_ADMIN");
+
+                 this.tmethod();
             },
             error => console.log(error)
         );
-    }
+     }
+
     tmethod() {
         this.tournament = [];
         this.route.params.subscribe(params => {
@@ -49,10 +58,26 @@ export class TournamentComponent {
                 this.tournament = data;
                 this.admins = data.admins;
                 this.participants = data.participants;
-                this.usersInMatch
+                for(let admin of this.tournament.admins){
+                if(!this.isAdmin){ this.isAdmin= admin.id === this.user.id ;}
+                this.getRounds();
+            }
+            
             },
             error => console.error(error)
         );
-        this.isAdmin = this.admins.contains(this.user);
+        
+        
+    }
+
+    getRounds(){
+        let url = "https://localhost:8443/api/tournaments/";
+
+        this.http.get(url + this.tournamentId + "/rounds").subscribe(
+            response => {
+                this.rounds = response.json();
+                console.log(this.rounds);
+            }
+        );
     }
 }

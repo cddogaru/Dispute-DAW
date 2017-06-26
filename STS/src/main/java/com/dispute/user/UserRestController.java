@@ -54,7 +54,6 @@ public class UserRestController {
 	public ResponseEntity<User> modifyUser(@RequestBody User user){
 		ResponseEntity<User> toRet;
 		User modUser = userRepository.findByName(user.getName());
-		System.out.println(user);
 		if((user.anyNull()) && ((modUser.getRoles().contains("ROLE_ADMIN")) || ((userRepository.findByName(userComponent.getLoggedUser().getName())).getName().equals(user.getName())))){
 			modUser.setAvatar(user.getAvatar());
 			modUser.setEmail(user.getEmail());
