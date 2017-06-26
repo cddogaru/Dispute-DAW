@@ -96,7 +96,7 @@
                   <div *ngFor="let round of rounds" id="{{round.id}}" class="tab-pane">
                     <br>
                     <ul class="list-group">
-                      <li class="list-group-item">
+                      <li class="list-group-item" *ngFor="let matchup of round.matchUps">
                         <table class="table">
                           
                           <form action="../tournament/{{tournament.name}}/setMatchUp" method="post">
@@ -107,7 +107,7 @@
 
                             <tbody>
                               <tr>
-                                <td><img src="https://localhost:8443/image/Default" class="img-thumbnail" height="50" width="50" /> <a href="users">Raul</a></td>
+                                <td><img src="https://localhost:8443/image/{{matchup.player1.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="users">{{matchup.player1.name}}</a></td>
                                 <td> </td> 
                                 <td class="text-right">
                                   <input type="number" name="result1" min="0" max="3" value="0"/>
@@ -117,7 +117,7 @@
                                 </td>
                               </tr>
                               <tr>
-                                <td><img src="https://localhost:8443/image/Default" class="img-thumbnail" height="50" width="50" /> <a href="users">Rafa</a></td>
+                                <td><img src="https://localhost:8443/image/{{matchup.player2.avatar}}" class="img-thumbnail" height="50" width="50" /> <a href="users">{{matchup.player2.name}}</a></td>
                                 <td> </td> 
                                 <td class="text-right">
                                   <input type="number" name="result2" min="0" max="3" value="0"/>
@@ -136,6 +136,7 @@
                             </tbody>
                           </form>
                         </table>
+                        <!--
                         <table class="table">
                           <tbody>
                             <tr>
@@ -152,6 +153,7 @@
                             </tr>
                           </tbody>
                         </table>
+                        -->
                       </li>
                     </ul>
                   </div> 

@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class TournamentRestController {
 	
 	interface TournamentListView extends Tournament.BasicAtt, User.PublicDataUser {}
-	interface TournamentRoundsView extends Tournament.BasicAtt, Round.BasicAtt, MatchUp.BasicAtt {}
+	interface TournamentRoundsView extends Tournament.BasicAtt, Round.BasicAtt, MatchUp.BasicAtt, Participant.BasicAtt {}
 	@Autowired
 	UserRepository userRepository;
 	
