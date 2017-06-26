@@ -27,6 +27,10 @@ public class User extends Participant{
 	
 	@JsonView(PublicDataUser.class)
 	@Column(nullable = false)
+	private String avatar;
+	
+	@JsonView(PublicDataUser.class)
+	@Column(nullable = false)
 	private String nickName;
 	
 
@@ -94,9 +98,15 @@ public class User extends Participant{
 		this.setName(name);
 		this.email = email;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
-		this.setAvatar("Default");
+		this.avatar = "Default";
+	}
+	public String getAvatar() {
+		return avatar;
 	}
 
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 	public String getUserName() {
 		return nickName;
 	}
@@ -197,7 +207,9 @@ public class User extends Participant{
 	public void setXbox(String xbox) {
 		this.xbox = xbox;
 	}
-
+	
+	
+	
 	public boolean anyNull(){
 		if((this.email != null) && (this.nickName != null) && (this.password != null) && (this.email != null) && (this.getName() != null)){
 			return true;

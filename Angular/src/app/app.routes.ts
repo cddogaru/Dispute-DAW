@@ -13,7 +13,7 @@ import {BugComponent} from './bug/bug.component'
 import {UserComponent} from './user/user.component'
 import {Settings1Component} from './settings/settings1.component'
 import {Settings2Component} from './settings/settings2.component'
-
+import {SignupComponent} from './signup/signup.component'
 const appRoutes = [
     { path: '', component: IndexComponent},
     { path: 'tournaments', component: TournamentsComponent},
@@ -28,5 +28,6 @@ const appRoutes = [
     { path: 'user/:id', component: UserComponent},
     { path: 'settings1', component: Settings1Component},
     { path: 'settings2', component: Settings2Component},
+    { path: 'signup', component: SignupComponent}
 ]
 export const routing = RouterModule.forRoot(appRoutes);

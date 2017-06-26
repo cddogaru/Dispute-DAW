@@ -1,8 +1,11 @@
 package com.dispute.user;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,8 +15,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -69,11 +81,54 @@ public class UserRestController {
 		return toRet;
 	}
 	
+	@JsonView(UserPublicView.class)
+	@RequestMapping(value = "/{user}/image", method = RequestMethod.POST)
+	public ResponseEntity<User> postImage(MultipartHttpServletRequest request) throws IOException{
+		
+		Iterator<String> itr = request.getFileNames();
+        MultipartFile file = request.getFile(itr.next());
+        
+        String cheat = file.getOriginalFilename();
+        long user = Long.parseLong(cheat);
+        
+		ResponseEntity<User> toRet;
+		User modUser = userRepository.findById(user);
+		
+		if((modUser.anyNull()) && ((modUser.getRoles().contains("ROLE_ADMIN")) || ((userRepository.findByName(userComponent.getLoggedUser().getName())).getName().equals(modUser.getName())))){
+
+			if (!file.isEmpty()) {
+				String fileName = modUser.getName() + ".jpg";
+				try {
+					File filesFolder = new File("files");
+					if (!filesFolder.exists()) {
+						filesFolder.mkdirs();
+					}
+
+					File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
+					file.transferTo(uploadedFile);
+					
+					modUser.setAvatar(modUser.getName());
+					userRepository.save(modUser);
+					
+				} catch (Exception e) {
+					toRet = new ResponseEntity<>(modUser, HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+			}
+
+			toRet = new ResponseEntity<>(modUser, HttpStatus.OK);
+		}else{
+			toRet = new ResponseEntity<>(modUser, HttpStatus.BAD_REQUEST);
+		}
+		
+		return toRet;
+	}
+	
 	@JsonView(UserPrivateView.class)
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<User> newUser(@RequestBody User user){
+		
 		ResponseEntity<User> toRet;
-		if(user.anyNull()){
+		if(user.anyNull() && !(userRepository.findAllNames().contains(user.getName()))){
 			user.setAvatar("Default");
 			userRepository.save(user);
 			toRet = new ResponseEntity<>(user, HttpStatus.CREATED);
@@ -104,5 +159,6 @@ public class UserRestController {
 		}
 	}
 	
+
 	
 }

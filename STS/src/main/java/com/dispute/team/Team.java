@@ -62,6 +62,10 @@ public class Team extends Participant{
 	@CollectionTable(name ="requests")
 	private List<Long> requests;
 	
+	@JsonView(basicAtt.class)
+	@Column(nullable = true)
+	private int size = 0;
+	
 	protected Team() {}
 
 	public Team(String name, String acronym, String description) {
@@ -111,6 +115,7 @@ public class Team extends Participant{
 	}
 	
 	public void addUser(User user){
+		size++;
 		this.users.add(user);
 	}
 

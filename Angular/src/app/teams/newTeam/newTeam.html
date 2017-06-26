@@ -1,5 +1,4 @@
-﻿<!--
-  <div class="container">
+﻿  <div class="container">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h1 class="Title2">Create a team:</h1>
@@ -7,9 +6,9 @@
       <div class="panel-body">
         <div class="col-lg-12">
           <br>
-          <form action="newTeam.html" method="post">
-            {{#error}}
-            <div class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>Invalid Team Name </strong> </div>{{/error}}
+          <form>
+            
+            <div *ngIf="error" class="alert alert-danger alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a> <strong>{{errorText}} </strong> </div>
             <input type="hidden" name="_csrf" value="{{token}}" />
             <div class="row top-buffer">
               <div class="col-md-1"></div>
@@ -17,7 +16,7 @@
                 <p class="options">Team name:</p>
               </div>
               <div class="col-md-8">
-                <input type="text" class="form-control" name="name" placeholder="Dispute Gaming" required>
+                <input #name type="text" class="form-control" name="name" placeholder="Dispute Gaming" required>
               </div>
             </div>
             <br>
@@ -28,7 +27,7 @@
                 <p class="options">Acronym:</p>
               </div>
               <div class="col-lg-8">
-                <input type="text" class="form-control" name="acronym" placeholder="DSPT" required>
+                <input #acronym type="text" class="form-control" name="acronym" placeholder="DSPT" required>
               </div>
             </div>
             <br>
@@ -39,14 +38,14 @@
               </div>
               <div class="col-lg-8">
                 <div class="form-group">
-                  <textarea class="form-control" rows="5" name="description" style="max-width: 100%" placeholder="Your team's description"></textarea>
+                  <textarea #description class="form-control" rows="5" name="description" style="max-width: 100%" placeholder="Your team's description"></textarea>
                 </div>
               </div>
             </div>
             <br>
             <div class="text-center">
               <div>
-                <input type="submit" class="btn btn-primary btn-md" value="create">
+                <input type="submit" (click)="newTeam(name.value, acronym.value, description.value)"  class="btn btn-primary btn-md" value="create">
               </div>
             </div>
           </form>
@@ -55,6 +54,3 @@
       </div>
     </div>
   </div>
--->
-
-ERRORES

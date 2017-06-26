@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { HeaderComponent } from './header.component';
-import { FooterComponent } from './footer.component';
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,5 @@ import { FooterComponent } from './footer.component';
   
 })
 export class AppComponent {
+
 }

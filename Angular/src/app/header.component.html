@@ -12,26 +12,27 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-          <li>
-            <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="http://lorempixel.com/50/50/" height="50" width="50" />
+         
+          <li  *ngIf="logged; else elseContainer">
+            <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="https://localhost:8443/image/{{avatar}}.jpg" height="50" width="50" />
             <ul class="dropdown-menu">
               <li>
-                <a [routerLink]="['user/0']">
-                  <strong></strong>
+                <a [routerLink]="['user/' + user.id]">
+                  <strong>{{user.name}}</strong>
                   <p class="small">Profile</p>
                 </a>
               </li>
               <li><a href="../myTournaments">My Tournaments</a></li>
               <li>
-                <form action="/logout" method="post">
-                  <input type="hidden" name="_csrf">
-                  <button type="submit" class="btn btn-link">Logout</button>
-                </form>
+                <a (click)="logout()" href="./">Logout</a>
               </li>
             </ul>
           </li>
-          <li><a [routerLink]="['settings1']" id="topRightMenu"><span class="skinNavbarLinks">Settings</span></a></li>
-          <li><a [routerLink]="['login']"><span class="skinNavbarLinks">Sign in</span></a></li>
+          <li *ngIf="logged;"><a [routerLink]="['settings1']" id="topRightMenu"><span class="skinNavbarLinks">Settings</span></a></li>
+          
+          
+          <ng-template #elseContainer><li><a [routerLink]="['login']"><span class="skinNavbarLinks">Sign in</span></a></li></ng-template>
+          
           <li><a [routerLink]="['contactus']"><span class="skinNavbarLinks">Contact</span></a></li>
         </ul>
         <form class="navbar-form navbar-left" action="../findTournament" method="post">
