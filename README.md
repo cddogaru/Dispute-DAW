@@ -103,6 +103,6 @@ This page provides all visitors forms to contact the developers along with the p
 ![ScreenShot](https://i.gyazo.com/2e4d00167ad7f5b037fd8805bb48b3c0.png)
 
 # Angular Diagram
-![ScreenShot](https://gyazo.com/2a70c19bc759195d462bd721a715478b.png)
+![ScreenShot](https://gyazo.com/371919f1b43ea4abece82724c8b65fd1.png)
 
 ## API REST documentation: https://github.com/cddogaru/Dispute-DAW/blob/master/API.md
