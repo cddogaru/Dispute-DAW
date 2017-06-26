@@ -10,6 +10,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 export class Settings1Component {
     private user: string[] = [];
+    private userLogged;
     private currentid: any;
     private file: File;
     private formData: FormData;
@@ -25,6 +26,7 @@ export class Settings1Component {
         this.http.get("https://localhost:8443/api/users/loggedUser/").subscribe(
             response => {
                 let uuser = response.json();
+                this.userLogged = uuser;
                 this.currentid = uuser.id;
 
                 this.http.get("https://localhost:8443/api/users/" + this.currentid).subscribe(
@@ -61,9 +63,8 @@ export class Settings1Component {
 
     private data = {
         name: "",
-        userName: "",
         avatar: "",
-        nickname: "",
+        nickName: "",
         password: "",
         email: null,
         team: null,
@@ -74,17 +75,41 @@ export class Settings1Component {
         origin: null,
         battlenet: null,
         psn: null,
-        xbox: null
+        xbox: null,
+        roles: null
     };
 
 
-    singup(username: string, email: string, nick: string, password: string) {
-        this.data.email = email;
-        this.data.nickname = nick;
-        this.data.password = password;
+    changes( nick: string, email: string, password: string) {
+        this.data.name = this.userLogged.name;        
+        if(password===""){
+            this.data.password=this.userLogged.password;
+        } else {
+            this.data.password = password;
+        }
+        if(nick===""){
+            this.data.nickName = this.userLogged.nickName;
+        } else{
+            this.data.nickName = nick;
+        }
+        if(email===""){
+            this.data.email = this.userLogged.email;
+        } else{
+            this.data.email = email;
+        }
+        this.data.avatar = this.userLogged.avatar;
+        this.data.team = this.userLogged.team;
+        this.data.twitch = this.userLogged.twitch;
+        this.data.youtube = this.userLogged.youtube;
+        this.data.steam = this.userLogged.steam;
+        this.data.origin = this.userLogged.origin;
+        this.data.battlenet = this.userLogged.battlenet;
+        this.data.psn = this.userLogged.psn;
+        this.data.xbox = this.userLogged.xbox;
+        this.data.roles = this.userLogged.roles;
         this.http.put("https://localhost:8443/api/users/", this.data).subscribe(
             response => {
-                this.router.navigate(['/settings1']);
+                this.router.navigate(['/user/' + this.userLogged.id]);
             },
             error => {
                 window.scrollTo(0, 0);
