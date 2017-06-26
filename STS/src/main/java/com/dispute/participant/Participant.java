@@ -35,7 +35,7 @@ public abstract class Participant{
 	private List<Tournament> tournaments; 
 	
 	@JsonView(BasicAtt.class)
-	private String avatar;
+	public String avatar;
 	
 	
 

@@ -10,6 +10,9 @@ export class HeaderComponent {
 
      private user;
      private logged: boolean = false;
+     private uid: any;
+     private avatar: any;
+
     constructor(private http: Http) {
     }
 
@@ -28,11 +31,20 @@ export class HeaderComponent {
         let url = "https://localhost:8443/api/users/loggedUser/";
         this.http.get(url).subscribe(
             response => {
-                console.log("LOGGED");
+                this.user = [];
                 this.user = response.json();
+                this.uid = this.user.id;
+                
                 if(this.user!=null){
                     this.logged=true;
                 }
+
+                this.http.get("https://localhost:8443/api/users/" + this.uid).subscribe(
+                    response => {
+                        this.avatar = response.json().avatar;
+                    },
+                    error => console.error(error)
+                );
             }
         );
     }

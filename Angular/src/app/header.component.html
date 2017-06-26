@@ -14,7 +14,7 @@
           <li>
          
           <li  *ngIf="logged; else elseContainer">
-            <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="../assets/images/{{user.avatar}}.jpg" height="50" width="50" />
+            <img id="profile" class="img-circle dropdown-toggle" data-toggle="dropdown" src="https://localhost:8443/image/{{avatar}}.jpg" height="50" width="50" />
             <ul class="dropdown-menu">
               <li>
                 <a [routerLink]="['user/' + user.id]">

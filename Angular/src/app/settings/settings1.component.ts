@@ -5,41 +5,57 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 @Component({
     selector: 'settings1',
     templateUrl: './settings1.html',
-    styles:['../assets/styles/settingsstyle.css']
+    styles: ['../assets/styles/settingsstyle.css']
 })
 
 export class Settings1Component {
     private user: string[] = [];
-    private currentid = "";
+    private currentid: any;
     private file: File;
+    private formData: FormData;
+
+
+
 
     constructor(private route: ActivatedRoute, private http: Http, private router: Router) { }
 
     ngOnInit() {
+        this.user = [];
+        this.formData = new FormData();
         this.http.get("https://localhost:8443/api/users/loggedUser/").subscribe(
             response => {
                 let uuser = response.json();
-                this.user = uuser;
                 this.currentid = uuser.id;
+
+                this.http.get("https://localhost:8443/api/users/" + this.currentid).subscribe(
+                    response => {
+                        this.user = response.json();
+                    },
+                    error => console.error(error)
+                );
             },
             error => console.error(error)
         );
+
+
     }
 
-    setAvatar(newavatar: any){
-        let eventObj: MSInputMethodContext = <MSInputMethodContext> newavatar;
-        let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
+    setAvatar(newavatar: any) {
+        let eventObj: MSInputMethodContext = <MSInputMethodContext>newavatar;
+        let target: HTMLInputElement = <HTMLInputElement>eventObj.target;
         let files: FileList = target.files;
         this.file = files[0];
+        let name = files[0].name;
+        this.formData.append('uploadFile', this.file, this.currentid);
 
         console.log(this.file);
-        this.http.post("https://localhost:8443/api/users/"+this.currentid+"/image/", this.currentid, this.file).subscribe(
-                response => {
-                    this.router.navigate(['/users/'+this.currentid]);
-                },
-                error => {
-                    window.scrollTo(0, 0)
-                }
+        this.http.post('https://localhost:8443/api/users/' + this.currentid + "/image/", this.formData).subscribe(
+            response => {
+                this.router.navigate(['/users/' + this.currentid]);
+            },
+            error => {
+                window.scrollTo(0, 0)
+            }
         );
     }
 

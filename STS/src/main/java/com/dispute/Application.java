@@ -14,16 +14,27 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 	
-    @Bean
+	@Bean
+
     public WebMvcConfigurer corsConfigurer() {
+
         return new WebMvcConfigurerAdapter() {
+
             @Override
+
             public void addCorsMappings(CorsRegistry registry) {
-            	registry.addMapping("/api/**").allowedOrigins("http://localhost:4200");
-            	registry.addMapping("/api/logIn").allowedOrigins("http://localhost:4200");
-                registry.addMapping("/api/tournaments/").allowedOrigins("http://localhost:4200");
-                registry.addMapping("/api/users/**").allowedOrigins("http://localhost:4200");
+
+                registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "OPTIONS", "PUT", "DELETE")
+
+                .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers")
+
+                .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
+
+                .allowCredentials(true).maxAge(3600);
+
             }
+
         };
+
     }
 }

@@ -42,11 +42,11 @@
                             <div id="profileSetLeftSide">
                                 <p class="options"> Avatar: </p>
                                 <form action="/profileSettings" method="POST" enctype="multipart/form-data">
-                                    <div id="profileMainPic"> <img id="profile" class="img-square" src="../assets/images/{{user.avatar}}.jpg" height="150"
+                                    <div id="profileMainPic"> <img id="profile" class="img-square" src="https://localhost:8443/image/{{user.avatar}}.jpg" height="150"
                                             width="150" />
                                     </div>
                                     <br>
-                                    <input (change)="setAvatar($event)" type="file" name="pic" style="color: white;" />
+                                    <input (change)="setAvatar($event)" type="file" name="pic" style="color: white;"/>
 
 
                                     <br>
