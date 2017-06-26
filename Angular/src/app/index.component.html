@@ -38,7 +38,7 @@
       <div class="col-md-4" *ngFor="let tournament of tournaments">
           
         <h2><a [routerLink]="['tournament' + tournament.id]"><span>{{tournament.name}}</span></a></h2>
-                <p>{{tournament.description}}</p> <a class="btn btn-primary btn-lg" href="tournament/{{tournament.name}}">View bracket</a> 
+                <p>{{tournament.description}}</p> <a class="btn btn-primary btn-lg" [routerLink]="['tournament/' + tournament.id]">View bracket</a> 
       </div>
     </div>
     <!-- /.row -->
