@@ -37,7 +37,7 @@ export class TournamentComponent {
 
                  this.tmethod();
             },
-            error => console.log(error)
+            error => this.tmethod()
         );
      }
 
