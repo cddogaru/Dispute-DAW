@@ -59,5 +59,37 @@ export class Settings1Component {
         );
     }
 
+    private data = {
+        name: "",
+        userName: "",
+        avatar: "",
+        nickname: "",
+        password: "",
+        email: null,
+        team: null,
+        twitter: null,
+        twitch: null,
+        youtube: null,
+        steam: null,
+        origin: null,
+        battlenet: null,
+        psn: null,
+        xbox: null
+    };
+
+
+    singup(username: string, email: string, nick: string, password: string) {
+        this.data.email = email;
+        this.data.nickname = nick;
+        this.data.password = password;
+        this.http.put("https://localhost:8443/api/users/", this.data).subscribe(
+            response => {
+                this.router.navigate(['/settings1']);
+            },
+            error => {
+                window.scrollTo(0, 0);
+            }
+        );
+    }
 
 }
